@@ -1,2 +1,5 @@
-# texscript
-TEXScript
+# TEXScript
+
+```ts
+Page: "Hello World"
+```
