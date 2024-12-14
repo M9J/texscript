@@ -1,5 +1,5 @@
 import ERRORS from "./errors.js";
-import { GRAMMAR } from "./grammar.js";
+import GRAMMAR from "./grammar.js";
 import Metrics from "./metrics.js";
 import Stack from "./stack.js";
 

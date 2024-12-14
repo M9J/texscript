@@ -42,4 +42,4 @@ function convertRulesToGrammar(grammarRules) {
   return grammar;
 }
 
-export const GRAMMAR = convertRulesToGrammar(GRAMMAR_RULES);
+export default convertRulesToGrammar(GRAMMAR_RULES);
