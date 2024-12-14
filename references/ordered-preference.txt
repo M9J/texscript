@@ -1,0 +1,34 @@
+--
+::
+"+1 (234) 567-8900"
+"2015 - 2020"
+"2020 - PRESENT"
+"B.S. Computer Science"
+"Cambridge, Massachusetts"
+"Created a library for easeness of utilizing RPC calls"
+"Developed the database-application API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than before."
+"john.doe@example.com"
+"Los Angeles. California"
+"M.S. Computer Science"
+"Maintained few archived repositories of Google Cloud Platform (GCP)"
+"Recognized for conducting thorough unit tests for several mission critical modules"
+"Responsible for the development, testing, deployment and debugging of Google Cloud infrastructure UI application."
+"United States 90009"
+"United States"
+]
+Block [
+Block.contactInfoRight [
+Line.careerPosition: "Senior Engineer, Amazon, Seattle"
+Line.careerPosition: "Staff Engineer, Google, California"
+Line.educationInstitution: "Harvard University"
+Line.educationInstitution: "Massachusetts Institute of Technology"
+List.responsibilities (type: bullet) [
+Page.main (size: A4) [
+Section.careerDetails [
+Section.careerTitle: "CAREER"
+Section.contactInfo [
+Section.educationDetails [
+Section.educationTitle: "EDUCATION"
+Section.name: "John Doe"
+Section.skillsDetails: "Java, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js"
+Section.skillsTitle: "SKILLS"
