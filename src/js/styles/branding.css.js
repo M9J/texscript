@@ -1,8 +1,4 @@
-export const BRANDING = `
-body {
-  background-color: #888;
-}
-
+export const texscriptBranding = `
 .texscript-branding {
   color: #000;
   letter-spacing: 2px;
@@ -16,3 +12,5 @@ body {
   user-select: none;
 }
 `;
+
+export default [texscriptBranding].join(`\n`);

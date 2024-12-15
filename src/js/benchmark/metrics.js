@@ -4,7 +4,7 @@ export default class Metrics {
 
   start() {
     this.#START_TIME = Date.now();
-    console.log(`[TEXScript] > Compilation started`);
+    // console.log(`[TEXScript] > Compilation started`);
   }
 
   end() {

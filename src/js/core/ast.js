@@ -4,6 +4,10 @@ class ASTNode {
   constructor(type) {
     this.#nodeType = type;
   }
+
+  getNodeType() {
+    return this.#nodeType;
+  }
 }
 
 export class ASTRootNode extends ASTNode {
@@ -20,7 +24,7 @@ export class ASTTagNode extends ASTNode {
   value = null;
   htmlElement = null;
   customCSSClasses = [];
-  parameters = {};
+  parameters = null;
   children = [];
 
   constructor() {
@@ -38,6 +42,7 @@ export class ASTLiteralNode extends ASTNode {
 
 export class ASTSpecialTagNode extends ASTNode {
   htmlElement = null;
+  value = null;
 
   constructor() {
     super("SPEC_TAG");

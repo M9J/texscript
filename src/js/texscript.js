@@ -1,5 +1,10 @@
-import Compiler from "./compiler.js";
-import { setup } from "./utils.js";
+import Compiler from "./core/compiler.js";
+import { setup } from "./utils/setup.js";
 
 setup();
-new Compiler();
+const texscriptCompiledHTML = new Compiler().compile();
+// console.log("texscriptCompiledHTML", texscriptCompiledHTML);
+const existingBodyHTML = document.body.innerHTML;
+// console.log("bodyHTML", existingBodyHTML);
+const newBodyHTML = existingBodyHTML + texscriptCompiledHTML;
+document.body.innerHTML = newBodyHTML;
