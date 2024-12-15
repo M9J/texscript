@@ -6,6 +6,10 @@
   /* font-family: "Roboto Mono"; */
   font-family: "Nunito";
   /* font-family: "Times New Roman"; */
+  min-width: 210mm;
+  min-height: 297mm;
+  max-width: 210mm;
+  max-height: 297mm;
 }
 
 .name {

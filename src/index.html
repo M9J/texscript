@@ -2,11 +2,16 @@
   <title>TEXScript</title>
   <script src="js/texscript.js" type="module" defer></script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    .card {
+      min-width: 105mm;
+      min-height: 74mm;
+      max-width: 105mm;
+      max-height: 74mm;
+      padding: 24px;
+    }
+  </style>
 </head>
 <script type="text/texscript">
-  Page: "Hello World"
-  Page (size: A4): "Hello Galaxy"
-  Page [
-    "Hello Universe"
-  ]
+  Page.card: "Hello World"
 </script>

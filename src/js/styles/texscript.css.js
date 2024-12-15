@@ -10,12 +10,9 @@ const texscriptPage = `
     box-sizing: border-box;
     box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
     page-break-after: always;
-    min-width: 210mm;
-    min-height: 297mm;
-    max-width: 210mm;
-    max-height: 297mm;
 }
 `;
+
 const texscriptSection = `
 .texscript-Section {
 
