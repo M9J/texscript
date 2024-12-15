@@ -16,12 +16,10 @@ const MetaTokensExtended = {
 
 const META_TOKENS = { ...MetaTokensBasic, ...MetaTokensExtended };
 
-// Don't sort or change the order of this GRAMMAR_RULES as it is already ordered based on priority given for parsing.
 const GRAMMAR_RULES = [
-  "HR",
   "BR",
-  "STRING",
   "BRACKET_SQUARE_CLOSE",
+  "HR",
   "KEYWORD|COLON|SPACE|STRING",
   "KEYWORD|CSS_CLASS|COLON|SPACE|STRING",
   "KEYWORD|CSS_CLASS|SPACE|BRACKET_SQUARE_OPEN",
@@ -30,6 +28,7 @@ const GRAMMAR_RULES = [
   "KEYWORD|SPACE|BRACKET_SQUARE_OPEN",
   "KEYWORD|SPACE|PARAMETERS|COLON|SPACE|STRING",
   "KEYWORD|SPACE|PARAMETERS|SPACE|BRACKET_SQUARE_OPEN",
+  "STRING",
 ];
 
 function convertRulesToGrammar(grammarRules) {
