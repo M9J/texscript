@@ -1,0 +1,141 @@
+{
+  "type": "ROOT",
+  "value": "Program",
+  "meta": {
+    "languageName": "TEXScript",
+    "languageCompilerVersion": "0.1"
+  },
+  "body": [
+    {
+      "type": "TAG",
+      "value": "Page",
+      "htmlElement": "div",
+      "customCSSClasses": ["main"],
+      "parameters": { "size": "A4" },
+      "children": [
+        {
+          "type": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["name"],
+          "children": [
+            {
+              "type": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "children": [
+                {
+                  "type": "LITERAL",
+                  "value": "John Doe"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["contactInfo"],
+          "children": [
+            {
+              "type": "TAG",
+              "value": "Block",
+              "htmlElement": "div",
+              "children": [
+                {
+                  "type": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "children": [
+                    {
+                      "type": "LITERAL",
+                      "value": "john.doe@example.com"
+                    }
+                  ]
+                },
+                {
+                  "type": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "children": [
+                    {
+                      "type": "LITERAL",
+                      "value": "+1 (234) 567-8900"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TAG",
+              "value": "Block",
+              "htmlElement": "div",
+              "customCSSClasses": "contactInfoRight",
+              "children": [
+                {
+                  "type": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "children": [
+                    {
+                      "type": "LITERAL",
+                      "value": "Los Angeles, California"
+                    }
+                  ]
+                },
+                {
+                  "type": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "children": [
+                    {
+                      "type": "LITERAL",
+                      "value": "United States 90009"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SPEC_TAG",
+          "value": "br",
+          "htmlElement": "br"
+        },
+        {
+          "type": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": "careerTitle",
+          "children": [
+            {
+              "type": "TAG",
+              "value": "Block",
+              "htmlElement": "div",
+              "children": [
+                {
+                  "type": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "children": [
+                    {
+                      "type": "LITERAL",
+                      "value": "CAREER"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SPEC_TAG",
+          "value": "hr",
+          "htmlElement": "hr"
+        }
+      ]
+    }
+  ]
+}

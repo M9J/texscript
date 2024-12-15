@@ -1,11 +1,4 @@
-<head>
-  <title>TEXScript</title>
-  <script src="../js/texscript.js"></script>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="../css/texscript.css" />
-</head>
-<script type="text/texscript">
-  Page.main (size: A4) [
+Page.main (size: A4) [
       Section.name: "John Doe"
       Section.contactInfo [
           Block [
@@ -56,4 +49,3 @@
           ]
       ]
   ]
-</script>

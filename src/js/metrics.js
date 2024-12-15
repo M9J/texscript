@@ -4,13 +4,13 @@ export default class Metrics {
 
   start() {
     this.#START_TIME = Date.now();
-    console.log(`TEXScript > Compilation started`);
+    console.log(`[TEXScript] > Compilation started`);
   }
 
   end() {
     this.#END_TIME = Date.now();
     const totalTime = this.getTotalTime();
-    console.log(`TEXScript > Compilation finished in ${totalTime}`);
+    console.log(`[TEXScript] > Compilation finished in ${totalTime}`);
   }
 
   getTotalTime() {

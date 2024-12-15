@@ -7,5 +7,6 @@ export default {
   ERR0006: `Compiler.convertToRuleMatchMap(): 'rule' not provided`,
   ERR0007: `Compiler.convertToRuleMatchMap(): 'matches' not provided`,
   ERR0008: `Compiler.syntaxAnalysis(): 'tokens' not provided`,
-  ERR0009: `Compiler.compile(): 'linesOfCode  ' not provided`,
+  ERR0009: `Compiler.compile(): 'linesOfCode' not provided`,
+  ERR0010: `Compiler.syntaxAnalysis(): token.type is null`,
 };

@@ -1,3 +1,4 @@
+import { ASTLiteralNode, ASTRootNode, ASTSpecialTagNode, ASTTagNode } from "./ast.js";
 import ERRORS from "./errors.js";
 import GRAMMAR from "./grammar.js";
 import Metrics from "./metrics.js";
@@ -8,7 +9,7 @@ export default class Compiler {
   metrics = new Metrics();
 
   constructor() {
-    console.log(`--::([ TEXScript Compiler ${this.version} ])::--`);
+    console.log(`[TEXScript] :: https://github.com/m9j/texscript) :: ${this.version}`);
     this.metrics.start();
     const rawCode = this.findCodeFromHTML();
     if (!rawCode) throw new Error(ERRORS.ERR0001);
@@ -20,7 +21,7 @@ export default class Compiler {
   compile(linesOfCode) {
     if (!linesOfCode) throw new Error(ERRORS.ERR0009);
     const tokens = this.lexicalAnalysis(linesOfCode);
-    console.log("tokens", tokens);
+    // console.log("tokens", tokens);
     const ast = this.syntaxAnalysis(tokens);
     console.log("ast", ast);
     const html = this.generateHTMLCode(ast);
@@ -31,29 +32,103 @@ export default class Compiler {
 
   syntaxAnalysis(tokens) {
     if (!tokens) throw new Error(ERRORS.ERR0008);
-    const ast = { type: "Program", language: "TEXScript", body: [] };
+    const ast = new ASTRootNode();
+    ast.value = "Program";
+    ast.meta.languageName = "TEXScript";
+    ast.meta.languageCompilerVersion = this.version;
     const hasTokens = Array.isArray(tokens) ? tokens.length > 0 : false;
+    const tagStack = new Stack();
+    const colonStack = new Stack();
+    const spaceStack = new Stack();
     if (hasTokens) {
+      let currentNode = null;
       for (const tokenLine of tokens) {
         const hasTokenLine = Array.isArray(tokenLine) ? tokenLine.length > 0 : false;
         if (hasTokenLine) {
           for (const token of tokenLine) {
-            const astNode = { ...token };
-            if (token.type === "KEYWORD") {
-            } else if (token.type === "STRING") {
-            } else if (token.type === "BR") {
-            } else if (token.type === "COLON") {
-            } else if (token.type === "BRACKET_SQUARE_CLOSE") {
-            } else if (token.type === "BRACKET_SQUARE_OPEN") {
-            } else if (token.type === "CSS_CLASS") {
-            } else if (token.type === "PARAMETERS") {
-            } else if (token.type === "HR") {
-            } else if (token.type === "SPACE") {
+            if (!token.type) throw new Error(ERRORS.ERR0010);
+            switch (token.type) {
+              case "KEYWORD": {
+                const tagNode = new ASTTagNode();
+                tagNode.value = token.value;
+                if (token.value === "Section") tagNode.htmlElement = "section";
+                else tagNode.htmlElement = "div";
+                currentNode = tagNode;
+                if (tagStack.isEmpty()) ast.body.push(currentNode);
+                else {
+                  const prevTag = tagStack.peek();
+                  if (prevTag) prevTag.children.push(currentNode);
+                }
+                break;
+              }
+
+              case "BR": {
+                const brNode = new ASTSpecialTagNode();
+                brNode.htmlElement = "br";
+                currentNode.children.push(brNode);
+                break;
+              }
+
+              case "HR": {
+                const hrNode = new ASTSpecialTagNode();
+                hrNode.htmlElement = "hr";
+                currentNode.children.push(hrNode);
+                break;
+              }
+
+              case "STRING": {
+                const stringNode = new ASTLiteralNode();
+                stringNode.value = token.value;
+                const lineNode = new ASTTagNode();
+                lineNode.value = "Line";
+                lineNode.htmlElement = "div";
+                lineNode.children.push(stringNode);
+                if (!currentNode) debugger;
+                currentNode.children.push(lineNode);
+                if (!colonStack.isEmpty() && !spaceStack.isEmpty()) {
+                  if (!tagStack.isEmpty()) currentNode = tagStack.peek();
+                  colonStack.pop();
+                  spaceStack.pop();
+                }
+                break;
+              }
+
+              case "CSS_CLASS": {
+                currentNode.customCSSClasses.push(token.value);
+                break;
+              }
+
+              case "PARAMETERS": {
+                currentNode.parameters = token.value;
+                break;
+              }
+
+              case "BRACKET_SQUARE_OPEN": {
+                tagStack.push(currentNode);
+                break;
+              }
+
+              case "BRACKET_SQUARE_CLOSE": {
+                if (!tagStack.isEmpty()) tagStack.pop();
+                if (!tagStack.isEmpty()) currentNode = tagStack.peek();
+                break;
+              }
+
+              case "COLON": {
+                colonStack.push(token);
+                break;
+              }
+
+              case "SPACE": {
+                spaceStack.push(token);
+                break;
+              }
             }
           }
         }
       }
     }
+    return ast;
   }
 
   lexicalAnalysis(linesOfCode) {
