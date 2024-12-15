@@ -1,3 +1,4 @@
+export const BRANDING = `
 body {
   background-color: #888;
 }
@@ -14,3 +15,4 @@ body {
   z-index: -999;
   user-select: none;
 }
+`;
