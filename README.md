@@ -1,6 +1,6 @@
 # TEXScript
 
-```ts
+```html
 <script type="text/texscript">
   Page: "Hello World"
 </script>
