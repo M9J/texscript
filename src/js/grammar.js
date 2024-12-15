@@ -31,14 +31,14 @@ const GRAMMAR_RULES = [
   "STRING",
 ];
 
-function convertRulesToGrammar(grammarRules) {
+function convertRulesToGrammar(grammarRules, metaTokens) {
   const grammar = new Map();
   grammarRules.forEach((grammarRule) => {
-    const patterns = grammarRule.split("|").map((token) => META_TOKENS[token].source);
+    const patterns = grammarRule.split("|").map((token) => metaTokens[token].source);
     const grammarRegex = new RegExp(patterns.join(""));
     grammar.set(grammarRule, grammarRegex);
   });
   return grammar;
 }
 
-export default convertRulesToGrammar(GRAMMAR_RULES);
+export default convertRulesToGrammar(GRAMMAR_RULES, META_TOKENS);
