@@ -12,8 +12,6 @@ const print = `
 
   page {
     margin: 0 auto;
-    width: 210mm;
-    height: 297mm;
     box-shadow: none;
   }
 }
