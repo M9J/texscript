@@ -18,7 +18,7 @@ const html_texscriptSplash = `
   <div style="font-size: 24px;">TEXScript Markup Language</div>
   <div>Version: v0.1</div>
   <br/>
-  <div>$&gt; texscript start</div>
+  <div>$&gt; texscript run</div>
   <br/>
   <div>Started TEXScript Loader...</div>
   <div id="texscript-loader-status"></div>
