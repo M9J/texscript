@@ -7,7 +7,6 @@ body {
 .texscript-splash-container {
   font-family: monospace;
   padding: 24px;
-  font-size: 2em;
 }
 `;
 
@@ -20,7 +19,7 @@ const html_texscriptSplash = `
   <br/>
   <div>$&gt; texscript run</div>
   <br/>
-  <div>Started TEXScript Loader...</div>
+  <div>TEXScript Loader: STARTED</div>
   <div id="texscript-loader-status"></div>
 </div>
 `;
