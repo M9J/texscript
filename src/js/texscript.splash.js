@@ -7,7 +7,7 @@ body {
 .texscript-splash-container {
   font-family: monospace;
   padding: 24px;
-  font-size: 1em;
+  font-size: 2em;
 }
 `;
 
@@ -15,7 +15,7 @@ const html_texscriptSplash = `
 <div class="texscript-splash-container">
   <div>$&gt; texscript --version</div>
   <br/>
-  <div style="font-size: 24px;">TEXScript Markup Language</div>
+  <div>TEXScript Markup Language</div>
   <div>Version: v0.1</div>
   <br/>
   <div>$&gt; texscript run</div>
