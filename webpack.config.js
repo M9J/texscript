@@ -5,7 +5,7 @@ module.exports = {
   output: {
     filename: "texscript.bundle.js",
     path: path.resolve(__dirname, "dist"),
-    chunkFilename: "[name].bundle.js",
+  chunkFilename: "[name].bundle.js",
   },
   devServer: {
     static: {
@@ -15,11 +15,7 @@ module.exports = {
     compress: true,
     port: 9000,
     hot: true,
-    watchFiles: [
-      "src/**/*.js", // Watch all JS files in the src directory
-      "src/**/*.css", // Watch all CSS files in the src directory
-      "public/**/*.html", // Watch all HTML files in the public directory
-    ],
+    watchFiles: ["src/**/*.js", "src/**/*.css", "dist/**/*.js"],
   },
   module: {
     rules: [

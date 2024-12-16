@@ -13,18 +13,6 @@ const texscriptPage = `
 }
 `;
 
-const texscriptSection = `
-.texscript-Section {
-
-}
-`;
-
-const texscriptBlock = `
-.texscript-Block {
-
-}
-`;
-
 const texscriptLine = `
 .texscript-Line {
     display: block;
@@ -37,12 +25,6 @@ const texscriptList = `
 }
 `;
 
-const texscriptBR = `
-.texscript-BR {
-
-}
-`;
-
 const texscriptHR = `
 .texscript-HR {
     height: 1px;
@@ -51,5 +33,9 @@ const texscriptHR = `
     margin: 8px 0;
 }
 `;
+
+const texscriptSection = `.texscript-Section {}`;
+const texscriptBlock = `.texscript-Block {}`;
+const texscriptBR = `.texscript-BR {}`;
 
 export default [texscriptImports, texscriptBR, texscriptBlock, texscriptHR, texscriptLine, texscriptList, texscriptPage, texscriptSection].join(`\n`);
