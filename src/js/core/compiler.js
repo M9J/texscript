@@ -1,43 +1,43 @@
 import Metrics from "../benchmark/metrics.js";
 import { ASTLiteralNode, ASTRootNode, ASTSpecialTagNode, ASTTagNode } from "./ast.js";
-import ERRORS from "./errors.js";
+import ERRORS from "../constants/errors.js";
 import GRAMMAR from "./grammar.js";
 import Stack from "./stack.js";
 
 export default class Compiler {
   version = "v0.1";
-  metrics = new Metrics();
+  metricsCompilation = new Metrics("Compilation");
+  metricsCodeGeneration = new Metrics("CodeGeneration");
+  rawCode = null;
+  linesOfCode = null;
+  tokens = null;
+  ast = null;
 
   constructor() {
-    console.log(`[TEXScript] :: https://github.com/m9j/texscript) :: ${this.version}`);
+    console.log(`[TEXScript: Compiler ${this.version}](https://github.com/M9J/texscript.git)`);
   }
 
-  compile() {
-    this.metrics.start();
-    const rawCode = this.findCodeFromHTML();
-    if (!rawCode) throw new Error(ERRORS.ERR0001);
-    const linesOfCode = this.convertToLinesOfCode(rawCode);
-    // console.log("linesOfCode", linesOfCode);
-    const tokens = this.lexicalAnalysis(linesOfCode);
-    // console.log("tokens", tokens);
-    const ast = this.syntaxAnalysis(tokens);
-    // console.log("ast", ast);
-    const html = this.codeGeneration(ast, "HTML");
-    // console.log("html", html);
-    this.metrics.end();
-    return html;
+  compile(rawCode) {
+    this.metricsCompilation.start();
+    this.rawCode = rawCode;
+    this.linesOfCode = this.convertToLinesOfCode();
+    this.tokens = this.lexicalAnalysis();
+    this.ast = this.syntaxAnalysis();
+    this.metricsCompilation.end();
   }
 
-  codeGeneration(ast, lang) {
-    if (!ast) throw new Error(ERRORS.ERR0009);
+  generateCodeFor(lang) {
     if (!lang) throw new Error(ERRORS.ERR0011);
+    this.metricsCodeGeneration.start();
     let code = null;
-    if (lang === "HTML") code = this.generateCodeForHTML(ast);
+    if (lang === "HTML") code = this.generateCodeForHTML();
     else throw new Error(ERRORS.ERR0012);
+    this.metricsCodeGeneration.end();
     return code;
   }
 
-  generateCodeForHTML(ast) {
+  generateCodeForHTML() {
+    const ast = this.ast;
     if (!ast) throw new Error(ERRORS.ERR0009);
     let html = ``;
     const body = ast.body;
@@ -75,7 +75,8 @@ export default class Compiler {
     }
   }
 
-  syntaxAnalysis(tokens) {
+  syntaxAnalysis() {
+    const tokens = this.tokens;
     if (!tokens) throw new Error(ERRORS.ERR0007);
     const ast = new ASTRootNode();
     ast.value = "Program";
@@ -181,7 +182,8 @@ export default class Compiler {
     return ast;
   }
 
-  lexicalAnalysis(linesOfCode) {
+  lexicalAnalysis() {
+    const linesOfCode = this.linesOfCode;
     if (!linesOfCode) throw new Error(ERRORS.ERR0004);
     const tokens = [];
     for (const line of linesOfCode) {
@@ -216,17 +218,11 @@ export default class Compiler {
     return nodes;
   }
 
-  convertToLinesOfCode(rawCode) {
+  convertToLinesOfCode() {
+    const rawCode = this.rawCode;
     if (!rawCode) throw new Error(ERRORS.ERR0002);
     const linesOfCode = rawCode.split("\n");
     const cleanedLinesOfCode = linesOfCode.map((c) => c.trim()).filter((c) => c.length > 0);
     return cleanedLinesOfCode;
-  }
-
-  findCodeFromHTML() {
-    const scriptElem = document.querySelectorAll('script[type="text/texscript"]');
-    if (!scriptElem) throw new Error(ERRORS.ERR0003);
-    const script = scriptElem ? scriptElem[0] : null;
-    return script ? script.innerText : null;
   }
 }

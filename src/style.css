@@ -4,8 +4,10 @@
   padding: 1in;
   /* letter-spacing: 0.5px; */
   /* font-family: "Roboto Mono"; */
-  font-family: "Nunito";
+  /* font-family: "Nunito"; */
   /* font-family: "Times New Roman"; */
+  /* font-family: "Segoe UI"; */
+  font-family: monospace;
   min-width: 210mm;
   min-height: 297mm;
   max-width: 210mm;
@@ -32,6 +34,7 @@
 .skillsTitle,
 .educationTitle {
   font-weight: bold;
+  font-size: 14px;
 }
 
 .careerDetails,

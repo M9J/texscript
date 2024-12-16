@@ -11,4 +11,5 @@ export default {
   ERR0010: `'node' is not provided`,
   ERR0011: `'lang' is not provided`,
   ERR0012: `Code generator for mentioned language is not provided`,
+  ERR0013: `'metricsName' not provided`,
 };

@@ -5,6 +5,7 @@
   Page: "Hello World"
 </script>
 ```
+
 ![texscript-hello-world-1](https://github.com/user-attachments/assets/d2f2d0e0-5b43-4913-80f2-90fccf7fa790)
 
 With CSS customizations:
@@ -23,4 +24,5 @@ With CSS customizations:
   Page.card: "Hello World"
 </script>
 ```
+
 ![texscript-hello-world-2](https://github.com/user-attachments/assets/4025200c-affe-4e1b-826e-93f27b3e25c4)
