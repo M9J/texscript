@@ -83,9 +83,7 @@ export default class Compiler {
     ast.meta.languageName = "TEXScript";
     ast.meta.languageCompilerVersion = this.version;
     const hasTokens = Array.isArray(tokens) ? tokens.length > 0 : false;
-    const tagStack = new Stack();
-    const colonStack = new Stack();
-    const spaceStack = new Stack();
+    const [tagStack, colonStack, spaceStack] = [new Stack(), new Stack(), new Stack()];
     if (hasTokens) {
       let currentNode = null;
       for (const tokenLine of tokens) {
