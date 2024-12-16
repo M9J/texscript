@@ -18,8 +18,8 @@ export default class Compiler {
   }
 
   compile(rawCode) {
-    this.metricsCompilation.start();
     this.rawCode = rawCode;
+    this.metricsCompilation.start();
     this.linesOfCode = this.convertToLinesOfCode();
     this.tokens = this.lexicalAnalysis();
     this.ast = this.syntaxAnalysis();
