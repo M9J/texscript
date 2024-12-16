@@ -19,7 +19,6 @@ const html_texscriptSplash = `
   <br/>
   <div>$&gt; texscript run</div>
   <br/>
-  <div>TEXScript Loader: STARTED</div>
   <div id="texscript-loader-status"></div>
 </div>
 `;
@@ -29,6 +28,10 @@ export async function loadSplash() {
   styleTag.innerHTML = css_texscriptSplashContainer;
   document.head.appendChild(styleTag);
   document.body.innerHTML = html_texscriptSplash;
+  const texscriptLoaderStatusDiv = document.getElementById("texscript-loader-status");
+  const printLine = (line) => (texscriptLoaderStatusDiv.innerHTML += line + "<br/>");
+  printLine("Fetching TEXScript Loader...");
   const texscriptLoader_js = await import("./texscript.loader.js");
-  await texscriptLoader_js.loadTexscript();
+  printLine("TEXScript Loader: Started");
+  await texscriptLoader_js.load();
 }

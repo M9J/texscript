@@ -1,4 +1,4 @@
-export async function loadTexscript() {
+export async function load() {
   const texscriptLoaderStatusDiv = document.getElementById("texscript-loader-status");
   const printLine = (line) => (texscriptLoaderStatusDiv.innerHTML += line + "<br/>");
   printLine("Loading styles...");
@@ -12,12 +12,9 @@ export async function loadTexscript() {
   if (!rawCode) throw new Error(errors_js.default.ERR0001);
   printLine("Loading compiler...");
   const compiler_js = await import("./core/compiler.js");
-  printLine("TEXScript Loader: DONE");
-  printLine("Compiling your code...");
-  const compiler = new compiler_js.default();
-  compiler.compile(rawCode);
-  printLine("Preparing page for rendering...");
+  const compiler = await import("./texscript.compiler.js");
+  printLine("TEXScript Loader: Done");
   styles_js.appendTexscriptStyles();
-  printLine("Rendering output...");
-  document.body.innerHTML = compiler.generateCodeFor("HTML");
+  const compilerInstance = new compiler_js.default();
+  compiler.compile(compilerInstance, rawCode);
 }
