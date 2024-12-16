@@ -1,6 +1,6 @@
 import Metrics from "../benchmark/metrics.js";
-import { ASTLiteralNode, ASTRootNode, ASTSpecialTagNode, ASTTagNode } from "./ast.js";
 import ERRORS from "../constants/errors.js";
+import { ASTLiteralNode, ASTRootNode, ASTSpecialTagNode, ASTTagNode } from "./ast.js";
 import GRAMMAR from "./grammar.js";
 import Stack from "./stack.js";
 
