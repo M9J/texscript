@@ -9,7 +9,7 @@ const MetaTokensExtended = {
   BRACKET_SQUARE_OPEN: /(\[)/,
   COLON: /(\:)/,
   CSS_CLASS: /\.([a-z]+[a-zA-Z]*)/,
-  PARAMETERS: /(\([a-z]*[A-Z]*\:\s[a-zA-Z0-9]*\))/,
+  PARAMETERS: /(\([\s*\w+\:\s*\w+\,*\s*]*\))/,
   HR: /(\-\-)/,
   SPACE: /(\s)/,
 };
@@ -33,11 +33,11 @@ const GRAMMAR_RULES = [
 
 function convertRulesToGrammar(grammarRules, metaTokens) {
   const grammar = new Map();
-  grammarRules.forEach((grammarRule) => {
+  for (const grammarRule of grammarRules) {
     const patterns = grammarRule.split("|").map((token) => metaTokens[token].source);
     const grammarRegex = new RegExp(patterns.join(""));
     grammar.set(grammarRule, grammarRegex);
-  });
+  }
   return grammar;
 }
 

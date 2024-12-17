@@ -9,7 +9,7 @@ export default class Compiler {
   metricsCompilation = new Metrics("Compilation");
   metricsCodeGeneration = new Metrics("CodeGeneration");
   rawCode = null;
-  linesOfCode = null;
+  loc = null;
   tokens = null;
   ast = null;
 
@@ -17,10 +17,18 @@ export default class Compiler {
     console.log(`[Texscript: Compiler ${this.version}](https://github.com/M9J/texscript.git)`);
   }
 
+  toString() {
+    return new Map([
+      ["loc", this.loc],
+      ["tokens", this.tokens],
+      ["ast", this.ast],
+    ]);
+  }
+
   compile(rawCode) {
     this.rawCode = rawCode;
     this.metricsCompilation.start();
-    this.linesOfCode = this.convertToLinesOfCode();
+    this.loc = this.convertToLinesOfCode();
     this.tokens = this.lexicalAnalysis();
     this.ast = this.syntaxAnalysis();
     this.metricsCompilation.end();
@@ -139,7 +147,13 @@ export default class Compiler {
                 break;
               }
               case "PARAMETERS": {
-                currentNode.parameters = token.value;
+                const cleanedStr = token.value.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "");
+                const parametersArr = cleanedStr.split(",");
+                for (const param of parametersArr) {
+                  const [paramName, paramValue] = param.split(":");
+                  if (!currentNode.parameters) currentNode.parameters = {};
+                  currentNode.parameters[paramName] = paramValue;
+                }
                 break;
               }
               case "SPACE": {
@@ -181,7 +195,7 @@ export default class Compiler {
   }
 
   lexicalAnalysis() {
-    const linesOfCode = this.linesOfCode;
+    const linesOfCode = this.loc;
     if (!linesOfCode) throw new Error(ERRORS.ERR0004);
     const tokens = [];
     for (const line of linesOfCode) {
