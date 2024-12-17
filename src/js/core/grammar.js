@@ -4,17 +4,23 @@ const MetaTokensBasic = {
 };
 
 const MetaTokensExtended = {
-  BR: /(\:\:)/,
+  CSS_CLASS: /\.([a-z]+[a-zA-Z]*)/,
+  PARAMETERS: /(\([\s*\w+\:\s*\w+\,*\s*]*\))/,
+};
+
+const MetaTokensPunctuation = {
   BRACKET_SQUARE_CLOSE: /(\])/,
   BRACKET_SQUARE_OPEN: /(\[)/,
   COLON: /(\:)/,
-  CSS_CLASS: /\.([a-z]+[a-zA-Z]*)/,
-  PARAMETERS: /(\([\s*\w+\:\s*\w+\,*\s*]*\))/,
-  HR: /(\-\-)/,
   SPACE: /(\s)/,
 };
 
-const META_TOKENS = { ...MetaTokensBasic, ...MetaTokensExtended };
+const MetaTokensSpecial = {
+  BR: /(\:\:)/,
+  HR: /(\-\-)/,
+};
+
+const META_TOKENS = { ...MetaTokensBasic, ...MetaTokensExtended, ...MetaTokensPunctuation, ...MetaTokensSpecial };
 
 const GRAMMAR_RULES = [
   "BR",
