@@ -1,4 +1,4 @@
-import { updateSplashStatus } from "./texscript.splash.js";
+import { updateSplashStatus } from "../splash/texscript.splash";
 
 export async function load() {
   try {
@@ -24,3 +24,7 @@ export async function load() {
     console.log(e);
   }
 }
+
+export default {
+  load,
+};

@@ -1,4 +1,4 @@
-import { updateSplashStatus } from "./texscript.splash.js";
+import { updateSplashStatus } from "../splash/texscript.splash";
 
 export async function process(compiler, rawCode, callbackFn) {
   try {

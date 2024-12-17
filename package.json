@@ -9,7 +9,11 @@
   "scripts": {
     "build": "cls && webpack --mode production",
     "start": "cls && webpack serve --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy": "webpack --config webpack.copy.js", 
+    "copy2": "webpack --config webpack.copy2.js", 
+    "minify": "webpack --config webpack.minify.js", 
+    "bundle": "webpack --config webpack.bundle.js"
   },
   "repository": {
     "type": "git",
@@ -28,8 +32,10 @@
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "babel-loader": "^9.2.1",
+    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
     "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.11",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.2.0"

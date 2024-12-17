@@ -2,6 +2,9 @@ const path = require("path");
 
 module.exports = {
   entry: "./src/js/texscript.js",
+  // entry: {
+  //   loader: "./src/js/lib/texscript.loader.js"
+  // },
   output: {
     filename: "texscript.bundle.js",
     path: path.resolve(__dirname, "dist"),

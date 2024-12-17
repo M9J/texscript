@@ -3,6 +3,6 @@ const BANNER = `Texscript Markup Language [Version 0.1]<br/>Free and Open Source
 document.addEventListener("DOMContentLoaded", async () => {
   document.body.style.fontFamily = "monospace";
   document.body.innerHTML = BANNER;
-  const splash = await import("./texscript.splash.js");
+  const splash = await import("./splash/texscript.splash.js");
   splash.loadSplash();
 });
