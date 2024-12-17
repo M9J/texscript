@@ -69,18 +69,20 @@ export default class Compiler {
     const hasCustomCSSClasses = Array.isArray(customCSSClasses) ? customCSSClasses.length > 0 : false;
     const hasParameters = parameters || false;
     if (hasCustomCSSClasses) customCSSClassesHTML = ` ${customCSSClasses.join(" ")}`;
-    if (hasParameters) parametersHTML = ` parameters="${parameters}"`;
+    if (hasParameters) {
+      for (const paramName in parameters) {
+        const paramValue = parameters[paramName];
+        parametersHTML += ` texscript-${value}-${paramName.toUpperCase()}-${paramValue.toUpperCase()}`;
+      }
+    }
     const children = node.children || [];
     if (type === "TAG") {
-      return `<${htmlElement} class="texscript-${value}${customCSSClassesHTML}"${parametersHTML}>
+      return `<${htmlElement} class="texscript-${value}${customCSSClassesHTML}${parametersHTML}">
           ${children.length > 0 && children.map((c) => this.generateHTMLForNode(c)).join("")}
       </${htmlElement}>
       `;
-    } else if (type === "LITERAL") {
-      return `${value}`;
-    } else if (type === "SPEC_TAG") {
-      return `<${htmlElement} class="texscript-${value}"/>`;
-    }
+    } else if (type === "SPEC_TAG") return `<${htmlElement} class="texscript-${value}"/>`;
+    else if (type === "LITERAL") return `${value}`;
   }
 
   syntaxAnalysis() {
@@ -147,7 +149,7 @@ export default class Compiler {
                 break;
               }
               case "PARAMETERS": {
-                const cleanedStr = token.value.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "");
+                const cleanedStr = token.value.replace(/[\(\)\s]/g, "");
                 const parametersArr = cleanedStr.split(",");
                 for (const param of parametersArr) {
                   const [paramName, paramValue] = param.split(":");
