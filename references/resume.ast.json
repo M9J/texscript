@@ -1,139 +1,394 @@
 {
-  "type": "ROOT",
+  "nodeType": "ROOT",
   "value": "Program",
-  "meta": {
-    "languageName": "Texscript",
-    "languageCompilerVersion": "0.1"
-  },
+  "meta": { "languageName": "Texscript", "languageCompilerVersion": "v0.1" },
   "body": [
     {
-      "type": "TAG",
+      "nodeType": "TAG",
       "value": "Page",
       "htmlElement": "div",
       "customCSSClasses": ["main"],
-      "parameters": { "size": "A4" },
+      "parameters": "(size: A4)",
       "children": [
         {
-          "type": "TAG",
+          "nodeType": "TAG",
           "value": "Section",
           "htmlElement": "section",
           "customCSSClasses": ["name"],
+          "parameters": null,
           "children": [
             {
-              "type": "TAG",
+              "nodeType": "TAG",
               "value": "Line",
               "htmlElement": "div",
-              "children": [
-                {
-                  "type": "LITERAL",
-                  "value": "John Doe"
-                }
-              ]
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [{ "nodeType": "LITERAL", "value": "John Doewell" }]
             }
           ]
         },
         {
-          "type": "TAG",
+          "nodeType": "TAG",
           "value": "Section",
           "htmlElement": "section",
           "customCSSClasses": ["contactInfo"],
+          "parameters": null,
           "children": [
             {
-              "type": "TAG",
+              "nodeType": "TAG",
               "value": "Block",
               "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
               "children": [
                 {
-                  "type": "TAG",
+                  "nodeType": "TAG",
                   "value": "Line",
                   "htmlElement": "div",
-                  "children": [
-                    {
-                      "type": "LITERAL",
-                      "value": "john.doe@example.com"
-                    }
-                  ]
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "john.doe@example.com" }]
                 },
                 {
-                  "type": "TAG",
+                  "nodeType": "TAG",
                   "value": "Line",
                   "htmlElement": "div",
-                  "children": [
-                    {
-                      "type": "LITERAL",
-                      "value": "+1 (234) 567-8900"
-                    }
-                  ]
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "+1 (234) 567-8900" }]
                 }
               ]
             },
             {
-              "type": "TAG",
+              "nodeType": "TAG",
               "value": "Block",
               "htmlElement": "div",
-              "customCSSClasses": "contactInfoRight",
+              "customCSSClasses": ["contactInfoRight"],
+              "parameters": null,
               "children": [
                 {
-                  "type": "TAG",
+                  "nodeType": "TAG",
                   "value": "Line",
                   "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "Los Angeles, California" }]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "United States 90009" }]
+                }
+              ]
+            }
+          ]
+        },
+        { "nodeType": "SPEC_TAG", "htmlElement": "br", "value": "BR" },
+        {
+          "nodeType": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["careerTitle"],
+          "parameters": null,
+          "children": [
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [{ "nodeType": "LITERAL", "value": "CAREER" }]
+            }
+          ]
+        },
+        { "nodeType": "SPEC_TAG", "htmlElement": "hr", "value": "HR" },
+        {
+          "nodeType": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["careerDetails"],
+          "parameters": null,
+          "children": [
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [{ "nodeType": "LITERAL", "value": "2020 - PRESENT" }]
+            },
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": ["careerPosition"],
+              "parameters": null,
+              "children": [
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "Staff Engineer, Google, California" }]
+                }
+              ]
+            },
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [
+                {
+                  "nodeType": "LITERAL",
+                  "value": "Responsible for the development, testing, deployment and debugging of Google Cloud infrastructure UI application."
+                }
+              ]
+            },
+            {
+              "nodeType": "TAG",
+              "value": "List",
+              "htmlElement": "ul",
+              "customCSSClasses": ["responsibilities"],
+              "parameters": "(type: bullet)",
+              "children": [
+                {
+                  "nodeType": "TAG",
+                  "value": "ListItem",
+                  "htmlElement": "li",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "Created a library for easeness of utilizing RPC calls." }]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "ListItem",
+                  "htmlElement": "li",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "Maintained few archived repositories of Google Cloud Platform (GCP)." }]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "ListItem",
+                  "htmlElement": "li",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [
+                    { "nodeType": "LITERAL", "value": "Recognized for conducting thorough unit tests for several mission critical modules." }
+                  ]
+                }
+              ]
+            },
+            { "nodeType": "SPEC_TAG", "htmlElement": "br", "value": "BR" },
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [{ "nodeType": "LITERAL", "value": "2015 - 2020" }]
+            },
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": ["careerPosition"],
+              "parameters": null,
+              "children": [
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "Senior Engineer, Amazon, Seattle" }]
+                }
+              ]
+            },
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [
+                {
+                  "nodeType": "LITERAL",
+                  "value": "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than before."
+                }
+              ]
+            }
+          ]
+        },
+        { "nodeType": "SPEC_TAG", "htmlElement": "br", "value": "BR" },
+        {
+          "nodeType": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["skillsTitle"],
+          "parameters": null,
+          "children": [
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [{ "nodeType": "LITERAL", "value": "SKILLS" }]
+            }
+          ]
+        },
+        { "nodeType": "SPEC_TAG", "htmlElement": "hr", "value": "HR" },
+        {
+          "nodeType": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["skillsDetails"],
+          "parameters": null,
+          "children": [
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [{ "nodeType": "LITERAL", "value": "Java, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js" }]
+            }
+          ]
+        },
+        { "nodeType": "SPEC_TAG", "htmlElement": "br", "value": "BR" },
+        {
+          "nodeType": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["educationTitle"],
+          "parameters": null,
+          "children": [
+            {
+              "nodeType": "TAG",
+              "value": "Line",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [{ "nodeType": "LITERAL", "value": "EDUCATION" }]
+            }
+          ]
+        },
+        { "nodeType": "SPEC_TAG", "htmlElement": "hr", "value": "HR" },
+        {
+          "nodeType": "TAG",
+          "value": "Section",
+          "htmlElement": "section",
+          "customCSSClasses": ["educationDetails"],
+          "parameters": null,
+          "children": [
+            {
+              "nodeType": "TAG",
+              "value": "Block",
+              "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
+              "children": [
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "M.S. Computer Science" }]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": ["educationInstitution"],
+                  "parameters": null,
                   "children": [
                     {
-                      "type": "LITERAL",
-                      "value": "Los Angeles, California"
+                      "nodeType": "TAG",
+                      "value": "Line",
+                      "htmlElement": "div",
+                      "customCSSClasses": [],
+                      "parameters": null,
+                      "children": [{ "nodeType": "LITERAL", "value": "Massachusetts Institute of Technology" }]
                     }
                   ]
                 },
                 {
-                  "type": "TAG",
+                  "nodeType": "TAG",
                   "value": "Line",
                   "htmlElement": "div",
-                  "children": [
-                    {
-                      "type": "LITERAL",
-                      "value": "United States 90009"
-                    }
-                  ]
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "Cambridge, Massachusetts" }]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "United States" }]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "SPEC_TAG",
-          "value": "br",
-          "htmlElement": "br"
-        },
-        {
-          "type": "TAG",
-          "value": "Section",
-          "htmlElement": "section",
-          "customCSSClasses": "careerTitle",
-          "children": [
+            },
             {
-              "type": "TAG",
+              "nodeType": "TAG",
               "value": "Block",
               "htmlElement": "div",
+              "customCSSClasses": [],
+              "parameters": null,
               "children": [
                 {
-                  "type": "TAG",
+                  "nodeType": "TAG",
                   "value": "Line",
                   "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "B.S. Computer Science" }]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": ["educationInstitution"],
+                  "parameters": null,
                   "children": [
                     {
-                      "type": "LITERAL",
-                      "value": "CAREER"
+                      "nodeType": "TAG",
+                      "value": "Line",
+                      "htmlElement": "div",
+                      "customCSSClasses": [],
+                      "parameters": null,
+                      "children": [{ "nodeType": "LITERAL", "value": "Harvard University" }]
                     }
                   ]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "Cambridge, Massachusetts" }]
+                },
+                {
+                  "nodeType": "TAG",
+                  "value": "Line",
+                  "htmlElement": "div",
+                  "customCSSClasses": [],
+                  "parameters": null,
+                  "children": [{ "nodeType": "LITERAL", "value": "United States" }]
                 }
               ]
             }
           ]
-        },
-        {
-          "type": "SPEC_TAG",
-          "value": "hr",
-          "htmlElement": "hr"
         }
       ]
     }
