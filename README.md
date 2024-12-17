@@ -1,4 +1,4 @@
-# TEXScript
+# Texscript
 
 ```html
 <script type="text/texscript">

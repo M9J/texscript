@@ -12,13 +12,13 @@ export default class Metrics {
 
   start() {
     this.#startTime = Date.now();
-    console.log(`[TEXScript: Metrics] > ${this.#metricsName} started`);
+    console.log(`[Texscript: Metrics] > ${this.#metricsName} started`);
   }
 
   end() {
     this.#endTime = Date.now();
     const totalTime = this.getTotalTimeInSeconds();
-    console.log(`[TEXScript: Metrics] > ${this.#metricsName} finished in ${totalTime}`);
+    console.log(`[Texscript: Metrics] > ${this.#metricsName} finished in ${totalTime}`);
   }
 
   getTotalTime() {

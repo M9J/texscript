@@ -14,7 +14,7 @@ export default class Compiler {
   ast = null;
 
   constructor() {
-    console.log(`[TEXScript: Compiler ${this.version}](https://github.com/M9J/texscript.git)`);
+    console.log(`[Texscript: Compiler ${this.version}](https://github.com/M9J/texscript.git)`);
   }
 
   compile(rawCode) {
@@ -80,7 +80,7 @@ export default class Compiler {
     if (!tokens) throw new Error(ERRORS.ERR0007);
     const ast = new ASTRootNode();
     ast.value = "Program";
-    ast.meta.languageName = "TEXScript";
+    ast.meta.languageName = "Texscript";
     ast.meta.languageCompilerVersion = this.version;
     const hasTokens = Array.isArray(tokens) ? tokens.length > 0 : false;
     const [tagStack, colonStack, spaceStack] = [new Stack(), new Stack(), new Stack()];

@@ -1,22 +1,12 @@
 const css_texscriptSplashContainer = `
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .texscript-splash-container {
   font-family: monospace;
-  padding: 24px;
 }
 `;
 
 const html_texscriptSplash = `
+<br/><br/>
 <div class="texscript-splash-container">
-  <div>$&gt; texscript --version</div>
-  <br/>
-  <div>TEXScript Markup Language</div>
-  <div>Version: v0.1</div>
-  <br/>
   <div>$&gt; texscript run</div>
   <br/>
   <div id="texscript-loader-status"></div>
@@ -27,11 +17,11 @@ export async function loadSplash() {
   const styleTag = document.createElement("style");
   styleTag.innerHTML = css_texscriptSplashContainer;
   document.head.appendChild(styleTag);
-  document.body.innerHTML = html_texscriptSplash;
+  document.body.innerHTML += html_texscriptSplash;
   const texscriptLoaderStatusDiv = document.getElementById("texscript-loader-status");
   const printLine = (line) => (texscriptLoaderStatusDiv.innerHTML += line + "<br/>");
-  printLine("Fetching TEXScript Loader...");
+  printLine("Fetching Texscript Loader...");
   const texscriptLoader_js = await import("./texscript.loader.js");
-  printLine("TEXScript Loader: Started");
+  printLine("Texscript Loader: Started");
   await texscriptLoader_js.load();
 }

@@ -12,7 +12,7 @@ export default {
   ERR0011: `'lang' is not provided`,
   ERR0012: `Code generator for mentioned language is not provided`,
   ERR0013: `'metricsName' not provided`,
-  ERR0014: `Unable to find any code written in TEXScript`,
+  ERR0014: `Unable to find any code written in Texscript`,
   ERR0015: `Not able to find anything inside <script> element`,
   ERR0016: `<script> element not found`,
 };

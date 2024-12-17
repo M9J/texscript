@@ -1,14 +1,14 @@
 {
   "name": "texscript",
   "version": "0.0.1",
-  "description": "TEXScript Markup Language",
+  "description": "Texscript Markup Language",
   "main": "src/js/texscript.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
     "build": "cls && webpack --mode production",
-    "start": "cls && webpack serve --mode development", 
+    "start": "cls && webpack serve --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
