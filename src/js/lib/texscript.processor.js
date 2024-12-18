@@ -1,6 +1,6 @@
 import { updateSplashStatus } from "../splash/texscript.splash.js";
 
-export async function process(compiler, rawCode, callbackFn) {
+export async function process(compiler, rawCode) {
   try {
     compiler.compile(rawCode);
     const htmlCode = compiler.generateCodeFor("HTML");
