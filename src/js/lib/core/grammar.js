@@ -5,6 +5,7 @@ const MetaTokensBasic = {
 
 const MetaTokensExtended = {
   CSS_CLASS: /\.([a-z]+[a-zA-Z]*)/,
+  EXTERNAL_REFERENCE: /(\@[A-Z][a-zA-Z]*\:\s\".*\")/,
   PARAMETERS: /(\([\s*\w+\:\s*\w+\,*\s*]*\))/,
 };
 
@@ -35,6 +36,7 @@ const GRAMMAR_RULES = [
   "KEYWORD|SPACE|PARAMETERS|COLON|SPACE|STRING",
   "KEYWORD|SPACE|PARAMETERS|SPACE|BRACKET_SQUARE_OPEN",
   "STRING",
+  "EXTERNAL_REFERENCE",
 ];
 
 function convertRulesToGrammar(grammarRules, metaTokens) {

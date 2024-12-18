@@ -3,7 +3,6 @@ import { updateSplashStatus } from "../splash/texscript.splash.js";
 export async function load() {
   try {
     updateSplashStatus("Loading beauty...");
-    const styles_js = await import("./utils/styles.js");
     updateSplashStatus("Loading handy tools...");
     const dom_js = await import("./utils/dom.js");
     updateSplashStatus("Loading your story...");
@@ -16,9 +15,7 @@ export async function load() {
     const processor = await import("./texscript.processor.js");
     updateSplashStatus("Texscript Loader: Done");
     const compiler = new compiler_js.default();
-    processor.process(compiler, rawCode, () => {
-      styles_js.appendTexscriptStyles();
-    });
+    processor.process(compiler, rawCode);
   } catch (e) {
     updateSplashStatus(e, "error");
     console.log(e);

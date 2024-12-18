@@ -14,6 +14,7 @@ export class ASTRootNode extends ASTNode {
   value = null;
   meta = {};
   body = [];
+  dependencies = {}
 
   constructor() {
     super("ROOT");
