@@ -1,4 +1,3 @@
-const print = `
 @media print {
   @page {
     size: A4;
@@ -15,6 +14,3 @@ const print = `
     box-shadow: none;
   }
 }
-`;
-
-export default [print].join(`\n`);

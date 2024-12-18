@@ -126,6 +126,16 @@ export default class Compiler {
                 currentNode.customCSSClasses.push(token.value);
                 break;
               }
+              case "EXTERNAL_REFERENCE": {
+                if (token.value) {
+                  const cleanedValue = token.value.replace(/[\@\s\"]/g, "");
+                  const [referenceType, referenceValue] = cleanedValue.split(":");
+                  if (referenceType === "CustomCSSFilePath") {
+                    ast.dependencies[referenceType] = referenceValue;
+                  }
+                }
+                break;
+              }
               case "HR": {
                 const hrNode = new ASTSpecialTagNode();
                 hrNode.htmlElement = "hr";

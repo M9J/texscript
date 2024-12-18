@@ -1,11 +1,15 @@
 <head>
-  <title>Texscript Example - Resume</title>
-  <script src="/dist/texscript.bundle.js"></script>
+  <title>Texscript Example - Tests</title>
+  <script src="/dist/texscript.js"></script>
 </head>
 <script type="text/texscript">
+  @CustomCSSFilePath: "tests.css"
+
   Page: "Hello World"
-  Page (size: A4): "Hello World"
-  Page [
-    "hello universe"
+
+  Page.galaxy: "Hello Galaxy"
+
+  Page (size: A4) [
+    "This is a A4 page"
   ]
 </script>

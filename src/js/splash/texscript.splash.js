@@ -24,7 +24,7 @@ export async function loadSplash() {
     document.head.appendChild(styleTag);
     document.body.innerHTML += html_texscriptSplash;
     updateSplashStatus("Fetching Texscript Loader...");
-    const texscriptLoader_js = await import("./texscript.loader.js");
+    const texscriptLoader_js = await import("../lib/texscript.loader.js");
     updateSplashStatus("Texscript Loader: Started");
     await texscriptLoader_js.load();
   } catch (e) {
