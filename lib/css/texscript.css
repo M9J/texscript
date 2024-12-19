@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #444;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  gap: 24px;
+}
+
+@media print {
+  @page {
+    size: A4;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  page {
+    margin: 0 auto;
+    box-shadow: none;
+  }
+}
+
+.texscript-Page {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
+  page-break-after: always;
+}
+
+.texscript-Line {
+  display: block;
+}
+
+.texscript-List {
+}
+
+.texscript-HR {
+  height: 1px;
+  border: 0;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 8px 0;
+}
+
+.texscript-List-TYPE-BULLET .texscript-ListItem {
+  list-style-type: disc;
+}
+
+.texscript-List-TYPE-NUMBER .texscript-ListItem {
+  list-style-type: decimal;
+}
+
+.texscript-page-SIZE-A4 {
+  width: 210mm;
+  height: 297mm;
+}
+
+
+
