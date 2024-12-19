@@ -15,4 +15,6 @@ export default {
   ERR0014: `Unable to find any code written in Texscript`,
   ERR0015: `Not able to find anything inside <script> element`,
   ERR0016: `<script> element not found`,
+  ERR0017: `Compilation failed`,
+  ERR0018: `Dependency not found`,
 };

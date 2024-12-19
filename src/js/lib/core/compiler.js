@@ -210,17 +210,25 @@ export default class Compiler {
     const linesOfCode = this.loc;
     if (!linesOfCode) throw new Error(ERRORS.ERR0004);
     const tokens = [];
-    for (const line of linesOfCode) {
+    for (const [index, line] of linesOfCode.entries()) {
+      let foundGrammarMatch = false;
       for (const [grammarRule, grammarRegEx] of GRAMMAR) {
         const matches = line.match(grammarRegEx);
         const hasMatches = Array.isArray(matches) ? matches.length > 0 : false;
         if (hasMatches) {
+          foundGrammarMatch = true;
           const [lineMatch, ...grammarRegExMatches] = matches;
           if (lineMatch === line) {
             const perLineTokens = this.convertLineToTokens(grammarRule, grammarRegExMatches);
             tokens.push(perLineTokens);
+            break;
           }
         }
+      }
+      if (!foundGrammarMatch) {
+        const lineNo = index + 1;
+        const message = `${ERRORS.ERR0017}, line: ${lineNo}<br/>${line}`;
+        throw new Error(message);
       }
     }
     return tokens;

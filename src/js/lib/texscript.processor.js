@@ -1,4 +1,5 @@
 import { updateSplashStatus } from "../splash/texscript.splash.js";
+import ERRORS from "./constants/errors.js";
 
 export async function process(compiler, rawCode) {
   try {
@@ -18,10 +19,15 @@ export async function process(compiler, rawCode) {
 }
 
 async function loadDependencies(dependencies) {
-  if (dependencies) {
-    if (dependencies.CustomCSSFilePath) {
-      await loadStylesToHead(dependencies.CustomCSSFilePath);
+  try {
+    if (dependencies) {
+      if (dependencies.CustomCSSFilePath) {
+        await loadStylesToHead(dependencies.CustomCSSFilePath);
+      }
     }
+  } catch (e) {
+    updateSplashStatus(e, "error");
+    console.log(e);
   }
 }
 
@@ -39,6 +45,17 @@ async function loadStylesToHead(href) {
   const linkTag = document.createElement("link");
   linkTag.rel = "stylesheet";
   linkTag.href = href;
-  document.head.appendChild(linkTag);
-  return await new Promise((res) => (linkTag.onload = res));
+  try {
+    document.head.appendChild(linkTag);
+    return await new Promise((res, rej) => {
+      linkTag.onload = res(true);
+      linkTag.onerror = () => {
+        const errorMessage = ERRORS.ERR0018 + "<br/>" + href;
+        rej(new Error(errorMessage));
+      };
+    });
+  } catch (e) {
+    updateSplashStatus(e, "error");
+    console.log(e);
+  }
 }
