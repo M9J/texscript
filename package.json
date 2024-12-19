@@ -7,8 +7,8 @@
     "example": "examples"
   },
   "scripts": {
-    "build": "cls && npm run minify-css && npm run copy-main && npm run copy-splash && npm run bundle-lib",
-    "start": "cls && live-server --ignore=node_modules",
+    "build": "npm run minify-css && npm run copy-main && npm run copy-splash && npm run bundle-lib",
+    "start": "live-server --ignore=node_modules",
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-main": "webpack --config webpack.copyMain.js",
     "copy-splash": "webpack --config webpack.copySplash.js",
