@@ -2,7 +2,6 @@ import { updateSplashStatus } from "../splash/texscript.splash.js";
 
 export async function load() {
   try {
-    updateSplashStatus("Loading beauty...");
     updateSplashStatus("Loading handy tools...");
     const dom_js = await import("./utils/dom.js");
     updateSplashStatus("Loading your story...");
@@ -13,7 +12,6 @@ export async function load() {
     updateSplashStatus("Loading compiler...");
     const compiler_js = await import("./core/compiler.js");
     const processor = await import("./texscript.processor.js");
-    updateSplashStatus("Texscript Loader: Done");
     const compiler = new compiler_js.default();
     processor.process(compiler, rawCode);
   } catch (e) {

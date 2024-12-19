@@ -4,5 +4,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.body.style.fontFamily = "monospace";
   document.body.innerHTML = BANNER;
   const splash = await import("./splash/texscript.splash.js");
-  splash.loadSplash();
+  splash.loadSplash(BANNER);
 });

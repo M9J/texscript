@@ -5,8 +5,10 @@ export async function process(compiler, rawCode) {
     compiler.compile(rawCode);
     const htmlCode = compiler.generateCodeFor("HTML");
     const dependencies = compiler.ast.dependencies;
-    loadTexscriptStyles();
-    handleDependencies(dependencies);
+    updateSplashStatus("Loading beauty...");
+    await loadTexscriptStyles();
+    updateSplashStatus("Loading dependencies...");
+    await loadDependencies(dependencies);
     document.body.innerHTML = htmlCode;
     console.log("Compiler", compiler.toString());
   } catch (e) {
@@ -15,26 +17,28 @@ export async function process(compiler, rawCode) {
   }
 }
 
-function handleDependencies(dependencies) {
+async function loadDependencies(dependencies) {
   if (dependencies) {
     if (dependencies.CustomCSSFilePath) {
-      const linkTag = document.createElement("link");
-      linkTag.rel = "stylesheet";
-      linkTag.href = dependencies.CustomCSSFilePath;
-      document.head.appendChild(linkTag);
+      await loadStylesToHead(dependencies.CustomCSSFilePath);
     }
   }
 }
 
-function loadTexscriptStyles() {
+async function loadTexscriptStyles() {
   const texscriptScriptTag = document.querySelector('script[src$="texscript.js"]');
   if (texscriptScriptTag) {
     if (texscriptScriptTag.src) {
       const PATH = texscriptScriptTag.src.replace("texscript.js", "lib/css/texscript.css");
-      const linkTag = document.createElement("link");
-      linkTag.rel = "stylesheet";
-      linkTag.href = PATH;
-      document.head.appendChild(linkTag);
+      await loadStylesToHead(PATH);
     }
   }
+}
+
+async function loadStylesToHead(href) {
+  const linkTag = document.createElement("link");
+  linkTag.rel = "stylesheet";
+  linkTag.href = href;
+  document.head.appendChild(linkTag);
+  return await new Promise((res) => (linkTag.onload = res));
 }
