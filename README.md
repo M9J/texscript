@@ -29,6 +29,6 @@ With CSS customizations:
 
 # How to consume
 
-```https://cdn.jsdelivr.net/gh/m9j/texscript@dist-latest/texscript.js```
+```https://cdn.jsdelivr.net/gh/m9j/texscript/texscript.js```
 
-```https://cdn.statically.io/gh/m9j/texscript/dist-latest/texscript.js```
+```https://cdn.statically.io/gh/m9j/texscript@v0.0.1/texscript.js```
