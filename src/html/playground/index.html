@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Texscript Playground</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="playground-container">
+      <div class="left">
+        <textarea class="texscript-code" placeholder="Write your texscript code">Page: "Hello"</textarea>
+        <button class="compile-code-button">COMPILE</button>
+      </div>
+      <div class="right">
+        <div class="texscript-output">
+          <div class="texscript-container"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import Loader from "../../js-play/lib/texscript.loader.js";
+      Loader.load();
+      const button = document.getElementsByClassName("compile-code-button")[0];
+      console.log(button);
+      button.addEventListener("click", () => {
+        Loader.load();
+      });
+    </script>
+  </body>
+</html>

@@ -32,3 +32,7 @@ With CSS customizations:
 ```https://cdn.jsdelivr.net/gh/m9j/texscript/texscript.js```
 
 ```https://cdn.statically.io/gh/m9j/texscript@v0.0.1/texscript.js```
+
+# Repo URL
+
+```https://m9j.github.io/texscript/texscript.js```

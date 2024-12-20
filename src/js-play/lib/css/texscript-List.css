@@ -1,0 +1,7 @@
+.texscript-List-TYPE-BULLET .texscript-ListItem {
+  list-style-type: disc;
+}
+
+.texscript-List-TYPE-NUMBER .texscript-ListItem {
+  list-style-type: decimal;
+}
