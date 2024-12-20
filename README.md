@@ -28,4 +28,7 @@ With CSS customizations:
 ![texscript-hello-world-2](https://github.com/user-attachments/assets/4025200c-affe-4e1b-826e-93f27b3e25c4)
 
 # How to consume
-https://cdn.jsdelivr.net/gh/m9j/texscript@dist-latest/texscript.js
+
+```https://cdn.jsdelivr.net/gh/m9j/texscript@dist-latest/texscript.js```
+
+```https://cdn.statically.io/gh/m9j/texscript/dist-latest/texscript.js```
