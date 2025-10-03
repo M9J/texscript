@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "main": "index.ts",
   "scripts": {
+    "build": "npm run v1-build",
     "serve": "npx webpack serve --config webpack.dev.js",
     "start": "npm run serve",
     "v1-build": "npx rimraf build/texscript/v1 && npx webpack --config scripts/v1/webpack.config.js --env outputDir=build mode=production",
