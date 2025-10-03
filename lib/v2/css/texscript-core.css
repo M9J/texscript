@@ -1,0 +1,21 @@
+.texscript-Page {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
+  page-break-after: always;
+}
+
+.texscript-Line {
+  display: block;
+}
+
+.texscript-List {}
+
+.texscript-HR {
+  height: 1px;
+  border: 0;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 8px 0;
+}

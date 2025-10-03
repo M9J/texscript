@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #444;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  gap: 24px;
+}
