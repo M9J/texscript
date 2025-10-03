@@ -1,1 +1,0 @@
-export { simpleUUID } from "./uuid";
