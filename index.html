@@ -52,7 +52,14 @@
         const row = document.createElement("tr");
         for (let column of headers) {
           const col = document.createElement("td");
-          col.innerText = release[column];
+          if (column === "URL") {
+            const a = document.createElement("a");
+            a.href = release[column];
+            a.innerText = release[column];
+            col.appendChild(a);
+          } else {
+            col.innerText = release[column];
+          }
           row.appendChild(col);
         }
         table.appendChild(row);
