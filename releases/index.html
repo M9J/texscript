@@ -15,8 +15,10 @@
         font-weight: 900;
         text-align: left;
       }
-      
-      th, td {
+
+      th,
+      td {
+        border: 1px solid black;
         padding: 4px 8px;
         text-align: left;
       }
@@ -24,30 +26,50 @@
   </head>
   <body style="font-family: monospace">
     <h1>Texscript Releases</h1>
-    <table border="1">
-      <tr>
-        <th>VERSION </th>
-        <th>URL</th>
-        <th>NOTES</th>
-      </tr>
-      <tr>
-        <td>v1</td>
-        <td>
-          <a href="https://m9j.github.io/texscript-v2/v1/texscript.js" target="_blank"
-            >https://m9j.github.io/texscript-v2/v1/texscript.js</a
-          >
-        </td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>v2</td>
-        <td>
-          <a href="https://m9j.github.io/texscript-v2/v2/texscript.js" target="_blank"
-            >https://m9j.github.io/texscript-v2/v2/texscript.js</a
-          >
-        </td>
-        <td>Same as v1, but built from converted typescript source</td>
-      </tr>
-    </table>
+    <table id="releases-table"></table>
+    <br />
+    <h1>How to use?</h1>
+    <pre>
+&lt;script src="https://m9j.github.io/texscript-v2/v1/texscript.js" defer type="module"&gt;&lt;/script&gt;
+&lt;script type="text/texscript"&gt;
+  Page: "Hello World"
+&lt;/script&gt;
+    </pre>
   </body>
+  <script type="text/javascript">
+    function createTableForUI(releases) {
+      const table = document.getElementById("releases-table");
+      const headers = Object.keys(releases[0]);
+      const totalItems = releases.length;
+      const headerRow = document.createElement("tr");
+      for (let header of headers) {
+        const th = document.createElement("th");
+        th.innerText = header;
+        headerRow.appendChild(th);
+      }
+      table.appendChild(headerRow);
+      for (let release of releases) {
+        const row = document.createElement("tr");
+        for (let column of headers) {
+          const col = document.createElement("td");
+          col.innerText = release[column];
+          row.appendChild(col);
+        }
+        table.appendChild(row);
+      }
+    }
+
+    createTableForUI([
+      {
+        VERSION: "v1",
+        URL: "https://m9j.github.io/texscript-v2/v1/texscript.js",
+        NOTES: "None",
+      },
+      {
+        VERSION: "v2",
+        URL: "https://m9j.github.io/texscript-v2/v2/texscript.js",
+        NOTES: "Same as v1, but built from converted typescript source",
+      },
+    ]);
+  </script>
 </html>
