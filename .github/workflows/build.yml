@@ -19,6 +19,9 @@ jobs:
       - name: Take build
         run: npm run build
 
+      - name: Copy docs
+        run: cp ./docs ./build/texscript
+
       - name: Upload build
         uses: actions/upload-artifact@v4
         with:
