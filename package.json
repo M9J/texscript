@@ -1,23 +1,34 @@
 {
-  "name": "webpack-typescript-template",
-  "version": "2.0.0",
+  "name": "texscript-v2",
+  "version": "0.0.2",
   "main": "index.ts",
   "scripts": {
-    "build": "npx webpack --config webpack.config.js",
-    "preview": "npm run build && npx http-server dist --port=80",
-    "serve": "npx webpack serve",
+    "serve": "npx webpack serve --config webpack.dev.js",
     "start": "npm run serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "v1-build": "npx rimraf build/texscript/v1 && npx webpack --config scripts/v1/webpack.config.js --env outputDir=build mode=production",
+    "v1-build-dev": "npx rimraf build/texscript/v1 && npx webpack --config scripts/v1/webpack.config.js",
+    "v1-dev": "node scripts/lib-watcher-builder.js",
+    "v1-preview": "npm run v1-build && npx http-server build --port=80"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "type": "module",
   "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "babel-loader": "^10.0.0",
     "copy-webpack-plugin": "^12.0.2",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.93.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "ignore-emit-webpack-plugin": "^2.0.6",
+    "mini-css-extract-plugin": "^2.9.4",
+    "terser-webpack-plugin": "^5.3.14",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
   }
 }

@@ -2,7 +2,7 @@ import path from "path";
 import CopyPlugin from "copy-webpack-plugin";
 
 export default {
-  mode: "production",
+  mode: "development",
   entry: "./src/index.ts",
   output: {
     filename: "index.bundle.js",
@@ -23,9 +23,24 @@ export default {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "./src/index.html", to: "" },
-        { from: "./src/assets", to: "assets" },
+        { from: "./src", to: "" },
       ],
     }),
   ],
+  devServer: {
+    static: [
+      {
+        directory: path.resolve(process.cwd(), "dist"),
+        publicPath: "/", // served at root
+      },
+      {
+        directory: path.resolve(process.cwd(), ".temp/devBuild/texscript"),
+        publicPath: "/devBuild",
+      },
+    ],
+    hot: true,
+    devMiddleware: {
+      writeToDisk: false,
+    },
+  },
 };
