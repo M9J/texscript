@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Texscript</title>
     <style>
+      h1 {
+        font-weight: 100;
+      }
+      
       table {
         border-collapse: collapse;
       }
 
-      th {
-        background-color: black;
-        color: white;
-        font-weight: 900;
-        text-align: left;
+      tr {
+        border-bottom: 1px solid black;
       }
 
       th,
       td {
-        border: 1px solid black;
-        padding: 4px 8px;
         text-align: left;
+        padding: 4px 8px;
       }
     </style>
   </head>
@@ -29,7 +29,7 @@
     <table id="releases-table"></table>
     <br />
     <h1>How to use?</h1>
-    <pre>
+    <pre id="how-to-use-pre">
 &lt;script src="https://m9j.github.io/texscript-v2/v1/texscript.js" defer type="module"&gt;&lt;/script&gt;
 &lt;script type="text/texscript"&gt;
   Page: "Hello World"
@@ -78,5 +78,6 @@
         NOTES: "Same as v1, but built from converted typescript source",
       },
     ]);
+
   </script>
 </html>
