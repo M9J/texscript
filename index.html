@@ -64,21 +64,19 @@
         const row = document.createElement("tr");
         for (let column of headers) {
           const col = document.createElement("td");
-          if (column === "URL") {
-            const a = document.createElement("a");
-            a.href = release[column];
-            a.innerText = release[column];
-            col.appendChild(a);
-          } else if (column === "RELEASE NOTES") {
+          if (column === "LINK") {
+            continue;
+          }
+          if (column === "RELEASE_NOTES") {
+            const {LINK: releaseLink, NOTES} = release[column];
+            const span = document.createElement("span");
+            span.innerHTML = `<a href=${releaseLink}>${releaseLink}</a>`;
+            col.appendChild(span);
             const ol = document.createElement("ol");
-            for (let releaseNoteEntry of release[column]) {
+            for (let releaseNoteEntry of NOTES) {
               const li = document.createElement("li");
-              if (releaseNoteEntry.startsWith("http")) {
-                li.innerHTML = `<a href=${releaseNoteEntry}>${releaseNoteEntry}</a>`;
-              } else {
-                li.innerText = releaseNoteEntry;
-              }
-              ol.appendChild(li);
+              li.innerText = releaseNoteEntry;
+              ol.appendChild(li); 
             }
             col.appendChild(ol);
           } else {
@@ -93,20 +91,21 @@
     createTableForUI([
       {
         VERSION: "v1",
-        "RELEASE NOTES": [
-          "https://m9j.github.io/texscript/v1/texscript.js",
-          "This is a prototype version of Texscript",
-          "Written in JavaScript",
-        ],
+        "RELEASE_NOTES": {
+          LINK: "https://m9j.github.io/texscript/v1/texscript.js",
+          NOTES: ["This is a prototype version of Texscript", "Written in JavaScript"],
+        },
       },
       {
         VERSION: "v2",
-        "RELEASE NOTES": [
-          "https://m9j.github.io/texscript/v2/texscript.js",
-          "Same as v1 (with minor fixes)",
-          "Converted to TypeScript",
-          "Built from typescript-converted source",
-        ],
+        "RELEASE_NOTES": {
+          LINK: "https://m9j.github.io/texscript/v2/texscript.js",
+          NOTES: [
+            "Same as v1 (with minor fixes)",
+            "Converted to TypeScript",
+            "Built from typescript-converted source",
+          ],
+        },
       },
     ]);
   </script>
