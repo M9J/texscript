@@ -14,7 +14,11 @@ app.use("/releases", express.static("releases"));
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
-  console.log(`./examples -> /`);
-  console.log(`./.temp/devBuild/texscript -> /devBuild`);
-  console.log(`./releases -> /releases`);
+  const paths = {
+    "./examples": "/",
+    "./.temp/devBuild/texscript": "/devBuild",
+    "./releases": "/releases",
+  };
+  const formatted = Object.entries(paths).map(([Path, Route]) => ({ Path, Route }));
+  console.table(formatted);
 });
