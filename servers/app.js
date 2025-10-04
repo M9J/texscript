@@ -4,13 +4,43 @@ import serveIndex from "serve-index";
 const app = express();
 const PORT = 8080;
 
-app.use("/", express.static("examples"));
+// Logging middleware
+app.use((req, res, next) => {
+  console.log(`[Access] ${req.method} ${req.url}`);
+  next();
+});
+
+// Serve and index examples
+app.use(
+  "/",
+  express.static("examples", {
+    setHeaders: (res, filePath) => {
+      console.log(`[Serving /] File: ${filePath}`);
+    },
+  })
+);
 app.use("/", serveIndex("examples", { icons: true }));
 
-app.use("/devBuild", express.static(".temp/devBuild/texscript"));
+// Serve and index devBuild
+app.use(
+  "/devBuild",
+  express.static(".temp/devBuild/texscript", {
+    setHeaders: (res, filePath) => {
+      console.log(`[Serving /devBuild] File: ${filePath}`);
+    },
+  })
+);
 app.use("/devBuild", serveIndex(".temp/devBuild/texscript", { icons: true }));
 
-app.use("/releases", express.static("releases"));
+// Serve releases
+app.use(
+  "/releases",
+  express.static("releases", {
+    setHeaders: (res, filePath) => {
+      console.log(`[Serving /releases] File: ${filePath}`);
+    },
+  })
+);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
