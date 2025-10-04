@@ -20,7 +20,7 @@ watcher.on("all", (event, path) => {
   });
 
   build.on("close", (code) => {
-    console.log(`./lib/ rebuilt with exit code ${code}`);
+    console.log(`\n\n[lib] Rebuilt (exit code ${code})`);
     isBuilding = false;
   });
 });

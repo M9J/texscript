@@ -25,7 +25,6 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
       updateSplashStatus("Loading dependencies...");
       await loadDependencies(dependencies);
     }
-
     const htmlCode = compiler.generateCodeFor("HTML");
     updateSplashStatus("Compilation done.");
     document.body.innerHTML = htmlCode;
