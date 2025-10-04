@@ -5,7 +5,7 @@ declare global {
     TexscriptCompiler: {
       version: string;
       repoURL: string;
-      lastCompilation: Map<string, null>;
+      lastCompilation: Map<string, unknown>;
     };
   }
 }

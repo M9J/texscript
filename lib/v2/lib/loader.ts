@@ -10,7 +10,7 @@ export async function load(): Promise<void> {
     updateSplashStatus("Applying beauty makeup...");
     await styles_js.loadTexscriptStyles();
     updateSplashStatus("Loading brain power...");
-    const compiler_js = await import("./core/compiler.js");
+    const compiler_js = await import("./core/compiler");
     const compiler = new compiler_js.default();
     const processor = await import("./processor");
     updateSplashStatus("Finding your story...");

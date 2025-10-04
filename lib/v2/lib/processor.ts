@@ -1,20 +1,6 @@
 import { updateSplashStatus } from "../splash";
 import ERRORS from "./constants/errors";
-
-interface Compiler {
-  compile: (code: string) => void;
-  ast: {
-    dependencies?: {
-      CustomCSSFilePath?: string;
-    };
-  } | null;
-  generateCodeFor: (target: string) => string;
-  toString: () => {
-    version: string;
-    repoURL: string;
-    lastCompilation: Map<string, null>;
-  };
-}
+import Compiler from "./core/compiler";
 
 export async function process(compiler: Compiler, rawCode: string): Promise<void> {
   try {
