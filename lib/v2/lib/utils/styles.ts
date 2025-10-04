@@ -1,6 +1,8 @@
-export async function loadTexscriptStyles() {
+import { updateSplashStatus } from "../../splash";
+
+export async function loadTexscriptStyles(): Promise<void> {
   const texscriptScriptTag = document.querySelector('script[src$="texscript.js"]');
-  if (texscriptScriptTag) {
+  if (texscriptScriptTag instanceof HTMLScriptElement) {
     if (texscriptScriptTag.src) {
       const PATH = texscriptScriptTag.src.replace("texscript.js", "styles.css");
       await injectStylesToHead(PATH);
@@ -9,7 +11,7 @@ export async function loadTexscriptStyles() {
   }
 }
 
-async function injectStylesToHead(stylesFilePath) {
+async function injectStylesToHead(stylesFilePath: string): Promise<void> {
   try {
     const cssFileContent = await fetch(stylesFilePath);
     if (cssFileContent) {

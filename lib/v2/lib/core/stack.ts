@@ -1,28 +1,26 @@
-export default class Stack {
-  constructor() {
-    this.items = [];
-  }
+export default class Stack<T> {
+  private items: T[] = [];
 
-  push(element) {
+  push(element: T): void {
     this.items.push(element);
   }
 
-  pop() {
+  pop(): T {
     if (this.isEmpty()) {
       throw new Error("Stack underflow");
     }
-    return this.items.pop();
+    return this.items.pop() as T;
   }
 
-  isEmpty() {
+  isEmpty(): boolean {
     return this.items.length === 0;
   }
 
-  size() {
+  size(): number {
     return this.items.length;
   }
 
-  peek() {
+  peek(): T | undefined {
     if (this.isEmpty()) {
       throw new Error("Stack is empty");
     }

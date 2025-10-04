@@ -1,5 +1,5 @@
 import { updateSplashStatus } from "../splash";
-import ERRORS from "./constants/errors.js";
+import ERRORS from "./constants/errors";
 
 interface Compiler {
   compile: (code: string) => void;

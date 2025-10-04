@@ -1,4 +1,4 @@
-export default {
+const ERRORS: Record<string, string> = {
   ERR0001: `Unable to find the raw code to be compiled`,
   ERR0002: `'rawCode' not provided`,
   ERR0003: `Make sure the code is wrapped in &lt;script type="text/texscript">...&lt;/script&gt;`,
@@ -20,3 +20,5 @@ export default {
   ERR0019: `Unable to find any Texscript source URL inside &lt;script&gt; element`,
   ERR0020: `Texscript code should be provided inside &lt;script type="text/texscript">...&lt;/script&gt; or as URL using &lt;script src="file.txs" type="text/texscript">&lt;/script&gt;`,
 };
+
+export default ERRORS;

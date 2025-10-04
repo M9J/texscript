@@ -1,30 +1,32 @@
-import ERRORS from "../constants/errors.js";
+import ERRORS from "../constants/errors";
 
 export default class Metrics {
-  #metricsName = null;
-  #startTime = null;
-  #endTime = null;
+  #metricsName: string | null = null;
+  #startTime: DOMHighResTimeStamp | null = null;
+  #endTime: DOMHighResTimeStamp | null = null;
 
-  constructor(metricsName) {
+  constructor(metricsName: string) {
     if (!metricsName) throw new Error(ERRORS.ERR0013);
     this.#metricsName = metricsName;
   }
 
-  start() {
+  start(): void {
     this.#startTime = performance.now();
   }
 
-  end() {
+  end(): void {
     this.#endTime = performance.now();
     const totalTime = this.getFormattedTime();
     console.log(`[Texscript: Metrics] > ${this.#metricsName} finished in ${totalTime}`);
   }
 
-  getTotalTimeMilliseconds() {
-    return this.#endTime - this.#startTime;
+  getTotalTimeMilliseconds(): number {
+    if (this.#endTime && this.#startTime) {
+      return this.#endTime - this.#startTime;
+    } else return 0;
   }
 
-  getFormattedTime() {
+  getFormattedTime(): string {
     const ms = this.getTotalTimeMilliseconds();
     if (ms < 1000) {
       return `${ms.toFixed(3)}ms`;

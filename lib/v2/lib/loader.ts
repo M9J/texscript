@@ -4,9 +4,9 @@ export async function load(): Promise<void> {
   try {
     updateSplashStatus("Getting handy tools...");
     const dom_js = await import("./utils/dom");
-    const styles_js = await import("./utils/styles.js");
+    const styles_js = await import("./utils/styles");
     updateSplashStatus("Opening curse words...");
-    const errors_js = await import("./constants/errors.js");
+    const errors_js = await import("./constants/errors");
     updateSplashStatus("Applying beauty makeup...");
     await styles_js.loadTexscriptStyles();
     updateSplashStatus("Loading brain power...");

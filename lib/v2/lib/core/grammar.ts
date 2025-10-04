@@ -1,34 +1,34 @@
-const MetaTokensBasic = {
+const MetaTokensBasic: Record<string, RegExp> = {
   KEYWORD: /(^[A-Z][a-z]*)/,
-  STRING: /\"(.*)\"$|(\\\"(.*)\\\"$)/,
+  STRING: /"(.*)"$|(\\\"(.*)\\\"$)/,
 };
 
-const MetaTokensExtended = {
+const MetaTokensExtended: Record<string, RegExp> = {
   CSS_CLASS: /\.([a-z]+[a-zA-Z]*)/,
-  EXTERNAL_REFERENCE: /(\@[A-Z][a-zA-Z]*\:\s\".*\")/,
-  PARAMETERS: /(\([\s*\w+\:\s*\w+\,*\s*]*\))/,
+  EXTERNAL_REFERENCE: /(@[A-Z][a-zA-Z]*:\s".*")/,
+  PARAMETERS: /(\([\s*\w+:\s*\w+,*\s*]*\))/,
 };
 
-const MetaTokensPunctuation = {
+const MetaTokensPunctuation: Record<string, RegExp> = {
   BRACKET_SQUARE_CLOSE: /(\])/,
   BRACKET_SQUARE_OPEN: /(\[)/,
-  COLON: /(\:)/,
+  COLON: /(:)/,
   SPACE: /(\s)/,
 };
 
-const MetaTokensSpecial = {
-  BR: /(\:\:)/,
-  HR: /(\-\-)/,
+const MetaTokensSpecial: Record<string, RegExp> = {
+  BR: /(::)/,
+  HR: /(--)/,
 };
 
-const META_TOKENS = {
+const META_TOKENS: Record<string, RegExp> = {
   ...MetaTokensBasic,
   ...MetaTokensExtended,
   ...MetaTokensPunctuation,
   ...MetaTokensSpecial,
 };
 
-const GRAMMAR_RULES = [
+const GRAMMAR_RULES: string[] = [
   "BR",
   "BRACKET_SQUARE_CLOSE",
   "HR",
@@ -44,10 +44,19 @@ const GRAMMAR_RULES = [
   "EXTERNAL_REFERENCE",
 ];
 
-function convertRulesToGrammar(grammarRules, metaTokens) {
-  const grammar = new Map();
+function convertRulesToGrammar(
+  grammarRules: string[],
+  metaTokens: Record<string, RegExp>
+): Map<string, RegExp> {
+  const grammar = new Map<string, RegExp>();
   for (const grammarRule of grammarRules) {
-    const patterns = grammarRule.split("|").map((token) => metaTokens[token].source);
+    const patterns = grammarRule.split("|").map((token) => {
+      const regex = metaTokens[token];
+      if (!regex) {
+        throw new Error(`Unknown token: ${token}`);
+      }
+      return regex.source;
+    });
     const grammarRegex = new RegExp(patterns.join(""));
     grammar.set(grammarRule, grammarRegex);
   }

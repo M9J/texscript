@@ -1,14 +1,14 @@
 import Compiler from "../core/compiler";
 
-export function averageCompilationGenerationTime() {
+export function averageCompilationGenerationTime(rawCode: string): void {
   console.log("EXP: Started");
   const compilationTimes = [];
   const generationTimes = [];
   const compiler = new Compiler();
   for (let i = 0; i < 99999; i++) {
     compiler.compile(rawCode);
-    const compilationTime = compiler.metricsCompilation.getTotalTime();
-    const generationTime = compiler.metricsCodeGeneration.getTotalTime();
+    const compilationTime = compiler.metricsCompilation.getTotalTimeMilliseconds();
+    const generationTime = compiler.metricsCodeGeneration.getTotalTimeMilliseconds();
     compilationTimes.push(compilationTime);
     generationTimes.push(generationTime);
   }
