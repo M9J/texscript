@@ -33,6 +33,6 @@
     "allowJs": true,
     "checkJs": false
   },
-  "include": ["./**/*.ts", "src/index.ts", "lib/v2/lib/processor.ts", "lib/v2/lib/core/compiler.js.bkp"],
+  "include": ["./**/*.ts", "servers/index.ts", "lib/v2/lib/processor.ts", "lib/v2/lib/core/compiler.js.bkp"],
   "exclude": ["node_modules/**/*"]
 }

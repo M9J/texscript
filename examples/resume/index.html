@@ -1,0 +1,57 @@
+<script src="https://m9j.github.io/texscript/v2/texscript.js" defer type="module"></script>
+
+<script type="text/texscript">
+  @CustomCSSFilePath: "styles.css"
+
+  Page.main (size: A4) [
+      Section.name: "John Doe"
+      Section.contactInfo [
+          Block [
+              "john.doe@example.com"
+              "+1 (234) 567-8900"
+          ]
+          Block.contactInfoRight [
+              "Los Angeles, California"
+              "United States 90009"
+          ]
+      ]
+      ::
+      Section.careerTitle: "CAREER"
+      --
+      Section.careerDetails [
+          "2020 - PRESENT"
+          Line.careerPosition: "Staff Engineer, Google, California"
+          "Responsible for the development, testing, deployment and debugging of Google Cloud infrastructure UI application."
+          List.responsibilities (type: bullet) [
+              "Created a library for easeness of utilizing RPC calls"
+              "Maintained few archived repositories of Google Cloud Platform (GCP)"
+              "Recognized for conducting thorough unit tests for several mission critical modules"
+          ]
+          ::
+          "2015 - 2020"
+          Line.careerPosition: "Senior Engineer, Amazon, Seattle"
+          "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than before."
+      ]
+      ::
+      Section.skillsTitle: "SKILLS"
+      --
+      Section.skillsDetails: "Java, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js"
+      ::
+      Section.educationTitle: "EDUCATION"
+      --
+      Section.educationDetails [
+          Block [
+              "M.S. Computer Science"
+              Line.educationInstitution: "Massachusetts Institute of Technology"
+              "Cambridge, Massachusetts"
+              "United States"
+          ]
+          Block [
+              "B.S. Computer Science"
+              Line.educationInstitution: "Harvard University"
+              "Cambridge, Massachusetts"
+              "United States"
+          ]
+      ]
+  ]
+</script>
