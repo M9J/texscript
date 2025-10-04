@@ -20,7 +20,14 @@
       th,
       td {
         text-align: left;
+        vertical-align: top;
         padding: 4px 8px;
+      }
+
+      ol {
+        padding-inline-start: 24px;
+        margin-block-start: 0;
+        margin-block-end: 0;
       }
     </style>
   </head>
@@ -33,13 +40,13 @@
 &lt;script src="https://m9j.github.io/texscript/v1/texscript.js" defer type="module"&gt;&lt;/script&gt;
 &lt;script type="text/texscript"&gt;
   Page: "Hello World"
-&lt;/script&gt;
-    </pre>
-    <br>
+&lt;/script&gt;</pre
+    >
+    <br />
     <h1>Examples</h1>
-    <ul>
+    <ol>
       <li><a href="./example-resume">Resume</a></li>
-    </ul>
+    </ol>
   </body>
   <script type="text/javascript">
     function createTableForUI(releases) {
@@ -62,6 +69,18 @@
             a.href = release[column];
             a.innerText = release[column];
             col.appendChild(a);
+          } else if (column === "RELEASE NOTES") {
+            const ol = document.createElement("ol");
+            for (let releaseNoteEntry of release[column]) {
+              const li = document.createElement("li");
+              if (releaseNoteEntry.startsWith("http")) {
+                li.innerHTML = `<a href=${releaseNoteEntry}>${releaseNoteEntry}</a>`;
+              } else {
+                li.innerText = releaseNoteEntry;
+              }
+              ol.appendChild(li);
+            }
+            col.appendChild(ol);
           } else {
             col.innerText = release[column];
           }
@@ -74,15 +93,21 @@
     createTableForUI([
       {
         VERSION: "v1",
-        URL: "https://m9j.github.io/texscript/v1/texscript.js",
-        NOTES: "None",
+        "RELEASE NOTES": [
+          "https://m9j.github.io/texscript/v1/texscript.js",
+          "This is a prototype version of Texscript",
+          "Written in JavaScript",
+        ],
       },
       {
         VERSION: "v2",
-        URL: "https://m9j.github.io/texscript/v2/texscript.js",
-        NOTES: "Same as v1 (with minor fixes) but built from typescript-converted source",
+        "RELEASE NOTES": [
+          "https://m9j.github.io/texscript/v2/texscript.js",
+          "Same as v1 (with minor fixes)",
+          "Converted to TypeScript",
+          "Built from typescript-converted source",
+        ],
       },
     ]);
-
   </script>
 </html>
