@@ -8,10 +8,9 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #444;
+  background-color: #252529;
   overflow: auto;
   box-sizing: border-box;
-  padding: 24px;
   gap: 24px;
+  display: inline-block;
 }

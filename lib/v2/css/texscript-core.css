@@ -5,13 +5,13 @@
   box-sizing: border-box;
   box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
   page-break-after: always;
+  margin: 24px;
+  display: inline-block;
 }
 
 .texscript-Line {
   display: block;
 }
-
-.texscript-List {}
 
 .texscript-HR {
   height: 1px;

@@ -22,7 +22,7 @@ const TEXSCRIPT_BANNER_CSS = `
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: #444;
+  background: #252529;
   margin: 0;
   box-sizing: border-box;
 }
