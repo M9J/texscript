@@ -27,7 +27,17 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     }
     const htmlCode = compiler.generateCodeFor("HTML");
     updateSplashStatus("Compilation done.");
-    document.body.innerHTML = htmlCode;
+    const texscriptBannerContainer = document.querySelector(".texscript-banner-container");
+    if (texscriptBannerContainer instanceof HTMLElement) {
+      texscriptBannerContainer.style.display = "none";
+    }
+    const texscriptPages = document.createElement("div");
+    texscriptPages.className = "texscript-pages";
+    texscriptPages.innerHTML = htmlCode;
+    const texscriptPagesContainer = document.createElement("div");
+    texscriptPagesContainer.className = "texscript-pages-container";
+    texscriptPagesContainer.appendChild(texscriptPages);
+    document.body.appendChild(texscriptPagesContainer);
     window.TexscriptCompiler = compiler.toString();
   } catch (e: unknown) {
     updateSplashStatus(e, "error");

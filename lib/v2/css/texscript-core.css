@@ -1,3 +1,15 @@
+.texscript-pages-container {
+  display: inline-block;
+  margin: 24px;
+}
+
+.texscript-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+}
+
 .texscript-Page {
   display: flex;
   flex-direction: column;
@@ -5,8 +17,6 @@
   box-sizing: border-box;
   box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
   page-break-after: always;
-  margin: 24px;
-  display: inline-block;
   overflow: clip;
 }
 

@@ -31,7 +31,8 @@
     // Customized for js to ts source code conversion
     "module": "esnext", // or "es2020", "commonjs", etc.
     "allowJs": true,
-    "checkJs": false
+    "checkJs": false,
+    "strict": true
   },
   "include": ["./**/*.ts", "servers/index.ts", "lib/v2/lib/processor.ts", "lib/v2/lib/core/compiler.js.bkp"],
   "exclude": ["node_modules/**/*"]
