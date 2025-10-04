@@ -4,13 +4,12 @@
   }
 
   body {
-    margin: 0;
-    padding: 0;
-    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  page {
-    margin: 0 auto;
-    box-shadow: none;
+  .texscript-Page {
+    margin: 0 !important;
+    box-shadow: none !important;
   }
 }
