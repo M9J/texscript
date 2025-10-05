@@ -44,6 +44,34 @@ const TEXSCRIPT_BANNER_CSS = `
 .texscript-splash-status-error {
   color: #a00;
 }
+
+/* General styling */
+progress {
+  width: 100%;
+  height: 4px;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  appearance: none;
+}
+
+/* Chrome, Safari, Edge */
+progress::-webkit-progress-bar {
+  background-color: #252529;
+}
+
+/* Firefox */
+progress::-moz-progress-bar {
+  background-color: #252529;
+}
+
+progress::-webkit-progress-value {
+  background-color: #2196F3;
+}
+
+progress::-webkit-progress-value {
+  transition: width 1s ease-in-out;
+}
 `;
 
 export async function loadSplash(): Promise<void> {
@@ -51,9 +79,12 @@ export async function loadSplash(): Promise<void> {
     const styleTag = document.createElement("style");
     styleTag.innerHTML = TEXSCRIPT_BANNER_CSS;
     document.head.appendChild(styleTag);
-    document.body.innerHTML = TEXSCRIPT_BANNER_HTML;
+    const splashBannerContainer = document.createElement("div");
+    splashBannerContainer.innerHTML = TEXSCRIPT_BANNER_HTML;
+    document.body.appendChild(splashBannerContainer);
     updateSplashStatus("Fetching Texscript Loader...");
     const texscriptLoader_js = await import("./loader");
+    updateSplashProgress("10");
     updateSplashStatus("Fetched Texscript Loader");
     updateSplashStatus("Loading Texscript modules...");
     await texscriptLoader_js.load();
@@ -79,4 +110,22 @@ export function updateSplashStatus(line: any, type?: string): void {
     const texscriptSplash = document.getElementById("texscript-splash");
     if (texscriptSplash) texscriptSplash.style.display = "flex";
   }
+}
+
+export function toggleSplashStatus() {
+  const splash = document.getElementById("texscript-splash");
+  if (splash) splash.style.display = splash.style.display === "flex" ? "none" : "flex";
+}
+
+export function updateSplashProgress(value: string) {
+  if (value) {
+    const progressBar = document.getElementById("texscript-splash-progress");
+    if (progressBar) progressBar.setAttribute("value", value);
+    if (parseInt(value) > 99) hideSplashProgress();
+  }
+}
+
+export function hideSplashProgress() {
+  const progressBar = document.getElementById("texscript-splash-progress");
+  if (progressBar) progressBar.style.display = "none";
 }

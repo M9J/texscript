@@ -1,5 +1,5 @@
-import { updateSplashStatus } from "../splash";
 import ERRORS from "../constants/errors";
+import { updateSplashStatus } from "../splash";
 
 export async function findCodeFromDOM(): Promise<string | void> {
   try {

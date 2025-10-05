@@ -1,4 +1,4 @@
-export {};
+export { };
 
 declare global {
   interface Window {
@@ -6,7 +6,7 @@ declare global {
       version: string;
       repoURL: string;
       lastCompilation: Map<string, unknown>;
-      toggleSplash: Function;
+      toggleSplashStatus: Function;
     };
   }
 }

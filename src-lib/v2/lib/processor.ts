@@ -1,6 +1,6 @@
-import { updateSplashStatus } from "./splash";
 import ERRORS from "./constants/errors";
 import Compiler from "./core/compiler";
+import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./splash";
 
 export async function process(compiler: Compiler, rawCode: string): Promise<void> {
   try {
@@ -10,9 +10,11 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
       const dependencies = compiler.ast.dependencies;
       updateSplashStatus("Loading dependencies...");
       await loadDependencies(dependencies);
+      updateSplashProgress("80");
     }
     const htmlCode = compiler.generateCodeFor("HTML");
     updateSplashStatus("Compilation done.");
+    updateSplashProgress("100");
     const texscriptBannerContainer = document.querySelector(".texscript-banner-container");
     if (texscriptBannerContainer instanceof HTMLElement) {
       texscriptBannerContainer.style.display = "none";
@@ -26,10 +28,7 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     document.body.appendChild(texscriptPagesContainer);
     window.TexscriptCompiler = {
       ...compiler.toString(),
-      toggleSplash: () => {
-        const splash = document.getElementById("texscript-splash");
-        if (splash) splash.style.display = splash.style.display === "flex" ? "none" : "flex";
-      },
+      toggleSplashStatus: () => toggleSplashStatus(),
     };
   } catch (e: unknown) {
     updateSplashStatus(e, "error");
