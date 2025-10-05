@@ -14,6 +14,7 @@
     "v1-serve": "node servers/v1/lib-watcher-builder.js",
     "v2-build": "npm run v2-build:bundle",
     "v2-build:bundle": "node scripts/v2/build-bundle.js",
+    "v2-dev": "node scripts/v2/dev.mjs",
     "v2-dev:all": "npm run v2-dev:bundle",
     "v2-dev:bundle": "node scripts/v2/dev-bundle.js",
     "v2-preview": "npm run v2-build && npx http-server build --port=80",
