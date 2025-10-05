@@ -7,6 +7,7 @@ const common = {
   tsconfig: "tsconfig.json",
   external: [],
   legalComments: "none",
+  minify: true,
 };
 
 const build1 = esbuild.build({
@@ -14,7 +15,6 @@ const build1 = esbuild.build({
   entryPoints: ["src-lib/v2/texscript.ts"],
   outfile: "build/v2/texscript.js",
   bundle: false,
-  minify: true,
 });
 
 // const buildLib = esbuild.build({
@@ -30,7 +30,6 @@ const build2 = esbuild.build({
   entryPoints: ["src-lib/v2/texscript.lib.ts"],
   outfile: "build/v2/texscript.lib.js",
   bundle: false,
-  minify: true,
 });
 
 const buildLib = esbuild.build({
