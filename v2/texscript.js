@@ -1,1 +1,1 @@
-document.addEventListener("DOMContentLoaded",async()=>{document.body.style.background="#252529",(await import("./texscript.lib.js")).load()});
+document.addEventListener("DOMContentLoaded",async()=>{document.body.style.background="#252529",document.body.style.margin="0px",document.body.style.padding="0px",(await import("./texscript.lib.js")).load()});
