@@ -51,7 +51,7 @@ progress.texscript-splash-progress-bar {
   height: 4px;
   position: sticky;
   top: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   appearance: none;
 }
 
