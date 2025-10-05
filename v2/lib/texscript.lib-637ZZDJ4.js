@@ -1,4 +1,4 @@
-import{findHostElementFromDOM as o}from"./texscript.js";const a=`
+import{a as r}from"./chunk-MANGVJK4.js";import"./chunk-GKXYOKXO.js";var a=`
 progress.texscript-splash-progress-bar {
   width: 100%;
   height: 4px;
@@ -27,4 +27,4 @@ progress.texscript-splash-progress-bar::-webkit-progress-value {
 progress.texscript-splash-progress-bar::-webkit-progress-value {
   transition: width 1s ease-in-out;
 }
-`;async function i(){const r=o(),e=document.createElement("style");e.innerHTML=a,document.head.appendChild(e);const s=document.createElement("progress");s.setAttribute("class","texscript-splash-progress-bar"),s.setAttribute("id","texscript-splash-progress"),s.setAttribute("value","0"),s.setAttribute("max","100"),r.appendChild(s),s.setAttribute("value","2");const t=await import("./lib/splash.js");s.setAttribute("value","5"),await t.loadSplash()}export{i as load};
+`;async function i(){let t=r(),e=document.createElement("style");e.innerHTML=a,document.head.appendChild(e);let s=document.createElement("progress");s.setAttribute("class","texscript-splash-progress-bar"),s.setAttribute("id","texscript-splash-progress"),s.setAttribute("value","0"),s.setAttribute("max","100"),t.appendChild(s),s.setAttribute("value","2");let o=await import("./splash.js");s.setAttribute("value","5"),await o.loadSplash()}export{i as load};
