@@ -17,12 +17,29 @@ const build1 = esbuild.build({
   minify: true,
 });
 
-const buildLib = esbuild.build({
+// const buildLib = esbuild.build({
+//   ...common,
+//   entryPoints: ["src-lib/v2/texscript.lib.ts"],
+//   outfile: "build/v2/texscript.lib.js",
+//   bundle: true,
+//   minify: true,
+// });
+
+const build2 = esbuild.build({
   ...common,
   entryPoints: ["src-lib/v2/texscript.lib.ts"],
   outfile: "build/v2/texscript.lib.js",
-  bundle: true,
+  bundle: false,
   minify: true,
+});
+
+const buildLib = esbuild.build({
+  ...common,
+  entryPoints: ["src-lib/v2/lib/splash.ts"],
+  outdir: "./.temp/build/v2/lib/",
+  bundle: true,
+  splitting: true,
+  preserveSymlinks: true,
 });
 
 const buildCss = esbuild.build({
@@ -35,7 +52,7 @@ const buildCss = esbuild.build({
   legalComments: "none",
 });
 
-Promise.all([build1, buildLib, buildCss])
+Promise.all([build1, build2, buildLib, buildCss])
   .then(() => {
     console.log("Production build complete");
   })
