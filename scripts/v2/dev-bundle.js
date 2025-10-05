@@ -14,40 +14,28 @@ const common = {
 };
 
 const build1 = () =>
-  esbuild
-    .build({
-      ...common,
-      entryPoints: ["lib/v2/texscript.ts"],
-      outfile: "./.temp/build/v2/texscript.js",
-      bundle: false,
-    })
-    .then(() => {
-      console.log("v2 dev build complete");
-    });
+  esbuild.build({
+    ...common,
+    entryPoints: ["src-lib/v2/texscript.ts"],
+    outfile: "./.temp/build/v2/texscript.js",
+    bundle: false,
+  });
 
 const buildLib = () =>
-  esbuild
-    .build({
-      ...common,
-      entryPoints: ["lib/v2/texscript.lib.ts"],
-      outfile: "./.temp/build/v2/texscript.lib.js",
-      bundle: true,
-    })
-    .then(() => {
-      console.log("v2-lib dev build complete");
-    });
+  esbuild.build({
+    ...common,
+    entryPoints: ["src-lib/v2/texscript.lib.ts"],
+    outfile: "./.temp/build/v2/texscript.lib.js",
+    bundle: true,
+  });
 
 const buildCss = () =>
   esbuild.build({
-    entryPoints: ["lib/v2/css/texscript.css"],
+    ...common,
+    entryPoints: ["src-lib/v2/css/texscript.css"],
     outfile: "./.temp/build/v2/texscript.css",
     bundle: true,
-    minify: false,
     loader: { ".css": "css" },
-    sourcemap: "inline",
-    legalComments: "none",
-    logLevel: "info",
-    define: { "process.env.NODE_ENV": '"development"' },
   });
 
 export async function runDevBundle() {

@@ -15,27 +15,27 @@ const common = {
 
 const build1 = esbuild.build({
   ...common,
-  entryPoints: ["lib/v1/texscript.js"],
+  entryPoints: ["src-lib/v1/texscript.js"],
   outfile: ".temp/build/v1/texscript.js",
   bundle: false,
 });
 
 const build2 = esbuild.build({
   ...common,
-  entryPoints: ["lib/v1/splash.js"],
+  entryPoints: ["src-lib/v1/splash.js"],
   outfile: ".temp/build/v1/splash.js",
   bundle: false,
 });
 
 const buildLib = esbuild.build({
   ...common,
-  entryPoints: ["lib/v1/lib/loader.js"],
+  entryPoints: ["src-lib/v1/lib/loader.js"],
   outfile: ".temp/build/v1/lib/loader.js",
   bundle: true,
 });
 
 const buildCss = esbuild.build({
-  entryPoints: ["lib/v1/css/styles.css"],
+  entryPoints: ["src-lib/v1/css/styles.css"],
   outfile: "./.temp/build/v1/styles.css",
   bundle: true,
   minify: false,

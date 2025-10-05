@@ -3,4 +3,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   const lib = await import("./texscript.lib.js");
   lib.load();
 });
-  
