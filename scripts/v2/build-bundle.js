@@ -36,7 +36,7 @@ const build2 = esbuild.build({
 const buildLib = esbuild.build({
   ...common,
   entryPoints: ["src-lib/v2/lib/splash.ts"],
-  outdir: "./.temp/build/v2/lib/",
+  outdir: "build/v2/lib/",
   bundle: true,
   splitting: true,
   preserveSymlinks: true,
