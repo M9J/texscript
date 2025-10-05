@@ -1,4 +1,4 @@
-import { updateSplashStatus } from "../splash";
+import { updateSplashStatus } from "./splash";
 
 export async function load(): Promise<void> {
   try {
