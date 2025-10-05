@@ -17,14 +17,6 @@ const build1 = esbuild.build({
   bundle: false,
 });
 
-// const buildLib = esbuild.build({
-//   ...common,
-//   entryPoints: ["src-lib/v2/texscript.lib.ts"],
-//   outfile: "build/v2/texscript.lib.js",
-//   bundle: true,
-//   minify: true,
-// });
-
 const build2 = esbuild.build({
   ...common,
   entryPoints: ["src-lib/v2/texscript.lib.ts"],

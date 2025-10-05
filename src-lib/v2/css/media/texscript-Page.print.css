@@ -1,88 +1,93 @@
 @media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
   .texscript-Page {
     margin: 0 !important;
     box-shadow: none !important;
-    page-break-after: always;
-    page-break-inside: avoid;
+    /* page-break-after: always !important; */
+    /* page-break-inside: avoid !important; */
   }
 
   .texscript-Page-SIZE-A0 {
-    width: 3179px;
-    height: 4494px;
+    width: 3179px !important;
+    height: 4494px !important;
   }
 
   .texscript-Page-SIZE-A1 {
-    width: 2245px;
-    height: 3179px;
+    width: 2245px !important;
+    height: 3179px !important;
   }
 
   .texscript-Page-SIZE-A2 {
-    width: 1587px;
-    height: 2245px;
+    width: 1587px !important;
+    height: 2245px !important;
   }
 
   .texscript-Page-SIZE-A3 {
-    width: 1123px;
-    height: 1587px;
+    width: 1123px !important;
+    height: 1587px !important;
   }
 
   .texscript-Page-SIZE-A4 {
-    width: 794px;
-    height: 1123px;
+    width: 210mm !important;
+    height: 297mm !important;
   }
 
   .texscript-Page-SIZE-A5 {
-    width: 559px;
-    height: 794px;
+    width: 559px !important;
+    height: 794px !important;
   }
 
   .texscript-Page-SIZE-A6 {
-    width: 397px;
-    height: 559px;
+    width: 397px !important;
+    height: 559px !important;
   }
 
   .texscript-Page-SIZE-B0 {
-    width: 3780px;
-    height: 5351px;
+    width: 3780px !important;
+    height: 5351px !important;
   }
 
   .texscript-Page-SIZE-B1 {
-    width: 2677px;
-    height: 3780px;
+    width: 2677px !important;
+    height: 3780px !important;
   }
 
   .texscript-Page-SIZE-B2 {
-    width: 1890px;
-    height: 2677px;
+    width: 1890px !important;
+    height: 2677px !important;
   }
 
   .texscript-Page-SIZE-B3 {
-    width: 1335px;
-    height: 1890px;
+    width: 1335px !important;
+    height: 1890px !important;
   }
 
   .texscript-Page-SIZE-B4 {
-    width: 945px;
-    height: 1335px;
+    width: 945px !important;
+    height: 1335px !important;
   }
 
   .texscript-Page-SIZE-B5 {
-    width: 664px;
-    height: 945px;
+    width: 664px !important;
+    height: 945px !important;
   }
 
   .texscript-Page-SIZE-C4 {
-    width: 865px;
-    height: 1228px;
+    width: 865px !important;
+    height: 1228px !important;
   }
 
   .texscript-Page-SIZE-C5 {
-    width: 612px;
-    height: 865px;
+    width: 612px !important;
+    height: 865px !important;
   }
 
   .texscript-Page-SIZE-C6 {
-    width: 430px;
-    height: 612px;
+    width: 430px !important;
+    height: 612px !important;
   }
 }

@@ -1,3 +1,4 @@
+import { findHostElementFromDOM } from "../texscript";
 import ERRORS from "./constants/errors";
 import Compiler from "./core/compiler";
 import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./splash";
@@ -21,18 +22,19 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     const texscriptPages = document.createElement("div");
     texscriptPages.className = "texscript-pages";
     updateSplashProgress("100");
+    const hostElement = findHostElementFromDOM();
     texscriptPages.innerHTML = htmlCode;
+    hostElement.appendChild(texscriptPages);
     const texscriptPagesContainer = document.createElement("div");
     texscriptPagesContainer.className = "texscript-pages-container";
     texscriptPagesContainer.appendChild(texscriptPages);
-    document.body.appendChild(texscriptPagesContainer);
+    hostElement.innerHTML = texscriptPagesContainer.outerHTML;
     window.TexscriptCompiler = {
       ...compiler.toString(),
       toggleSplashStatus: () => toggleSplashStatus(),
     };
   } catch (e: unknown) {
     updateSplashStatus(e, "error");
-    console.log(e);
   }
 }
 
@@ -44,7 +46,6 @@ async function loadDependencies(dependencies?: { CustomCSSFilePath?: string }): 
     }
   } catch (e: unknown) {
     updateSplashStatus(e, "error");
-    console.log(e);
   }
 }
 
@@ -64,6 +65,5 @@ async function linkStylesToHead(href: string): Promise<void> {
     });
   } catch (e: unknown) {
     updateSplashStatus(e, "error");
-    console.log(e);
   }
 }

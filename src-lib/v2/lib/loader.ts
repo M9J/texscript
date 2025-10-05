@@ -25,6 +25,5 @@ export async function load(): Promise<void> {
     processor.process(compiler, rawCode);
   } catch (e) {
     updateSplashStatus(e, "error");
-    console.log(e);
   }
 }

@@ -24,7 +24,6 @@ async function injectStylesToHead(stylesFilePath: string): Promise<void> {
     }
   } catch (e) {
     updateSplashStatus(e, "error");
-    console.log(e);
   }
 }
 

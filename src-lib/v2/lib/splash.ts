@@ -1,12 +1,12 @@
+import { findHostElementFromDOM } from "../texscript";
+
 const BANNER = `Texscript Markup Language [Version 0.2]<br/>Free and Open Source. Licensed under GPL-3.0.<br/>Hosted on GitHub: <a href="https://github.com/M9J/texscript.git">texscript.git</a>`;
 
 const TEXSCRIPT_BANNER_HTML = `
 <div class="texscript-splash-container" id="texscript-splash">
   <div class="texscript-banner">
     <div>${BANNER}</div>
-    <br/>
-    <div>$&gt; texscript run</div>
-    <br/>
+    <br/><hr/><br/>
     <div id="texscript-splash-status"></div>
   </div>
 </div>
@@ -54,7 +54,8 @@ export async function loadSplash(): Promise<void> {
     document.head.appendChild(styleTag);
     const splashBannerContainer = document.createElement("div");
     splashBannerContainer.innerHTML = TEXSCRIPT_BANNER_HTML;
-    document.body.appendChild(splashBannerContainer);
+    const hostElement = findHostElementFromDOM();
+    hostElement.appendChild(splashBannerContainer);
     updateSplashStatus("Fetching Texscript Loader...");
     const texscriptLoader_js = await import("./loader");
     updateSplashProgress("10");
@@ -63,7 +64,6 @@ export async function loadSplash(): Promise<void> {
     await texscriptLoader_js.load();
   } catch (e) {
     updateSplashStatus(e, "error");
-    console.log(e);
   }
 }
 
@@ -71,11 +71,11 @@ export function updateSplashStatus(line: any, type?: string): void {
   let formattedLine = "";
   const formatLine = (t: string) => `<div class="texscript-splash-status-${t}">${line}</div>`;
   if (type === "error") formattedLine = formatLine("error");
-  else formattedLine = line;
+  else formattedLine = `<div>${line}</div>`;
   const texscriptSplashStatusDiv = document.getElementById("texscript-splash-status");
   if (texscriptSplashStatusDiv) {
     const printLine = (formattedLine: string) => {
-      texscriptSplashStatusDiv.innerHTML += formattedLine + "<br/>";
+      texscriptSplashStatusDiv.innerHTML += formattedLine;
     };
     printLine(formattedLine);
   }
@@ -83,6 +83,7 @@ export function updateSplashStatus(line: any, type?: string): void {
     const texscriptSplash = document.getElementById("texscript-splash");
     if (texscriptSplash) texscriptSplash.style.display = "flex";
   }
+  if (type === "error") console.error(line);
 }
 
 export function toggleSplashStatus() {

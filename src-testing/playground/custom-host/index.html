@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Host</title>
+    <script src="/devBuild/v2/texscript.js" type="module" defer></script>
+  </head>
+  <body>
+    <script type="text/texscript">
+      Page: "This content should render inside custom host"
+    </script>
+    <iframe src="iframe-content.html" frameborder="0"> </iframe>
+    <div data-texscript-host style="max-width: 300px; max-height: 200px; outline: 2px solid red">
+      Content will be displayed here
+    </div>
+  </body>
+</html>

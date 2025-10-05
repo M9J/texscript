@@ -1,3 +1,5 @@
+import { findHostElementFromDOM } from "./texscript.js";
+
 const PROGRESS_CSS = `
 progress.texscript-splash-progress-bar {
   width: 100%;
@@ -6,6 +8,8 @@ progress.texscript-splash-progress-bar {
   top: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   appearance: none;
+  block-size: 4px;
+  vertical-align: top;
 }
 
 /* Chrome, Safari, Edge */
@@ -28,6 +32,7 @@ progress.texscript-splash-progress-bar::-webkit-progress-value {
 `;
 
 export async function load() {
+  const hostElement = findHostElementFromDOM();
   const styleTag = document.createElement("style");
   styleTag.innerHTML = PROGRESS_CSS;
   document.head.appendChild(styleTag);
@@ -36,9 +41,15 @@ export async function load() {
   pg.setAttribute("id", "texscript-splash-progress");
   pg.setAttribute("value", "0");
   pg.setAttribute("max", "100");
-  document.body.appendChild(pg);
+  hostElement.appendChild(pg);
   pg.setAttribute("value", "2");
   const splash = await import("./lib/splash.js");
   pg.setAttribute("value", "5");
   await splash.loadSplash();
 }
+
+// function findHostElementFromDOM(): HTMLElement | Element {
+//   const hostElement = document.querySelector("[data-texscript-host]");
+//   if (hostElement) return hostElement;
+//   else return document.body;
+// }
