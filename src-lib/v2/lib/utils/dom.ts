@@ -62,9 +62,3 @@ async function findCodeFromScriptTag(scriptTag: HTMLScriptElement): Promise<stri
 
   return undefined;
 }
-
-// export function findHostElementFromDOM(): HTMLElement | Element {
-//   const hostElement = document.querySelector("[data-texscript-host]");
-//   if (hostElement) return hostElement;
-//   else return document.body;
-// }

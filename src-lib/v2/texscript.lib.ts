@@ -47,9 +47,3 @@ export async function load() {
   pg.setAttribute("value", "5");
   await splash.loadSplash();
 }
-
-// function findHostElementFromDOM(): HTMLElement | Element {
-//   const hostElement = document.querySelector("[data-texscript-host]");
-//   if (hostElement) return hostElement;
-//   else return document.body;
-// }
