@@ -138,12 +138,11 @@ export default class Compiler {
             currentNode?.children.push(brNode);
             break;
 
-          case "BRACKET_SQUARE_CLOSE":
-            if (!tagStack.isEmpty()) {
-              tagStack.pop();
-              currentNode = tagStack.isEmpty() ? null : tagStack.peek()!;
-            }
+          case "BRACKET_SQUARE_CLOSE": {
+            if (!tagStack.isEmpty()) tagStack.pop();
+            if (!tagStack.isEmpty()) currentNode = !tagStack.isEmpty() ? tagStack.peek() : null;
             break;
+          }
 
           case "BRACKET_SQUARE_OPEN":
             if (currentNode) tagStack.push(currentNode);
@@ -183,7 +182,8 @@ export default class Compiler {
             if (tagStack.isEmpty()) {
               ast.body.push(currentNode);
             } else {
-              tagStack.peek()?.children.push(currentNode);
+              const prevTag = !tagStack.isEmpty() ? tagStack.peek() : null;
+              if (prevTag) prevTag.children.push(currentNode);
             }
             break;
 
@@ -209,15 +209,25 @@ export default class Compiler {
             stringNode.value = token.value;
 
             const node = new ASTTagNode();
-            node.value = tagStack.peek()?.value === "List" ? "ListItem" : "Line";
-            node.htmlElement = node.value === "ListItem" ? "li" : "div";
+            if (!tagStack.isEmpty()) {
+              const tag = !tagStack.isEmpty() ? tagStack.peek() : null;
+              if (tag?.value === "List") {
+                node.value = "ListItem";
+                node.htmlElement = "li";
+              } else {
+                node.value = "Line";
+                node.htmlElement = "div";
+              }
+            } else {
+              node.value = "Line";
+              node.htmlElement = "div";
+            }
             node.children.push(stringNode);
-
             if (!currentNode) throw new Error(`'currentNode' doesn't exist`);
             currentNode.children.push(node);
 
             if (!colonStack.isEmpty() && !spaceStack.isEmpty()) {
-              currentNode = tagStack.peek() || null;
+              currentNode = !tagStack.isEmpty() ? tagStack.peek() : null;
               colonStack.pop();
               spaceStack.pop();
             }
@@ -239,11 +249,11 @@ export default class Compiler {
       for (const [grammarRule, grammarRegEx] of GRAMMAR) {
         const matches = line.match(grammarRegEx);
         if (matches && matches.length > 0) {
+          foundGrammarMatch = true;
           const [lineMatch, ...grammarRegExMatches] = matches;
           if (lineMatch === line) {
             const perLineTokens = this.convertLineToTokens(grammarRule, grammarRegExMatches);
             tokens.push(perLineTokens);
-            foundGrammarMatch = true;
             break;
           }
         }
