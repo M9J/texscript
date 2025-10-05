@@ -21,7 +21,7 @@ export async function load(): Promise<void> {
     updateSplashStatus("Finding your story...");
     const rawCode = await dom_js.findCodeFromDOM();
     if (!rawCode) throw new Error(errors_js.default.ERR0001);
-    updateSplashProgress("70");
+    updateSplashProgress("90");
     processor.process(compiler, rawCode);
   } catch (e) {
     updateSplashStatus(e, "error");

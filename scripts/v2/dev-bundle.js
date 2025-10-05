@@ -21,12 +21,22 @@ const build1 = () =>
     bundle: false,
   });
 
-const buildLib = () =>
+const build2 = () =>
   esbuild.build({
     ...common,
     entryPoints: ["src-lib/v2/texscript.lib.ts"],
     outfile: "./.temp/build/v2/texscript.lib.js",
+    bundle: false,
+  });
+
+const buildLib = () =>
+  esbuild.build({
+    ...common,
+    entryPoints: ["src-lib/v2/lib/splash.ts"],
+    outdir: "./.temp/build/v2/lib/",
     bundle: true,
+    splitting: true,
+    preserveSymlinks: true,
   });
 
 const buildCss = () =>
@@ -39,7 +49,7 @@ const buildCss = () =>
   });
 
 export async function runDevBundle() {
-  await Promise.all([build1(), buildLib(), buildCss()])
+  await Promise.all([build1(), build2(), buildLib(), buildCss()])
     .then(() => {
       console.log("Development build complete");
     })

@@ -48,6 +48,7 @@ const TEXSCRIPT_BANNER_CSS = `
 
 export async function loadSplash(): Promise<void> {
   try {
+    updateSplashProgress("8");
     const styleTag = document.createElement("style");
     styleTag.innerHTML = TEXSCRIPT_BANNER_CSS;
     document.head.appendChild(styleTag);

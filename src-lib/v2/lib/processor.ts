@@ -10,11 +10,10 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
       const dependencies = compiler.ast.dependencies;
       updateSplashStatus("Loading dependencies...");
       await loadDependencies(dependencies);
-      updateSplashProgress("80");
+      updateSplashProgress("95");
     }
     const htmlCode = compiler.generateCodeFor("HTML");
     updateSplashStatus("Compilation done.");
-    updateSplashProgress("90");
     const texscriptBannerContainer = document.querySelector(".texscript-banner-container");
     if (texscriptBannerContainer instanceof HTMLElement) {
       texscriptBannerContainer.style.display = "none";
