@@ -1,5 +1,6 @@
 @import "./native/base.css";
 @import "./media/print.css";
+@import "./media/texscript-Page.print.css";
 @import "./custom/texscript-core.css";
 @import "./custom/texscript-List.css";
 @import "./custom/texscript-Page.css";
