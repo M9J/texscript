@@ -14,13 +14,14 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     }
     const htmlCode = compiler.generateCodeFor("HTML");
     updateSplashStatus("Compilation done.");
-    updateSplashProgress("100");
+    updateSplashProgress("90");
     const texscriptBannerContainer = document.querySelector(".texscript-banner-container");
     if (texscriptBannerContainer instanceof HTMLElement) {
       texscriptBannerContainer.style.display = "none";
     }
     const texscriptPages = document.createElement("div");
     texscriptPages.className = "texscript-pages";
+    updateSplashProgress("100");
     texscriptPages.innerHTML = htmlCode;
     const texscriptPagesContainer = document.createElement("div");
     texscriptPagesContainer.className = "texscript-pages-container";

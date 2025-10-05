@@ -44,34 +44,6 @@ const TEXSCRIPT_BANNER_CSS = `
 .texscript-splash-status-error {
   color: #a00;
 }
-
-/* General styling */
-progress {
-  width: 100%;
-  height: 4px;
-  position: sticky;
-  top: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  appearance: none;
-}
-
-/* Chrome, Safari, Edge */
-progress::-webkit-progress-bar {
-  background-color: #252529;
-}
-
-/* Firefox */
-progress::-moz-progress-bar {
-  background-color: #252529;
-}
-
-progress::-webkit-progress-value {
-  background-color: #2196F3;
-}
-
-progress::-webkit-progress-value {
-  transition: width 1s ease-in-out;
-}
 `;
 
 export async function loadSplash(): Promise<void> {
