@@ -20,10 +20,8 @@ export default class Stack<T> {
     return this.items.length;
   }
 
-  peek(): T | undefined {
-    if (this.isEmpty()) {
-      throw new Error("Stack is empty");
-    }
-    return this.items[this.items.length - 1];
+  peek(): T | null {
+    if (!this.isEmpty()) return this.items[this.items.length - 1]!;
+    else return null;
   }
 }
