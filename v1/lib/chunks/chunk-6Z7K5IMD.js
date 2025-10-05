@@ -1,0 +1,1 @@
+function c(e,r){let t="";r==="error"?t=(s=>`<div class="texscript-splash-status-${s}">${e}</div>`)("error"):t=e;let i=document.getElementById("texscript-splash-status");(s=>{i.innerHTML+=s+"<br/>"})(t)}export{c as a};

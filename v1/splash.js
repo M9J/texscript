@@ -1,1 +1,25 @@
-var e,t,r={505:(e,t,r)=>{r.d(t,{loadSplash:()=>o,r:()=>a});const s="\n.texscript-splash {\n  font-family: monospace;\n  position: fixed;\n  background: #fff;\n  color: #000;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  padding: 8px;\n}\n\n.texscript-splash-status-error {\n  color: #a00;\n}\n",n=e=>`\n<div class="texscript-splash">\n  ${e}\n  <br/><br/>\n  <div>$&gt; texscript run</div>\n  <br/>\n  <div id="texscript-splash-status"></div>\n</div>\n`;async function o(e){try{const t=document.createElement("style");t.innerHTML=s,document.head.appendChild(t),document.body.innerHTML=n(e),a("Fetching Texscript Loader...");const o=await r.e(449).then(r.bind(r,449));a("Fetched Texscript Loader"),a("Loading Texscript modules..."),await o.load()}catch(e){a(e,"error"),console.log(e)}}function a(e,t){let r="";"error"===t?r=`<div class="texscript-splash-status-${"error"}">${e}</div>`:r=e;const s=document.getElementById("texscript-splash-status");(e=>{s.innerHTML+=e+"<br/>"})(r)}}},s={};function n(e){var t=s[e];if(void 0!==t)return t.exports;var o=s[e]={exports:{}};return r[e](o,o.exports,n),o.exports}n.m=r,n.d=(e,t)=>{for(var r in t)n.o(t,r)&&!n.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},n.f={},n.e=e=>Promise.all(Object.keys(n.f).reduce((t,r)=>(n.f[r](e,t),t),[])),n.u=e=>"lib/"+e+".js",n.miniCssF=e=>{},n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{var e;if("string"==typeof import.meta.url&&(e=import.meta.url),!e)throw new Error("Automatic publicPath is not supported in this browser");e=e.replace(/^blob:/,"").replace(/#.*$/,"").replace(/\?.*$/,"").replace(/\/[^\/]+$/,"/"),n.p=e})(),e={505:0,642:0},t=t=>{var r,s,{__webpack_esm_ids__:o,__webpack_esm_modules__:a,__webpack_esm_runtime__:i}=t,p=0;for(r in a)n.o(a,r)&&(n.m[r]=a[r]);for(i&&i(n);p<o.length;p++)s=o[p],n.o(e,s)&&e[s]&&e[s][0](),e[o[p]]=0},n.f.j=(r,s)=>{var o=n.o(e,r)?e[r]:void 0;if(0!==o)if(o)s.push(o[1]);else{var a=import("./"+n.u(r)).then(t,t=>{throw 0!==e[r]&&(e[r]=void 0),t});a=Promise.race([a,new Promise(t=>o=e[r]=[t])]),s.push(o[1]=a)}};var o=n(505);const a=o.loadSplash,i=o.r;export{a as loadSplash,i as updateSplashStatus};
+const a=`
+.texscript-splash {
+  font-family: monospace;
+  position: fixed;
+  background: #fff;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 8px;
+}
+
+.texscript-splash-status-error {
+  color: #a00;
+}
+`,c=s=>`
+<div class="texscript-splash">
+  ${s}
+  <br/><br/>
+  <div>$&gt; texscript run</div>
+  <br/>
+  <div id="texscript-splash-status"></div>
+</div>
+`;async function d(s){try{const t=document.createElement("style");t.innerHTML=a,document.head.appendChild(t),document.body.innerHTML=c(s),r("Fetching Texscript Loader...");const e=await import("./lib/loader.js");r("Fetched Texscript Loader"),r("Loading Texscript modules..."),await e.load()}catch(t){r(t,"error"),console.log(t)}}function r(s,t){let e="";t==="error"?e=(i=>`<div class="texscript-splash-status-${i}">${s}</div>`)("error"):e=s;const o=document.getElementById("texscript-splash-status");(i=>{o.innerHTML+=i+"<br/>"})(e)}export{d as loadSplash,r as updateSplashStatus};
