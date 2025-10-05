@@ -1,10 +1,10 @@
-import { updateSplashStatus } from "../../splash";
+import { updateSplashStatus } from "../splash";
 
 export async function loadTexscriptStyles(): Promise<void> {
   const texscriptScriptTag = document.querySelector('script[src$="texscript.js"]');
   if (texscriptScriptTag instanceof HTMLScriptElement) {
     if (texscriptScriptTag.src) {
-      const PATH = texscriptScriptTag.src.replace("texscript.js", "styles.css");
+      const PATH = texscriptScriptTag.src.replace("texscript.js", "texscript.css");
       await injectStylesToHead(PATH);
       await injectMetaToHead();
     }

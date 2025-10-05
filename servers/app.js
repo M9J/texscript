@@ -21,16 +21,27 @@ app.use(
 );
 app.use("/", serveIndex("examples", { icons: true }));
 
-// Serve and index devBuild
+// Serve and index build
 app.use(
   "/devBuild",
-  express.static(".temp/devBuild/texscript", {
+  express.static(".temp/build/", {
     setHeaders: (res, filePath) => {
       console.log(`[Serving /devBuild] File: ${filePath}`);
     },
   })
 );
-app.use("/devBuild", serveIndex(".temp/devBuild/texscript", { icons: true }));
+app.use("/devBuild", serveIndex(".temp/build/", { icons: true }));
+
+// Serve and index build
+app.use(
+  "/prodBuild",
+  express.static("build/", {
+    setHeaders: (res, filePath) => {
+      console.log(`[Serving /prodBuild] File: ${filePath}`);
+    },
+  })
+);
+app.use("/prodBuild", serveIndex("build/", { icons: true }));
 
 // Serve releases
 app.use(
@@ -45,10 +56,11 @@ app.use(
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
   const paths = {
-    "./examples": "/",
-    "./.temp/devBuild/texscript": "/devBuild",
-    "./releases": "/releases",
+    "/": "./examples/",
+    "/devBuild": "./.temp/build/",
+    "/prodBuild": "./build/",
+    "/releases": "./releases/",
   };
-  const formatted = Object.entries(paths).map(([Path, Route]) => ({ Path, Route }));
+  const formatted = Object.entries(paths).map(([Route, Directory]) => ({ Route, Directory }));
   console.table(formatted);
 });

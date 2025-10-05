@@ -1,4 +1,4 @@
-import { updateSplashStatus } from "../splash";
+import { updateSplashStatus } from "./splash";
 import ERRORS from "./constants/errors";
 import Compiler from "./core/compiler";
 
@@ -24,7 +24,13 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     texscriptPagesContainer.className = "texscript-pages-container";
     texscriptPagesContainer.appendChild(texscriptPages);
     document.body.appendChild(texscriptPagesContainer);
-    window.TexscriptCompiler = compiler.toString();
+    window.TexscriptCompiler = {
+      ...compiler.toString(),
+      toggleSplash: () => {
+        const splash = document.getElementById("texscript-splash");
+        if (splash) splash.style.display = splash.style.display === "flex" ? "none" : "flex";
+      },
+    };
   } catch (e: unknown) {
     updateSplashStatus(e, "error");
     console.log(e);

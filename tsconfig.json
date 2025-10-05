@@ -32,8 +32,11 @@
     "module": "esnext", // or "es2020", "commonjs", etc.
     "allowJs": true,
     "checkJs": false,
-    "strict": true
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
-  "include": ["./**/*.ts", "servers/index.ts", "lib/v2/lib/processor.ts", "lib/v2/lib/core/compiler.js.bkp"],
+  "include": ["./**/*.ts"],
   "exclude": ["node_modules/**/*"]
 }
