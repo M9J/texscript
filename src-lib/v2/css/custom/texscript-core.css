@@ -50,8 +50,10 @@
  */
 .texscript-pages {
   display: flex; /* Use flexbox for consistent layout */
-  flex-direction: column; /* Stack pages vertically */
   gap: 24px; /* Consistent spacing between pages */
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 /**
@@ -77,6 +79,7 @@
   box-sizing: border-box; /* Include padding/border in dimensions */
   box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5); /* Elevated paper effect */
   overflow: clip; /* Clip content to page boundaries */
+  flex: 0 0 auto;
 }
 
 /**

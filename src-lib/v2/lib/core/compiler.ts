@@ -82,6 +82,17 @@ export default class Compiler {
   }
 
   /**
+   * Create a getter to invoke the last compilation data and returns it as a Map.
+   */
+  get lastCompilation(): Map<string, unknown> {
+    return new Map<string, unknown>([
+      ["loc", this.loc],
+      ["tokens", this.tokens],
+      ["ast", this.ast],
+    ]);
+  }
+
+  /**
    * Returns a string representation of the compiler state.
    *
    * Provides access to compiler version, repository URL, and the most recent
@@ -105,11 +116,7 @@ export default class Compiler {
     return {
       version: this.version,
       repoURL: this.repourl,
-      lastCompilation: (() => new Map<string, unknown>([
-        ["loc", this.loc],
-        ["tokens", this.tokens],
-        ["ast", this.ast],
-      ]))(),
+      lastCompilation: this.lastCompilation,
     };
   }
 
@@ -316,13 +323,14 @@ export default class Compiler {
         if (!token.type) throw new Error(ERRORS.ERR0008);
 
         switch (token.type) {
-          case "BR":
+          case "BR": {
             // Line break - insert <br> element
             const brNode = new ASTSpecialTagNode();
             brNode.htmlElement = "br";
             brNode.value = "BR";
             currentNode?.children.push(brNode);
             break;
+          }
 
           case "BRACKET_SQUARE_CLOSE": {
             // Closing bracket - exit current nesting level
@@ -331,41 +339,55 @@ export default class Compiler {
             break;
           }
 
-          case "BRACKET_SQUARE_OPEN":
+          case "BRACKET_SQUARE_OPEN": {
             // Opening bracket - enter new nesting level
             if (currentNode) tagStack.push(currentNode);
             break;
+          }
 
-          case "COLON":
+          case "COLON": {
             // Colon operator - marks content assignment
             colonStack.push(token);
             break;
+          }
 
-          case "CSS_CLASS":
-            // CSS class name - add to current node's classes
-            currentNode?.customCSSClasses.push(token.value);
-            break;
-
-          case "EXTERNAL_REFERENCE":
-            // External dependency declaration (e.g., @CustomCSSFilePath: "style.css")
+          case "COMMAND": {
             if (token.value) {
-              const cleanedValue = token.value.replace(/[\@\s\"]/g, "");
-              const [referenceType, referenceValue] = cleanedValue.split(":");
-              if (referenceType === "CustomCSSFilePath") {
-                ast.dependencies[referenceType] = referenceValue;
+              const [commandWithKey, value] = token.value.split(":");
+              if (commandWithKey) {
+                const [command, key] = commandWithKey?.split(" ");
+                if (command && key && value) {
+                  if (command === "@Reference") {
+                    const cleanedValue = value.replace(/[\@\s\"]/g, "");
+                    ast.references[key] = ast.references[key]
+                      ? [...ast.references[key], cleanedValue]
+                      : [cleanedValue];
+                  } else if (command === "@Configure") {
+                    const cleanedValue = value.replace(/[\@\s\"]/g, "");
+                    ast.configurations[key] = cleanedValue;
+                  }
+                }
               }
             }
             break;
+          }
 
-          case "HR":
+          case "CSS_CLASS": {
+            // CSS class name - add to current node's classes
+            currentNode?.customCSSClasses.push(token.value);
+            break;
+          }
+
+          case "HR": {
             // Horizontal rule - insert <hr> element
             const hrNode = new ASTSpecialTagNode();
             hrNode.htmlElement = "hr";
             hrNode.value = "HR";
             currentNode?.children.push(hrNode);
             break;
+          }
 
-          case "KEYWORD":
+          case "KEYWORD": {
             // Component/element keyword - create new tag node
             const tagNode = new ASTTagNode();
             tagNode.value = token.value;
@@ -378,14 +400,24 @@ export default class Compiler {
 
             // Add to AST body or parent's children based on nesting
             if (tagStack.isEmpty()) {
-              ast.body.push(currentNode);
+              if (ast.body.length > 0) {
+                const pageBreakNode = new ASTTagNode();
+                pageBreakNode.value = "PageBreak";
+                pageBreakNode.htmlElement = "div";
+                pageBreakNode.customCSSClasses = ["page-break"];
+                ast.body.push(pageBreakNode);
+                ast.body.push(currentNode);
+              } else {
+                ast.body.push(currentNode);
+              }
             } else {
               const prevTag = !tagStack.isEmpty() ? tagStack.peek() : null;
               if (prevTag) prevTag.children.push(currentNode);
             }
             break;
+          }
 
-          case "PARAMETERS":
+          case "PARAMETERS": {
             // Component parameters - parse and store as key-value pairs
             const cleanedStr = token.value.replace(/[\(\)\s]/g, "");
             const parametersArr = cleanedStr.split(",");
@@ -397,13 +429,16 @@ export default class Compiler {
               }
             }
             break;
+          }
 
           case "SPACE":
+          case "SPACE_OPTIONAL": {
             // Whitespace - used for syntax structure tracking
             spaceStack.push(token);
             break;
+          }
 
-          case "STRING":
+          case "STRING": {
             // String literal - wrap in appropriate container based on context
             const stringNode = new ASTLiteralNode();
             stringNode.value = token.value;
@@ -439,6 +474,7 @@ export default class Compiler {
               spaceStack.pop();
             }
             break;
+          }
         }
       }
     }
@@ -478,7 +514,6 @@ export default class Compiler {
 
     for (const [index, line] of this.loc.entries()) {
       let foundGrammarMatch = false;
-
       // Try to match line against each grammar rule
       for (const [grammarRule, grammarRegEx] of GRAMMAR) {
         const matches = line.match(grammarRegEx);
@@ -498,7 +533,7 @@ export default class Compiler {
       // Report syntax error if no grammar rule matched
       if (!foundGrammarMatch) {
         const lineNo = index + 1;
-        const message = `${ERRORS.ERR0017}, line: ${lineNo}<br/>${line}`;
+        const message = `${ERRORS.ERR0017}, line: ${lineNo}\n${line}`;
         throw new Error(message);
       }
     }

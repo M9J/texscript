@@ -58,4 +58,53 @@
     margin: 0 !important; /* Remove container margins */
     padding: 0 !important; /* Remove container padding */
   }
+
+  .texscript-pages {
+    gap: 0px !important;
+  }
+
+  /**
+   * Base Page component print styles.
+   * 
+   * Removes screen-only visual effects to ensure clean printed output:
+   * - Eliminates margins that would create unwanted whitespace
+   * - Removes box shadows that don't translate well to print
+   * 
+   * Uses !important to override screen styles during print.
+   * 
+   * @selector .texscript-Page
+   */
+  .texscript-Page {
+    margin: 0 !important; /* Remove margins for edge-to-edge printing */
+    box-shadow: none !important; /* Remove decorative shadows for print */
+    page-break-after: always !important; /* Forces a new page after this element */
+    break-after: page !important; /* Modern equivalent */
+    page-break-inside: avoid !important; /* Prevents breaking inside this element */
+    break-inside: avoid !important; /* Modern equivalent */
+  }
+
+  /**
+    * 
+    * Creates page breaks between pages
+    * 
+    */
+  .texscript-PageBreak.page-break {
+    page-break-before: always !important; /* Forces a new page before this element */
+    break-before: page !important; /* Modern equivalent */
+    display: block !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .page-break-after {
+    page-break-after: always !important; /* Forces a new page after this element */
+    break-after: page !important; /* Modern equivalent */
+  }
+
+  .avoid-break {
+    page-break-inside: avoid !important; /* Prevents breaking inside this element */
+    break-inside: avoid !important; /* Modern equivalent */
+  }
 }

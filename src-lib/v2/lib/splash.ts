@@ -169,13 +169,18 @@ export async function loadSplash(): Promise<void> {
  */
 export function updateSplashStatus(line: any, type?: string): void {
   let formattedLine = "";
-
   // Helper to wrap line in a styled div
-  const formatLine = (t: string) => `<div class="texscript-splash-status-${t}">${line}</div>`;
 
   // Apply error styling if type is "error"
-  if (type === "error") formattedLine = formatLine("error");
-  else formattedLine = `<div>${line}</div>`;
+  if (type === "error") {
+    const formatLine = (t: string) =>
+      `<div class="texscript-splash-status-${t}">${line
+        .toString()
+        .replaceAll("\n", "<br/>")}</div>`;
+    formattedLine = formatLine("error");
+  } else {
+    formattedLine = `<div>${line}</div>`;
+  }
 
   // Append the formatted line to the status area
   const texscriptSplashStatusDiv = document.getElementById("texscript-splash-status");
@@ -193,7 +198,9 @@ export function updateSplashStatus(line: any, type?: string): void {
   }
 
   // Also log errors to browser console for debugging
-  if (type === "error") console.error(line);
+  if (type === "error") {
+    console.error(line);
+  }
 }
 
 /**

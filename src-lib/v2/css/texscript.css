@@ -33,14 +33,6 @@
 @import "./media/print.css";
 
 /**
- * Page Component Print Styles
- * 
- * Print-specific styles for the texscript-Page component.
- * Handles page margins, headers, footers, and pagination for printed output.
- */
-@import "./media/texscript-Page.print.css";
-
-/**
  * Core Component Styles
  * 
  * Fundamental styling for core Texscript components and utilities.
@@ -55,11 +47,3 @@
  * unordered lists, and custom list markers.
  */
 @import "./custom/texscript-List.css";
-
-/**
- * Page Component Styles
- * 
- * Styling for the texscript-Page component including page layouts,
- * containers, and page-level composition patterns.
- */
-@import "./custom/texscript-Page.css";

@@ -74,6 +74,12 @@ export class ASTRootNode extends ASTNode {
   /** External dependencies and imports required by the document */
   dependencies: Record<string, any> = {};
 
+  /** References required by the document */
+  references: Record<string, any> = {};
+
+  /** Configurations required by the document */
+  configurations: Record<string, any> = {};
+
   /**
    * Creates a new root node for the AST.
    */

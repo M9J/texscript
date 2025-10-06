@@ -33,7 +33,6 @@ const MetaTokensBasic: Record<string, RegExp> = {
  *
  * These tokens handle more specialized syntax elements:
  * - CSS_CLASS: CSS class name selectors for styling
- * - EXTERNAL_REFERENCE: Import/reference declarations
  * - PARAMETERS: Function/component parameter lists
  *
  * @constant {Record<string, RegExp>}
@@ -42,11 +41,12 @@ const MetaTokensExtended: Record<string, RegExp> = {
   /** Matches CSS class names prefixed with a dot (e.g., .myClass) */
   CSS_CLASS: /\.([a-z]+[a-zA-Z]*)/,
 
-  /** Matches external references like @Import: "file.css" */
-  EXTERNAL_REFERENCE: /(@[A-Z][a-zA-Z]*:\s".*")/,
+  /** Matches external references like @Reference css: "file.css" */
+  COMMAND: /(@[A-Z][a-zA-Z]*\s[\s\w]+:\s*("[^"]*"|\w+))/,
 
   /** Matches parameter lists in parentheses (e.g., (title: "Hello", size: 12)) */
-  PARAMETERS: /(\([\s*\w+:\s*\w+,*\s*]*\))/,
+  // PARAMETERS: /(\([\s*\w+:\s*\w+,*\s*]*\))/,
+  PARAMETERS: /(\(([\s\w]+:\s*("[^"]*"|\w+),?\s*)+\))/,
 };
 
 /**
@@ -67,8 +67,11 @@ const MetaTokensPunctuation: Record<string, RegExp> = {
   /** Matches colon : */
   COLON: /(:)/,
 
-  /** Matches whitespace characters */
+  /** Matches mandatory whitespace characters */
   SPACE: /(\s)/,
+
+  /** Matches optional whitespace characters */
+  SPACE_OPTIONAL: /(\s)/,
 };
 
 /**
@@ -127,6 +130,7 @@ const META_TOKENS: Record<string, RegExp> = {
 const GRAMMAR_RULES: string[] = [
   "BR", // Line break (::)
   "BRACKET_SQUARE_CLOSE", // Closing container (])
+  "COMMAND",
   "HR", // Horizontal rule (--)
   "KEYWORD|COLON|SPACE|STRING", // Simple tag with content (e.g., Text: "Hello")
   "KEYWORD|CSS_CLASS|COLON|SPACE|STRING", // Styled tag with content
@@ -134,10 +138,10 @@ const GRAMMAR_RULES: string[] = [
   "KEYWORD|CSS_CLASS|SPACE|PARAMETERS|COLON|SPACE|STRING", // Styled tag with params and content
   "KEYWORD|CSS_CLASS|SPACE|PARAMETERS|SPACE|BRACKET_SQUARE_OPEN", // Styled container with params
   "KEYWORD|SPACE|BRACKET_SQUARE_OPEN", // Simple container opening
+  "KEYWORD|SPACE|PARAMETERS",
   "KEYWORD|SPACE|PARAMETERS|COLON|SPACE|STRING", // Tag with params and content
   "KEYWORD|SPACE|PARAMETERS|SPACE|BRACKET_SQUARE_OPEN", // Container with params
   "STRING", // Standalone string literal
-  "EXTERNAL_REFERENCE", // Import or external reference
 ];
 
 /**
