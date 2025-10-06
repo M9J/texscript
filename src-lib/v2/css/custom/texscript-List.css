@@ -1,7 +1,75 @@
+/**
+ * Texscript List Component Styles
+ * 
+ * Styles for the List component and its ListItem children. This stylesheet
+ * implements list styling based on parameters passed to the List component
+ * in Texscript source code.
+ * 
+ * List types supported:
+ * - BULLET: Unordered lists with disc markers (•)
+ * - NUMBER: Ordered lists with decimal numbering (1, 2, 3...)
+ * 
+ * The List component uses parameter-based CSS classes to apply different
+ * visual styles. When a user writes `List(type: bullet)` or `List(type: number)`
+ * in Texscript, the compiler generates corresponding CSS classes that trigger
+ * these styles.
+ * 
+ * @file List component styles for Texscript
+ * @see compiler.ts - generateHTMLForNode() for parameter class generation
+ * @see grammar.ts - PARAMETERS token for list parameter syntax
+ */
+
+/**
+ * Bullet list style.
+ * 
+ * Applies disc (filled circle) markers to list items within a List component
+ * that has the `type: bullet` parameter.
+ * 
+ * The class name follows the pattern:
+ * texscript-{ComponentName}-{PARAM_NAME}-{PARAM_VALUE}
+ * 
+ * @selector .texscript-List-TYPE-BULLET .texscript-ListItem
+ * 
+ * @example
+ * // Texscript source:
+ * List(type: bullet) [
+ *   "First item"
+ *   "Second item"
+ * ]
+ * 
+ * @example
+ * // Generated HTML:
+ * <ul class="texscript-List texscript-List-TYPE-BULLET">
+ *   <li class="texscript-ListItem">First item</li>
+ *   <li class="texscript-ListItem">Second item</li>
+ * </ul>
+ */
 .texscript-List-TYPE-BULLET .texscript-ListItem {
-  list-style-type: disc;
+  list-style-type: disc; /* Filled circle bullet markers (•) */
 }
 
+/**
+ * Numbered list style.
+ * 
+ * Applies decimal numbering (1, 2, 3...) to list items within a List component
+ * that has the `type: number` parameter.
+ * 
+ * @selector .texscript-List-TYPE-NUMBER .texscript-ListItem
+ * 
+ * @example
+ * // Texscript source:
+ * List(type: number) [
+ *   "First step"
+ *   "Second step"
+ * ]
+ * 
+ * @example
+ * // Generated HTML:
+ * <ul class="texscript-List texscript-List-TYPE-NUMBER">
+ *   <li class="texscript-ListItem">First step</li>
+ *   <li class="texscript-ListItem">Second step</li>
+ * </ul>
+ */
 .texscript-List-TYPE-NUMBER .texscript-ListItem {
-  list-style-type: decimal;
+  list-style-type: decimal; /* Decimal numbering (1, 2, 3...) */
 }
