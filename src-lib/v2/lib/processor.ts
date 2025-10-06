@@ -18,8 +18,8 @@
 
 import { findHostElementFromDOM } from "../texscript";
 import { loadCSSConfigurations } from "./configurations/css";
-import ERRORS from "./constants/errors";
 import Compiler from "./core/compiler";
+import { loadCSSFilesContent as loadCSSFiles } from "./css/file-loader";
 import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./splash";
 
 /**
@@ -105,68 +105,57 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
       ...compiler.toString(),
       toggleSplashStatus: () => toggleSplashStatus(),
     };
+
+    // Mark high in Lighthouse
+    loadLighthouseBestPractices();
   } catch (e: unknown) {
     // Display any processing errors in the splash screen
     updateSplashStatus(e, "error");
   }
 }
 
-/**
- * Dynamically links an external stylesheet to the document head.
- *
- * Creates a <link> element and waits for it to fully load before resolving.
- * This ensures styles are available before rendering continues. If the
- * stylesheet fails to load, an error is thrown with the failed URL.
- *
- * @async
- * @param {string} href - The URL or path to the stylesheet
- * @returns {Promise<void>} Resolves when the stylesheet has loaded successfully
- * @throws {Error} Throws ERR0018 with the href if the stylesheet fails to load
- *
- * @example
- * await linkStylesToHead("https://example.com/theme.css");
- * // Stylesheet is now loaded and styles are available
- */
-async function linkStylesToHead(href: string): Promise<void> {
-  // Create a link element for the stylesheet
-  const linkTag: HTMLLinkElement = document.createElement("link");
-  linkTag.rel = "stylesheet";
-  linkTag.href = href;
-
-  try {
-    // Append to head to begin loading
-    document.head.appendChild(linkTag);
-
-    // Wait for the stylesheet to load or fail
-    await new Promise<void>((res, rej) => {
-      // Resolve when stylesheet loads successfully
-      linkTag.onload = () => res();
-
-      // Reject with detailed error message if loading fails
-      linkTag.onerror = () => {
-        const errorMessage = ERRORS.ERR0018 + "\n" + href;
-        rej(new Error(errorMessage));
-      };
-    });
-  } catch (e: unknown) {
-    // Display stylesheet loading errors
-    updateSplashStatus(e, "error");
-  }
-}
-
 async function loadReferences(references: Record<string, any>) {
   if (references) {
-    const cssFiles = references.css;
-    if (cssFiles) {
-      for (let cssFile of cssFiles) {
-        await linkStylesToHead(cssFile);
-      }
+    try {
+      const cssFilePaths = references.css;
+      if (cssFilePaths) await loadCSSFiles(cssFilePaths);
+    } catch (e) {
+      updateSplashStatus(e, "error");
     }
   }
 }
 
 async function loadConfigurations(configurations: Record<string, any>) {
   if (configurations) {
-    loadCSSConfigurations(configurations);
+    try {
+      await loadCSSConfigurations(configurations);
+    } catch (e) {
+      updateSplashStatus(e, "error");
+    }
+  }
+}
+
+function loadLighthouseBestPractices() {
+  // Set default <title> if missing or empty
+  if (!document.title || document.title.trim() === "") {
+    document.title = "Texscript | " + location.host + location.pathname;
+  }
+
+  // Set default <html lang> if missing or empty
+  const htmlEl = document.documentElement;
+  if (!htmlEl.lang || htmlEl.lang.trim() === "") {
+    htmlEl.lang = "en";
+  }
+
+  // Set default <meta name="description"> if missing or empty
+  let metaDescTag = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+
+  if (!metaDescTag) {
+    metaDescTag = document.createElement("meta") as HTMLMetaElement;
+    metaDescTag.name = "description";
+    metaDescTag.content = "This page was compiled by Texscript Compiler";
+    document.head.appendChild(metaDescTag);
+  } else if (!metaDescTag.content || metaDescTag.content.trim() === "") {
+    metaDescTag.content = "This page was compiled by Texscript Compiler";
   }
 }

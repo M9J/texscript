@@ -55,10 +55,10 @@ export default class Compiler {
   repourl: string = "https://github.com/M9J/texscript.git";
 
   /** Performance metrics for the compilation phase */
-  metricsCompilation: Metrics = new Metrics("Compilation");
+  metricsCompilation: Metrics = new Metrics("Texscript Compilation");
 
   /** Performance metrics for the code generation phase */
-  metricsCodeGeneration: Metrics = new Metrics("Code Generation");
+  metricsCodeGeneration: Metrics = new Metrics("Texscript Code Generation");
 
   /** The raw source code being compiled */
   rawCode: string | null = null;

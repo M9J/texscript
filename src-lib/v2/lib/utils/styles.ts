@@ -30,6 +30,6 @@ async function injectStylesToHead(stylesFilePath: string): Promise<void> {
 async function injectMetaToHead() {
   const meta = document.createElement("meta");
   meta.setAttribute("name", "viewport");
-  meta.setAttribute("content", "initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
+  meta.setAttribute("content", "width=device-width, initial-scale=1.0");
   document.head.appendChild(meta);
 }
