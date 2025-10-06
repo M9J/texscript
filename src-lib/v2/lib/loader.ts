@@ -15,6 +15,7 @@
  * @module loader
  */
 
+import Metrics from "./benchmark/metrics";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
 
 /**
@@ -49,6 +50,8 @@ import { updateSplashProgress, updateSplashStatus } from "./splash";
  */
 export async function load(): Promise<void> {
   try {
+    const metricsLoader = new Metrics("Texscript Loader");
+    metricsLoader.start();
     // Load utility modules for DOM manipulation and styling
     updateSplashStatus("Getting handy tools...");
     updateSplashProgress("20");
@@ -81,7 +84,7 @@ export async function load(): Promise<void> {
     if (!rawCode) throw new Error(errors_js.default.ERR0001);
 
     updateSplashProgress("90");
-
+    metricsLoader.end();
     // Compile and render the discovered source code
     processor.process(compiler, rawCode);
   } catch (e) {
