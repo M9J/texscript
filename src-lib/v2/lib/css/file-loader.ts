@@ -2,9 +2,9 @@ import Metrics from "../benchmark/metrics";
 import { injectCSS } from "./builder";
 import CSSFilterCompiler from "./filter-compiler";
 
-const metricsFileLoader = new Metrics("CSS File Loader");
 
 export async function loadCSSFilesContent(cssFilePaths: string[]) {
+  const metricsFileLoader = new Metrics("CSS File Loader");
   metricsFileLoader.start();
   for (let cssFilePath of cssFilePaths) {
     const cssFileFetchRequest = await fetch(cssFilePath);

@@ -17,6 +17,7 @@
  */
 
 import { findHostElementFromDOM } from "../texscript";
+import Metrics from "./benchmark/metrics";
 import { loadCSSConfigurations } from "./configurations/css";
 import Compiler from "./core/compiler";
 import { loadCSSFilesContent as loadCSSFiles } from "./css/file-loader";
@@ -47,6 +48,8 @@ import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./
  */
 export async function process(compiler: Compiler, rawCode: string): Promise<void> {
   try {
+    const metricsProcess = new Metrics("Texscript Process");
+    metricsProcess.start();
     // Compile the source code into an Abstract Syntax Tree
     updateSplashStatus("Compiling...");
     compiler.compile(rawCode);
@@ -99,6 +102,8 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
 
     // Replace host element content with the complete structure
     hostElement.innerHTML = texscriptPagesContainer.outerHTML;
+
+    metricsProcess.end();
 
     // Expose compiler API to window for debugging and developer tools
     window.TexscriptCompiler = {
