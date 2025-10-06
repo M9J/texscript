@@ -24,6 +24,7 @@ interface CSSClassRule {
 }
 
 interface CSSAST {
+  imports: string[];
   classes: CSSClassRule[];
 }
 
@@ -33,18 +34,28 @@ export default class CSSFilterCompiler {
 
   compile(rawCSS: string): CSSAST {
     this.metricsCSSFilterCompiler.start();
-    const ast: CSSAST = { classes: [] };
+    const ast: CSSAST = { classes: [], imports: [] };
 
-    // Match class selectors and their declaration blocks
-    const classRegex = /\.([a-zA-Z0-9_-]+)\s*\{([^}]+)\}/g;
+    // Match @import statements
+    const importRegex = /@import\s+(?:url\()?["']?([^"')]+)["']?\)?\s*;/g;
+    let importMatch: RegExpExecArray | null;
+
+    while ((importMatch = importRegex.exec(rawCSS)) !== null) {
+      const importUrl = importMatch[1];
+      if (typeof importUrl === "string" && importUrl.trim()) {
+        ast.imports.push(importUrl.trim());
+      }
+    }
+
+    // Match one or more selectors followed by a declaration block
+    const classRegex = /((?:\.[a-zA-Z0-9_-]+\s*,?\s*)+)\{([^}]+)\}/g;
     let match: RegExpExecArray | null;
 
     while ((match = classRegex.exec(rawCSS)) !== null) {
-      const selector = `.${match[1]}`;
+      const selectorsRaw = match[1];
       const declarationsBlock = match[2];
       const declarations: CSSDeclaration[] = [];
 
-      // Split declarations by semicolon and filter valid properties
       if (declarationsBlock) {
         declarationsBlock.split(";").forEach((decl) => {
           const [propertyRaw, valueRaw] = decl.split(":").map((s) => s.trim());
@@ -57,8 +68,13 @@ export default class CSSFilterCompiler {
         });
       }
 
-      if (declarations.length > 0) {
-        ast.classes.push({ selector, declarations });
+      if (selectorsRaw) {
+        const selectors = selectorsRaw.split(",").map((s) => s.trim());
+        selectors.forEach((selector) => {
+          if (selector.startsWith(".")) {
+            ast.classes.push({ selector, declarations: [...declarations] });
+          }
+        });
       }
     }
 
@@ -67,15 +83,17 @@ export default class CSSFilterCompiler {
   }
 
   generateFilteredCSSContent(ast: CSSAST): string {
-    if (ast) {
-      return ast.classes
-        .map((rule) => {
-          const declarations = rule.declarations
-            .map((decl) => `  ${decl.property}: ${decl.value};`)
-            .join("\n");
-          return `${rule.selector} {\n${declarations}\n}`;
-        })
-        .join("\n\n");
-    } else return "";
+    if (!ast) return "";
+
+    const importLines = ast.imports?.map((url) => `@import url("${url}");`) || [];
+
+    const classLines = ast.classes.map((rule) => {
+      const declarations = rule.declarations
+        .map((decl) => `  ${decl.property}: ${decl.value};`)
+        .join("\n");
+      return `${rule.selector} {\n${declarations}\n}`;
+    });
+
+    return [...importLines, ...classLines].join("\n\n");
   }
 }

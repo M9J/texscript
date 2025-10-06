@@ -12,7 +12,7 @@
     "v1-dev:all": "npm run v1-dev:bundle",
     "v1-dev:bundle": "npx rimraf .temp/build/v1 && node scripts/v1/dev-bundle.js",
     "v1-serve": "node servers/v1/src-lib-watcher-builder.js",
-    "v2-build:bundle": "npx rimraf build/v2 && node scripts/v2/build-bundle.js",
+    "v2-build:bundle": "npx rimraf build/v2 build/min/v2 && node scripts/v2/build-bundle.js",
     "v2-build": "npm run v2-build:bundle",
     "v2-dev:all": "npm run v2-dev:bundle",
     "v2-dev:bundle": "npx rimraf .temp/build/v2 && node scripts/v2/dev-bundle.js",
