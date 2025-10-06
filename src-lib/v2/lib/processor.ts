@@ -164,8 +164,10 @@ async function loadConfigurations(configurations: Record<string, any>) {
 async function loadReferences(references: Record<string, any>) {
   if (references) {
     const cssFiles = references.css;
-    for (let cssFile of cssFiles) {
-      await linkStylesToHead(cssFile);
+    if (cssFiles) {
+      for (let cssFile of cssFiles) {
+        await linkStylesToHead(cssFile);
+      }
     }
   }
 }
