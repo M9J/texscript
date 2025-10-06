@@ -4,11 +4,13 @@
 <script src="/devBuild/v2/texscript.js" type="module" defer></script>
 
 <script type="text/texscript">
-  @CustomCSSFilePath: "styles.css"
+  @Reference css: "styles.css"
+  @Configure pageSize: A4
+  @Configure pageMargin: "1in"
 </script>
 
 <script type="text/texscript">
-  Page.main (size: A4) [
+  Page.main [
       Section.name: "John Doe"
       Section.contactInfo [
           Block [
@@ -62,7 +64,7 @@
 </script>
 
 <script type="text/texscript">
-  Page.main (size: A4) [
+  Page.main [
       Section.name: "John Doe"
       Section.contactInfo [
           Block [

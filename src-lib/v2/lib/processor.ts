@@ -17,6 +17,8 @@
  */
 
 import { findHostElementFromDOM } from "../texscript";
+import { DEFAULT_CONFIG_PAGE } from "./configurations/default";
+import { getPageSize } from "./configurations/page-size";
 import ERRORS from "./constants/errors";
 import Compiler from "./core/compiler";
 import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./splash";
@@ -41,7 +43,7 @@ import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./
  *
  * @example
  * const compiler = new Compiler();
- * const code = 'Page { Text "Hello World" }';
+ * const code = 'Page: "Hello World" ';
  * await process(compiler, code);
  */
 export async function process(compiler: Compiler, rawCode: string): Promise<void> {
@@ -50,12 +52,21 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     updateSplashStatus("Compiling...");
     compiler.compile(rawCode);
 
-    // Load any external dependencies declared in the AST
+    // Load any configurations or references declared in the AST
     if (compiler.ast) {
-      const dependencies = compiler.ast.dependencies;
-      updateSplashStatus("Loading dependencies...");
-      await loadDependencies(dependencies);
-      updateSplashProgress("95");
+      const configurations = compiler.ast.configurations;
+      if (configurations) {
+        updateSplashStatus("Loading configurations...");
+        await loadConfigurations(configurations);
+        updateSplashProgress("95");
+      }
+
+      const references = compiler.ast.references;
+      if (references) {
+        updateSplashStatus("Loading references...");
+        await loadReferences(references);
+        updateSplashProgress("98");
+      }
     }
 
     // Generate HTML code from the compiled AST
@@ -102,37 +113,6 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
 }
 
 /**
- * Loads external dependencies declared in the Texscript document.
- *
- * Currently supports:
- * - CustomCSSFilePath: External CSS stylesheets
- *
- * Additional dependency types can be added by extending the dependencies
- * object structure and adding corresponding loading logic.
- *
- * @async
- * @param {Object} [dependencies] - Dependency configuration object from the AST
- * @param {string} [dependencies.CustomCSSFilePath] - Path to external CSS file
- * @returns {Promise<void>} Resolves when all dependencies are loaded
- *
- * @example
- * // From AST dependencies
- * await loadDependencies({ CustomCSSFilePath: "styles/custom.css" });
- */
-async function loadDependencies(dependencies?: { CustomCSSFilePath?: string }): Promise<void> {
-  try {
-    // Load custom CSS file if specified
-    if (dependencies?.CustomCSSFilePath) {
-      const PATH = dependencies.CustomCSSFilePath;
-      await linkStylesToHead(PATH);
-    }
-  } catch (e: unknown) {
-    // Display dependency loading errors
-    updateSplashStatus(e, "error");
-  }
-}
-
-/**
  * Dynamically links an external stylesheet to the document head.
  *
  * Creates a <link> element and waits for it to fully load before resolving.
@@ -165,12 +145,50 @@ async function linkStylesToHead(href: string): Promise<void> {
 
       // Reject with detailed error message if loading fails
       linkTag.onerror = () => {
-        const errorMessage = ERRORS.ERR0018 + "<br/>" + href;
+        const errorMessage = ERRORS.ERR0018 + "\n" + href;
         rej(new Error(errorMessage));
       };
     });
   } catch (e: unknown) {
     // Display stylesheet loading errors
     updateSplashStatus(e, "error");
+  }
+}
+
+async function loadConfigurations(configurations: Record<string, any>) {
+  if (configurations) {
+    await setupPageSize(configurations.pageSize || DEFAULT_CONFIG_PAGE.pageSize);
+  }
+}
+
+async function loadReferences(references: Record<string, any>) {
+  if (references) {
+    const cssFiles = references.css;
+    if (cssFiles) {
+      for (let cssFile of cssFiles) {
+        await linkStylesToHead(cssFile);
+      }
+    }
+  }
+}
+
+async function setupPageSize(pageSize: string) {
+  if (pageSize) {
+    let css = "";
+    const mediaPrintPageCss = `@media print { @page { size: ${pageSize}} }`;
+    css += mediaPrintPageCss;
+    const unit = "in";
+    const pageDimensions = getPageSize(pageSize, unit);
+    if (pageDimensions && pageDimensions.width && pageDimensions.height) {
+      const pageSizeCSS = `
+        .texscript-Page { 
+          width: ${pageDimensions.width + unit}; 
+          height: ${pageDimensions.height + unit};
+        }`;
+      css += pageSizeCSS;
+    }
+    const mediaPrintPageCssStyleTag = document.createElement("style");
+    mediaPrintPageCssStyleTag.textContent = css;
+    document.head.appendChild(mediaPrintPageCssStyleTag);
   }
 }

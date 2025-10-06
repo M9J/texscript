@@ -5,17 +5,18 @@
 <script type="text/texscript" src="index.txs"></script>
 
 <script type="text/texscript">
-  @CustomCSSFilePath: "custom.css"
+  @Reference css: "custom.css"
+  @Configure pageSize: A5
 
-  Page (size: A5) [
+  Page [
   Line.red: "Content 2"
   ]
 </script>
 
 <script type="text/texscript" src="index2.txs">
-  @CustomCSSFilePath: "custom.css"
+  @Reference css: "custom.css"
 
-  Page (size: A6) [
+  Page [
     Line.red: "Content 4"
   ]
 </script>
