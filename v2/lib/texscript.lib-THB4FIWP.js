@@ -1,4 +1,4 @@
-import{a as r}from"./chunk-KGDFVWJA.js";import"./chunk-GKXYOKXO.js";var a=`
+import{a as r}from"./chunk-4BMQ5IMH.js";import"./chunk-GKXYOKXO.js";var a=`
 progress.texscript-splash-progress-bar {
   width: 100%;
   height: 4px;

@@ -1,0 +1,11 @@
+.careerTitle,
+.skillsTitle,
+.educationTitle {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.careerDetails,
+.skillsDetails {
+  font-size: 12px;
+}
