@@ -1,5 +1,17 @@
-type CSSProperty = "font-size" | "font-weight" | "color";
+import Metrics from "../benchmark/metrics";
 
+const allowedProperties = [
+  "font-size",
+  "font-weight",
+  "color",
+  "font-family",
+  "display",
+  "flex-direction",
+  "justify-content",
+  "text-align",
+] as const;
+
+type CSSProperty = (typeof allowedProperties)[number];
 interface CSSDeclaration {
   property: CSSProperty;
   value: string;
@@ -14,10 +26,12 @@ interface CSSAST {
   classes: CSSClassRule[];
 }
 
-class CSSCompiler {
-  private allowedProperties: CSSProperty[] = ["font-size", "font-weight", "color"];
+export default class CSSFilterCompiler {
+  metricsCSSFilterCompiler: Metrics = new Metrics("CSS Filter Compiler");
+  private allowedProperties = allowedProperties;
 
   compile(rawCSS: string): CSSAST {
+    this.metricsCSSFilterCompiler.start();
     const ast: CSSAST = { classes: [] };
 
     // Match class selectors and their declaration blocks
@@ -47,6 +61,20 @@ class CSSCompiler {
       }
     }
 
+    this.metricsCSSFilterCompiler.end();
     return ast;
+  }
+
+  generateFilteredCSSContent(ast: CSSAST): string {
+    if (ast) {
+      return ast.classes
+        .map((rule) => {
+          const declarations = rule.declarations
+            .map((decl) => `  ${decl.property}: ${decl.value};`)
+            .join("\n");
+          return `${rule.selector} {\n${declarations}\n}`;
+        })
+        .join("\n\n");
+    } else return "";
   }
 }
