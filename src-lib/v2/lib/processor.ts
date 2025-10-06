@@ -17,8 +17,7 @@
  */
 
 import { findHostElementFromDOM } from "../texscript";
-import { DEFAULT_CONFIG_PAGE } from "./configurations/default";
-import { getPageSize } from "./configurations/page-size";
+import { loadCSSConfigurations } from "./configurations/css";
 import ERRORS from "./constants/errors";
 import Compiler from "./core/compiler";
 import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./splash";
@@ -155,12 +154,6 @@ async function linkStylesToHead(href: string): Promise<void> {
   }
 }
 
-async function loadConfigurations(configurations: Record<string, any>) {
-  if (configurations) {
-    await setupPageSize(configurations.pageSize || DEFAULT_CONFIG_PAGE.pageSize);
-  }
-}
-
 async function loadReferences(references: Record<string, any>) {
   if (references) {
     const cssFiles = references.css;
@@ -172,23 +165,8 @@ async function loadReferences(references: Record<string, any>) {
   }
 }
 
-async function setupPageSize(pageSize: string) {
-  if (pageSize) {
-    let css = "";
-    const mediaPrintPageCss = `@media print { @page { size: ${pageSize}} }`;
-    css += mediaPrintPageCss;
-    const unit = "in";
-    const pageDimensions = getPageSize(pageSize, unit);
-    if (pageDimensions && pageDimensions.width && pageDimensions.height) {
-      const pageSizeCSS = `
-        .texscript-Page { 
-          width: ${pageDimensions.width + unit}; 
-          height: ${pageDimensions.height + unit};
-        }`;
-      css += pageSizeCSS;
-    }
-    const mediaPrintPageCssStyleTag = document.createElement("style");
-    mediaPrintPageCssStyleTag.textContent = css;
-    document.head.appendChild(mediaPrintPageCssStyleTag);
+async function loadConfigurations(configurations: Record<string, any>) {
+  if (configurations) {
+    loadCSSConfigurations(configurations);
   }
 }
