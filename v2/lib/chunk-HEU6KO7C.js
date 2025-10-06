@@ -1,4 +1,4 @@
-import{a}from"./chunk-5JW66B4Q.js";var c='Texscript Markup Language [Version 0.2]<br/>Free and Open Source. Licensed under GPL-3.0.<br/>Hosted on GitHub: <a href="https://github.com/M9J/texscript.git">texscript.git</a>',d=`
+import{a}from"./chunk-4B4NJNKO.js";var c='Texscript Markup Language [Version 0.2]<br/>Free and Open Source. Licensed under GPL-3.0.<br/>Hosted on GitHub: <a href="https://github.com/M9J/texscript.git">texscript.git</a>',d=`
 <div class="texscript-splash-container" id="texscript-splash">
   <div class="texscript-banner">
     <div>${c}</div>
@@ -38,5 +38,5 @@ import{a}from"./chunk-5JW66B4Q.js";var c='Texscript Markup Language [Version 0.2
 .texscript-splash-status-error {
   color: #a00;
 }
-`;async function f(){try{p("8");let t=document.createElement("style");t.innerHTML=l,document.head.appendChild(t);let e=document.createElement("div");e.innerHTML=d,a().appendChild(e),n("Fetching Texscript Loader...");let r=await import("./loader-FNHI7MMG.js");p("10"),n("Fetched Texscript Loader"),n("Loading Texscript modules..."),await r.load()}catch(t){n(t,"error")}}function n(t,e){let s="";e==="error"?s=(o=>`<div class="texscript-splash-status-${o}">${t.toString().replaceAll(`
+`;async function f(){try{p("8");let t=document.createElement("style");t.innerHTML=l,document.head.appendChild(t);let e=document.createElement("div");e.innerHTML=d,a().appendChild(e),n("Fetching Texscript Loader...");let r=await import("./loader-K7LIIGNL.js");p("10"),n("Fetched Texscript Loader"),n("Loading Texscript modules..."),await r.load()}catch(t){n(t,"error")}}function n(t,e){let s="";e==="error"?s=(o=>`<div class="texscript-splash-status-${o}">${t.toString().replaceAll(`
 `,"<br/>")}</div>`)("error"):s=`<div>${t}</div>`;let r=document.getElementById("texscript-splash-status");if(r&&(o=>{r.innerHTML+=o})(s),e&&["error"].includes(e)){let i=document.getElementById("texscript-splash");i&&(i.style.display="flex")}e==="error"&&console.error(t)}function u(){let t=document.getElementById("texscript-splash");t&&(t.style.display=t.style.display==="flex"?"none":"flex")}function p(t){if(t){let e=document.getElementById("texscript-splash-progress");e&&e.setAttribute("value",t),parseInt(t)>99&&x()}}function x(){let t=document.getElementById("texscript-splash-progress");t&&(t.style.display="none")}export{f as a,n as b,u as c,p as d,x as e};
