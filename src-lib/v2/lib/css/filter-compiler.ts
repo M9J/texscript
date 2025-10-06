@@ -1,13 +1,14 @@
 import Metrics from "../benchmark/metrics";
 
 const allowedProperties = [
-  "font-size",
-  "font-weight",
   "color",
-  "font-family",
   "display",
   "flex-direction",
+  "font-family",
+  "font-size",
+  "font-weight",
   "justify-content",
+  "padding-left",
   "text-align",
 ] as const;
 
