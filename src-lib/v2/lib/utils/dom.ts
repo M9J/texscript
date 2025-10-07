@@ -47,6 +47,7 @@ async function findCodeFromScriptTag(scriptTag: HTMLScriptElement): Promise<stri
 
   if (scriptSrc) {
     const sourceFile: Response = await fetch(scriptSrc);
+    if (sourceFile.status === 404) throw new Error(ERRORS.ERR0021 + ": " + scriptSrc);
     const sourceFileAsText: string = await sourceFile.text();
     cleanedExternalCode = sourceFileAsText.trim();
     if (!cleanedExternalCode) throw new Error(ERRORS.ERR0014);

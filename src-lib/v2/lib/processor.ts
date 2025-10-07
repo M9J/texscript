@@ -20,7 +20,7 @@ import { findHostElementFromDOM } from "../texscript";
 import Metrics from "./benchmark/metrics";
 import { loadCSSConfigurations } from "./configurations/css";
 import Compiler from "./core/compiler";
-import { loadCSSFilesContent as loadCSSFiles } from "./css/file-loader";
+import { loadCSSFiles } from "./css/file-loader";
 import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./splash";
 
 /**
@@ -111,7 +111,7 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
       toggleSplashStatus: () => toggleSplashStatus(),
     };
 
-    // Mark high in Lighthouse
+    // Max marks in Lighthouse audit
     loadLighthouseBestPractices();
   } catch (e: unknown) {
     // Display any processing errors in the splash screen
@@ -121,22 +121,14 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
 
 async function loadReferences(references: Record<string, any>) {
   if (references) {
-    try {
-      const cssFilePaths = references.css;
-      if (cssFilePaths) await loadCSSFiles(cssFilePaths);
-    } catch (e) {
-      updateSplashStatus(e, "error");
-    }
+    const cssFilePaths = references.css;
+    if (cssFilePaths) await loadCSSFiles(cssFilePaths);
   }
 }
 
 async function loadConfigurations(configurations: Record<string, any>) {
   if (configurations) {
-    try {
-      await loadCSSConfigurations(configurations);
-    } catch (e) {
-      updateSplashStatus(e, "error");
-    }
+    await loadCSSConfigurations(configurations);
   }
 }
 

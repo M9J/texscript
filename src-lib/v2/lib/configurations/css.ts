@@ -19,7 +19,7 @@ async function setupLineHeight(lineHeight: string = DEFAULT_CONFIG_PAGE.lineHeig
 }
 
 async function setupPagePadding(pagePadding: string = DEFAULT_CONFIG_PAGE.pagePadding) {
-  if (pagePadding) if (pagePadding) cssBuilder.addStyle(".texscript-Page", "padding", pagePadding);
+  if (pagePadding) if (pagePadding) cssBuilder.addStyle(".texscript-PageWrapper", "padding", pagePadding);
 }
 
 async function setupPageSize(pageSize: string = DEFAULT_CONFIG_PAGE.pageSize) {
@@ -28,8 +28,8 @@ async function setupPageSize(pageSize: string = DEFAULT_CONFIG_PAGE.pageSize) {
     const pageDimensions = getPageSize(pageSize, unit);
     if (pageDimensions && pageDimensions.width && pageDimensions.height) {
       cssBuilder.addGlobalRule(`@media print { @page { size: ${pageSize}} }`);
-      cssBuilder.addStyle(".texscript-Page", "width", pageDimensions.width + unit);
-      cssBuilder.addStyle(".texscript-Page", "height", pageDimensions.height + unit);
+      cssBuilder.addStyle(".texscript-PageWrapper", "width", pageDimensions.width + unit);
+      cssBuilder.addStyle(".texscript-PageWrapper", "height", pageDimensions.height + unit);
     }
   }
 }

@@ -404,11 +404,18 @@ export default class Compiler {
                 const pageBreakNode = new ASTTagNode();
                 pageBreakNode.value = "PageBreak";
                 pageBreakNode.htmlElement = "div";
-                pageBreakNode.customCSSClasses = ["page-break"];
                 ast.body.push(pageBreakNode);
-                ast.body.push(currentNode);
+                const pageWrapperNode = new ASTTagNode();
+                pageWrapperNode.value = "PageWrapper";
+                pageWrapperNode.htmlElement = "div";
+                pageWrapperNode.children.push(currentNode);
+                ast.body.push(pageWrapperNode);
               } else {
-                ast.body.push(currentNode);
+                const pageWrapperNode = new ASTTagNode();
+                pageWrapperNode.value = "PageWrapper";
+                pageWrapperNode.htmlElement = "div";
+                pageWrapperNode.children.push(currentNode);
+                ast.body.push(pageWrapperNode);
               }
             } else {
               const prevTag = !tagStack.isEmpty() ? tagStack.peek() : null;
