@@ -89,6 +89,10 @@ const ERRORS: Record<string, string> = {
 
   /** Instructions for both inline and external Texscript usage */
   ERR0020: `Texscript code should be provided inside &lt;script type="text/texscript">...&lt;/script&gt; or as URL using &lt;script src="file.txs" type="text/texscript">&lt;/script&gt;`,
+
+  /** External Texscript source file not found */
+  ERR0021: `External Texscript source code not found`,
+  ERR0022: `External CSS file not found`
 };
 
 export default ERRORS;
