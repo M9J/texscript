@@ -56,3 +56,7 @@
 .reset * {
   box-sizing: border-box; /* Consistent box-sizing for all descendants */
 }
+
+.display-none {
+  display: none;
+}

@@ -19,9 +19,10 @@
 import { findHostElementFromDOM } from "../texscript";
 import Metrics from "./benchmark/metrics";
 import { loadCSSConfigurations } from "./configurations/css";
+import { injectPreconnectLinks } from "./configurations/preconnect";
 import Compiler from "./core/compiler";
 import { loadCSSFiles } from "./css/file-loader";
-import { toggleSplashStatus, updateSplashProgress, updateSplashStatus } from "./splash";
+import { updateSplashProgress, updateSplashStatus } from "./splash";
 
 /**
  * Processes Texscript source code through the complete compilation and rendering pipeline.
@@ -86,30 +87,31 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     texscriptPages.className = "texscript-pages";
 
     // Mark loading as complete
-    updateSplashProgress("100");
 
     // Get the host element where content will be injected
     const hostElement = findHostElementFromDOM();
 
     // Inject the generated HTML into the pages container
     texscriptPages.innerHTML = htmlCode;
-    hostElement.appendChild(texscriptPages);
+    // hostElement.appendChild(texscriptPages);
 
     // Wrap pages in an outer container for styling/layout purposes
     const texscriptPagesContainer = document.createElement("div");
     texscriptPagesContainer.className = "texscript-pages-container";
+    texscriptPagesContainer.classList.add("display-none");
     texscriptPagesContainer.appendChild(texscriptPages);
 
     // Replace host element content with the complete structure
     hostElement.innerHTML = texscriptPagesContainer.outerHTML;
 
+    await document.fonts.ready;
+    texscriptPagesContainer.classList.remove("display-none");
+    updateSplashProgress("100");
+
     metricsProcess.end();
 
     // Expose compiler API to window for debugging and developer tools
-    window.TexscriptCompiler = {
-      ...compiler.toString(),
-      toggleSplashStatus: () => toggleSplashStatus(),
-    };
+    window.TexscriptCompiler = compiler.toString();
 
     // Max marks in Lighthouse audit
     loadLighthouseBestPractices();
@@ -121,8 +123,8 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
 
 async function loadReferences(references: Record<string, any>) {
   if (references) {
-    const cssFilePaths = references.css;
-    if (cssFilePaths) await loadCSSFiles(cssFilePaths);
+    injectPreconnectLinks();
+    if (references.css) await loadCSSFiles(references.css);
   }
 }
 

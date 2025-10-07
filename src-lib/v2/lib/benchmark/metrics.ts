@@ -14,6 +14,7 @@
  */
 
 import ERRORS from "../constants/errors";
+import { updateSplashStatus } from "../splash";
 
 /**
  * A class for tracking and reporting performance metrics of named operations.
@@ -82,7 +83,9 @@ export default class Metrics {
   end(): void {
     this.#endTime = performance.now();
     const totalTime = this.getFormattedTime();
-    console.log(`[Texscript: Metrics] > ${this.#metricsName} finished in ${totalTime}`);
+    const message = `[Texscript: Metrics] > ${this.#metricsName} finished in ${totalTime}`;
+    console.log(message);
+    updateSplashStatus(message);
   }
 
   /**
