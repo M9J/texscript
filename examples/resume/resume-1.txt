@@ -24,10 +24,17 @@ Page.main [
             "Maintained few archived repositories of Google Cloud Platform (GCP)"
             "Recognized for conducting thorough unit tests for several mission critical modules"
         ]
-        ::
         "2015 - 2020"
         Line.careerPosition: "Senior Engineer, Amazon, Seattle"
         "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than before."
+        ::
+        "2010 - 2015"
+        Line.careerPosition: "Junior Engineer, Meta, California"
+        "Worked on React.js Core Team to improve their compiler efficiency"
+        ::
+        "2009 - 2010"
+        Line.careerPosition: "Intern, Microsoft, Washington"
+        "Developed a new internal framework for Azure Cloud Pipelines which is used in-house by Azure Cloud Engineers"
     ]
     ::
     Section.skillsTitle: "SKILLS"
