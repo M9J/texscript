@@ -57,6 +57,24 @@
 }
 
 /**
+ * Container for individual pages in a document.
+ * 
+ * This wrapper is used for margins of the page.
+ * Having this wrapper helps to cut off overflowing content in .texscript-Page
+ * equally across all marginal borders.
+ * 
+ * @selector .texscript-PageWrapper
+ */
+.texscript-PageWrapper {
+  display: flex; /* Flexbox for content layout */
+  flex-direction: column; /* Vertical content flow */
+  background-color: #fff; /* Paper-white background */
+  box-sizing: border-box; /* Include padding/border in dimensions */
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5); /* Elevated paper effect */
+  flex: 0 0 auto; /* Prevents shrinking, fixed dimensions at all time */
+}
+
+/**
  * Individual page component.
  * 
  * Represents a single page in the document with a paper-like appearance.
@@ -75,11 +93,8 @@
 .texscript-Page {
   display: flex; /* Flexbox for content layout */
   flex-direction: column; /* Vertical content flow */
-  background-color: #fff; /* Paper-white background */
   box-sizing: border-box; /* Include padding/border in dimensions */
-  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5); /* Elevated paper effect */
-  overflow: clip; /* Clip content to page boundaries */
-  flex: 0 0 auto;
+  overflow: hidden; /* Clip content to page boundaries */
 }
 
 /**

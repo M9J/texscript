@@ -59,8 +59,24 @@
     padding: 0 !important; /* Remove container padding */
   }
 
+  /**
+    *  Container for .texscript-PageWrapper
+    *  To arrange into pages
+    */
   .texscript-pages {
     gap: 0px !important;
+  }
+
+  /** 
+    *  Wrapper for .texscript-Page
+    *  Helps with providing equal margins across all borders
+    *  Overflowing content inside .texscript-Page is cut off within the margins
+    */
+  .texscript-PageWrapper {
+    page-break-after: always !important; /* Forces a new page after this element */
+    break-after: page !important; /* Modern equivalent */
+    page-break-inside: avoid !important; /* Prevents breaking inside this element */
+    break-inside: avoid !important; /* Modern equivalent */
   }
 
   /**
@@ -77,10 +93,6 @@
   .texscript-Page {
     margin: 0 !important; /* Remove margins for edge-to-edge printing */
     box-shadow: none !important; /* Remove decorative shadows for print */
-    page-break-after: always !important; /* Forces a new page after this element */
-    break-after: page !important; /* Modern equivalent */
-    page-break-inside: avoid !important; /* Prevents breaking inside this element */
-    break-inside: avoid !important; /* Modern equivalent */
   }
 
   /**
@@ -88,7 +100,7 @@
     * Creates page breaks between pages
     * 
     */
-  .texscript-PageBreak.page-break {
+  .texscript-PageBreak {
     page-break-before: always !important; /* Forces a new page before this element */
     break-before: page !important; /* Modern equivalent */
     display: block !important;
