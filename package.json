@@ -5,6 +5,8 @@
   "scripts": {
     "build": "npm run v1-build && npm run v2-build",
     "preview": "npx http-server build --port=80",
+    "serve-v1": "npm run v1-serve",
+    "serve-v2": "npm run v2-serve",
     "serve": "node servers/app.js",
     "start": "npm run serve",
     "v1-build:bundle": "npx rimraf build/v1 && node scripts/v1/build-bundle.js",
