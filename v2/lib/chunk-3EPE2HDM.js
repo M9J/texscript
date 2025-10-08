@@ -1,4 +1,4 @@
-import{a}from"./chunk-7F26F266.js";var c='Texscript Markup Language [Version 0.2]<br/>Free and Open Source. Licensed under GPL-3.0.<br/>Hosted on GitHub: <a href="https://github.com/M9J/texscript.git">texscript.git</a>',d=`
+import{a}from"./chunk-BODBJWK7.js";var c='Texscript Markup Language [Version 0.2]<br/>Free and Open Source. Licensed under GPL-3.0.<br/>Hosted on GitHub: <a href="https://github.com/M9J/texscript.git">texscript.git</a>',d=`
 <div class="texscript-splash-container" id="texscript-splash">
   <div class="texscript-splash">
     <div>${c}</div>
@@ -38,5 +38,5 @@ import{a}from"./chunk-7F26F266.js";var c='Texscript Markup Language [Version 0.2
 .texscript-splash-status-error {
   color: #a00;
 }
-`;async function u(){try{p("8");let t=document.createElement("style");t.innerHTML=l,document.head.appendChild(t);let e=document.createElement("div");e.innerHTML=d,a().appendChild(e),o("Fetching Texscript Loader...");let r=await import("./loader-D7CCW3XC.js");p("10"),o("Fetched Texscript Loader"),o("Loading Texscript modules..."),await r.load()}catch(t){o(t,"error")}}function o(t,e){let s="";e==="error"?s=(n=>`<div class="texscript-splash-status-${n}">${t.toString().replaceAll(`
+`;async function u(){try{p("8");let t=document.createElement("style");t.innerHTML=l,document.head.appendChild(t);let e=document.createElement("div");e.innerHTML=d,a().appendChild(e),o("Fetching Texscript Loader...");let r=await import("./loader-IJEYKZTR.js");p("10"),o("Fetched Texscript Loader"),o("Loading Texscript modules..."),await r.load()}catch(t){o(t,"error")}}function o(t,e){let s="";e==="error"?s=(n=>`<div class="texscript-splash-status-${n}">${t.toString().replaceAll(`
 `,"<br/>")}</div>`)("error"):s=`<div>${t}</div>`;let r=document.getElementById("texscript-splash-status");if(r&&(n=>{r.innerHTML+=n})(s),e&&["error"].includes(e)){let i=document.getElementById("texscript-splash");i&&(i.style.display="flex")}e==="error"&&console.error(t)}function p(t){if(t){let e=document.getElementById("texscript-splash-progress");e&&e.setAttribute("value",t),parseInt(t)>99&&x()}}function x(){let t=document.getElementById("texscript-splash-progress");t&&(t.style.display="none")}export{u as a,o as b,p as c,x as d};
