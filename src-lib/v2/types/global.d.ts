@@ -88,14 +88,6 @@ declare global {
        * - "ast": Abstract Syntax Tree (ASTRootNode)
        */
       lastCompilation: Map<string, unknown>;
-
-      /**
-       * Toggles the visibility of the splash screen.
-       *
-       * Useful for viewing loading progress, error messages, or
-       * debugging information after initial page load.
-       */
-      toggleSplashStatus: Function;
     };
   }
 }

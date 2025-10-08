@@ -7,7 +7,7 @@
  * during initialization.
  *
  * The splash screen includes:
- * - A banner with version and licensing information
+ * - A splash with version and licensing information
  * - A progress bar showing loading percentage
  * - A status log displaying loading steps and errors
  *
@@ -30,14 +30,14 @@ const BANNER = `Texscript Markup Language [Version 0.2]<br/>Free and Open Source
 /**
  * HTML structure for the splash screen container.
  *
- * Creates a fixed overlay that displays the banner and a status area
+ * Creates a fixed overlay that displays the splash and a status area
  * for showing loading progress messages and errors.
  *
  * @constant {string}
  */
-const TEXSCRIPT_BANNER_HTML = `
+const TEXSCRIPT_SPLASH_HTML = `
 <div class="texscript-splash-container" id="texscript-splash">
-  <div class="texscript-banner">
+  <div class="texscript-splash">
     <div>${BANNER}</div>
     <br/><hr/><br/>
     <div id="texscript-splash-status"></div>
@@ -50,7 +50,7 @@ const TEXSCRIPT_BANNER_HTML = `
  *
  * Defines a terminal-like appearance with:
  * - Full-screen dark background overlay
- * - Bottom-anchored white banner with monospace font
+ * - Bottom-anchored white splash with monospace font
  * - Shadow effect for visual depth
  * - Error state styling (red text)
  *
@@ -59,7 +59,7 @@ const TEXSCRIPT_BANNER_HTML = `
  *
  * @constant {string}
  */
-const TEXSCRIPT_BANNER_CSS = `
+const TEXSCRIPT_SPLASH_CSS = `
 .texscript-splash-container {
   position: fixed;
   top: 0;
@@ -75,7 +75,7 @@ const TEXSCRIPT_BANNER_CSS = `
   display: none;
 }
 
-.texscript-banner {
+.texscript-splash {
   font-family: monospace;
   background: #fff;
   color: #000;
@@ -119,16 +119,16 @@ export async function loadSplash(): Promise<void> {
 
     // Inject splash screen styles into document head
     const styleTag = document.createElement("style");
-    styleTag.innerHTML = TEXSCRIPT_BANNER_CSS;
+    styleTag.innerHTML = TEXSCRIPT_SPLASH_CSS;
     document.head.appendChild(styleTag);
 
     // Create splash screen container
-    const splashBannerContainer = document.createElement("div");
-    splashBannerContainer.innerHTML = TEXSCRIPT_BANNER_HTML;
+    const splashContainer = document.createElement("div");
+    splashContainer.innerHTML = TEXSCRIPT_SPLASH_HTML;
 
     // Mount splash screen to the host element
     const hostElement = findHostElementFromDOM();
-    hostElement.appendChild(splashBannerContainer);
+    hostElement.appendChild(splashContainer);
 
     // Inform user that loader is being fetched
     updateSplashStatus("Fetching Texscript Loader...");
@@ -201,25 +201,6 @@ export function updateSplashStatus(line: any, type?: string): void {
   if (type === "error") {
     console.error(line);
   }
-}
-
-/**
- * Toggles the visibility of the splash screen.
- *
- * Switches between showing and hiding the splash screen overlay.
- * Useful for debugging or allowing users to inspect loading details.
- *
- * @returns {void}
- *
- * @example
- * // Show/hide splash on keyboard shortcut
- * document.addEventListener('keydown', (e) => {
- *   if (e.key === 'F12') toggleSplashStatus();
- * });
- */
-export function toggleSplashStatus() {
-  const splash = document.getElementById("texscript-splash");
-  if (splash) splash.style.display = splash.style.display === "flex" ? "none" : "flex";
 }
 
 /**

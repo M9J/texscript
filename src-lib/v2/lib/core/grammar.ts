@@ -26,6 +26,7 @@ const MetaTokensBasic: Record<string, RegExp> = {
 
   /** Matches double-quoted strings, including escaped quotes */
   STRING: /"(.*)"$|(\\\"(.*)\\\"$)/,
+  // STRING: /(?<=")(?:\\.|[^"\\\r\n])*(?=")/,
 };
 
 /**
@@ -45,8 +46,13 @@ const MetaTokensExtended: Record<string, RegExp> = {
   COMMAND: /(@[A-Z][a-zA-Z]*\s[\s\w]+:\s*("[^"]*"|\w+))/,
 
   /** Matches parameter lists in parentheses (e.g., (title: "Hello", size: 12)) */
-  // PARAMETERS: /(\([\s*\w+:\s*\w+,*\s*]*\))/,
   PARAMETERS: /(\(([\s\w]+:\s*("[^"]*"|\w+),?\s*)+\))/,
+
+  /** Matches URL patterns */
+  URL: /^\"(?:https?:\/\/|\/\/|www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?\"$/,
+
+  /** Matches Email ID patterns */
+  MAIL: /^\"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\"$/,
 };
 
 /**
@@ -67,11 +73,17 @@ const MetaTokensPunctuation: Record<string, RegExp> = {
   /** Matches colon : */
   COLON: /(:)/,
 
-  /** Matches mandatory whitespace characters */
-  SPACE: /(\s)/,
-
   /** Matches optional whitespace characters */
-  SPACE_OPTIONAL: /(\s)/,
+  SPACE: /(\s*)/,
+
+  /** Matches mandatory whitespace character */
+  WHITESPACE: /(\s)/,
+
+  /** Matches closing angle bracket */
+  BRACKET_ANGLE_CLOSE: /(\>)/,
+
+  /** Matches double quote */
+  DOUBLE_QUOTE: /(\")/,
 };
 
 /**
@@ -132,6 +144,7 @@ const GRAMMAR_RULES: string[] = [
   "BRACKET_SQUARE_CLOSE", // Closing container (])
   "COMMAND",
   "HR", // Horizontal rule (--)
+  "MAIL",
   "KEYWORD|COLON|SPACE|STRING", // Simple tag with content (e.g., Text: "Hello")
   "KEYWORD|CSS_CLASS|COLON|SPACE|STRING", // Styled tag with content
   "KEYWORD|CSS_CLASS|SPACE|BRACKET_SQUARE_OPEN", // Styled container opening
@@ -141,7 +154,10 @@ const GRAMMAR_RULES: string[] = [
   "KEYWORD|SPACE|PARAMETERS",
   "KEYWORD|SPACE|PARAMETERS|COLON|SPACE|STRING", // Tag with params and content
   "KEYWORD|SPACE|PARAMETERS|SPACE|BRACKET_SQUARE_OPEN", // Container with params
+  "URL",
+  // *** DO NOT CHANGE *** KEEP THIS "STRING" AS THE LAST ITEM IN THIS LIST *** //
   "STRING", // Standalone string literal
+  // *** DO NOT CHANGE *** KEEP THIS "STRING" AS THE LAST ITEM IN THIS LIST *** //
 ];
 
 /**

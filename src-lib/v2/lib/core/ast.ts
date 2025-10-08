@@ -124,6 +124,9 @@ export class ASTTagNode extends ASTNode {
   /** Child nodes nested within this tag */
   children: ASTNode[] = [];
 
+  /**  */
+  htmlAttributes: Record<string, string> = {};
+
   /**
    * Creates a new tag node.
    */

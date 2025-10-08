@@ -13,8 +13,8 @@ export async function loadCSSFiles(cssFilePaths: string[]) {
     if (cssFileContent) {
       const cssCompiler = new CSSFilterCompiler();
       const compiledCssAST = cssCompiler.compile(cssFileContent);
-      const filteredCSSContent = cssCompiler.generateFilteredCSSContent(compiledCssAST);
-      injectCSS(filteredCSSContent);
+      const compiledOutput = cssCompiler.generateFilteredCSSContent(compiledCssAST);
+      injectCSS(compiledOutput);
     }
   }
   metricsFileLoader.end();

@@ -112,11 +112,13 @@ export default class Compiler {
     version: string;
     repoURL: string;
     lastCompilation: Map<string, unknown>;
+    grammar: Map<string, RegExp>;
   } {
     return {
       version: this.version,
       repoURL: this.repourl,
       lastCompilation: this.lastCompilation,
+      grammar: GRAMMAR,
     };
   }
 
@@ -235,12 +237,14 @@ export default class Compiler {
     const type = node.getNodeType();
     const value = node.value;
     const htmlElement = (node as ASTTagNode | ASTSpecialTagNode).htmlElement;
+    const htmlAttributes = (node as ASTTagNode).htmlAttributes;
     const parameters = (node as ASTTagNode).parameters;
     const customCSSClasses = (node as ASTTagNode).customCSSClasses;
     const children = (node as ASTTagNode).children || [];
 
     let customCSSClassesHTML = "";
     let parametersHTML = "";
+    let htmlAttributesHTML = "";
 
     // Build custom CSS classes string
     if (Array.isArray(customCSSClasses) && customCSSClasses.length > 0) {
@@ -255,9 +259,16 @@ export default class Compiler {
       }
     }
 
+    if (htmlAttributes) {
+      for (const htmlAttributeName in htmlAttributes) {
+        const htmlAttributeValue = htmlAttributes[htmlAttributeName];
+        htmlAttributesHTML += ` ${htmlAttributeName}="${htmlAttributeValue}"`;
+      }
+    }
+
     // Generate HTML based on node type
     if (type === "TAG") {
-      return `<${htmlElement} class="texscript-${value}${customCSSClassesHTML}${parametersHTML}">
+      return `<${htmlElement} class="texscript-${value}${customCSSClassesHTML}${parametersHTML}" ${htmlAttributesHTML}>
     ${children
       .filter((c): c is ASTTagNode | ASTSpecialTagNode | ASTLiteralNode => {
         const t = c.getNodeType();
@@ -384,6 +395,28 @@ export default class Compiler {
             hrNode.htmlElement = "hr";
             hrNode.value = "HR";
             currentNode?.children.push(hrNode);
+            break;
+          }
+
+          case "MAIL":
+          case "URL": {
+            // Mail and URL links - insert <a> element
+            const linkNode = new ASTTagNode();
+            const valueNode = new ASTLiteralNode();
+            linkNode.htmlElement = "a";
+            linkNode.value = "Line";
+            const cleanedValue = token.value.replace(/\"/g, "");
+            if (token.type === "MAIL") {
+              linkNode.htmlAttributes["href"] = `mailto:` + cleanedValue;
+            }
+            if (token.type === "URL") {
+              const normalize = (s: string) => s.replace(/^(?!https?:\/\/)/i, "http://");
+              linkNode.htmlAttributes["href"] = normalize(cleanedValue);
+              linkNode.htmlAttributes["target"] = "_blank";
+            }
+            valueNode.value = cleanedValue;
+            linkNode.children.push(valueNode);
+            if (currentNode) currentNode?.children.push(linkNode);
             break;
           }
 
@@ -530,7 +563,10 @@ export default class Compiler {
 
           // Ensure the entire line was matched (not just a prefix)
           if (lineMatch === line) {
-            const perLineTokens = this.convertLineToTokens(grammarRule, grammarRegExMatches);
+            const perLineTokens = this.convertLineToTokens(
+              grammarRule,
+              grammarRegExMatches.length ? grammarRegExMatches : [lineMatch]
+            );
             tokens.push(perLineTokens);
             break;
           }

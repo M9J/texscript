@@ -64,11 +64,8 @@
         const row = document.createElement("tr");
         for (let column of headers) {
           const col = document.createElement("td");
-          if (column === "LINK") {
-            continue;
-          }
           if (column === "RELEASE_NOTES") {
-            const {LINK: releaseLink, NOTES} = release[column];
+            const { LINK: releaseLink, NOTES } = release[column];
             const span = document.createElement("span");
             span.innerHTML = `<a href=${releaseLink}>${releaseLink}</a>`;
             col.appendChild(span);
@@ -76,7 +73,7 @@
             for (let releaseNoteEntry of NOTES) {
               const li = document.createElement("li");
               li.innerText = releaseNoteEntry;
-              ol.appendChild(li); 
+              ol.appendChild(li);
             }
             col.appendChild(ol);
           } else {
@@ -91,15 +88,15 @@
     createTableForUI([
       {
         VERSION: "v1",
-        "RELEASE_NOTES": {
+        RELEASE_NOTES: {
           LINK: "https://m9j.github.io/texscript/v1/texscript.js",
           NOTES: ["This is a prototype version of Texscript", "Written in JavaScript"],
         },
       },
       {
         VERSION: "v2",
-        "RELEASE_NOTES": {
-          LINK: "https://m9j.github.io/texscript/v2/texscript.js",
+        RELEASE_NOTES: {
+          LINK: "https://m9j.github.io/texscript/min/v2/texscript.js",
           NOTES: [
             "Same as v1 (with minor fixes)",
             "Converted to TypeScript",
