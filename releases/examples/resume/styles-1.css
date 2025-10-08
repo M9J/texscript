@@ -10,14 +10,15 @@
   font-weight: bold;
 }
 
-.contactInfo {
+.block {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 12px;
+  align-items: baseline;
 }
 
-.contactInfoRight {
+.blockRight {
   text-align: right;
 }
 

@@ -53,6 +53,7 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     metricsProcess.start();
     // Compile the source code into an Abstract Syntax Tree
     updateSplashStatus("Compiling...");
+    debugger
     compiler.compile(rawCode);
 
     // Load any configurations or references declared in the AST
@@ -74,6 +75,7 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
 
     // Generate HTML code from the compiled AST
     const htmlCode = compiler.generateCodeFor("HTML");
+    debugger
     updateSplashStatus("Compilation done.");
 
     // Hide the splash banner container (if it exists)

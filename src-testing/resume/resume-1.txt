@@ -2,13 +2,18 @@
 @Reference css: "styles-2.css"
 
 Page.main [
-    Section.name:"John Doe"
-    Section.contactInfo[
+    Section.block [
+        Block.name: "John Doe"
+        Block.blockRight [
+            "johndoe.com"
+        ]
+    ]
+    Section.block[
         Block[
             "hi@johndoe.com"
             "+1 (234) 567-8900"
         ]
-        Block.contactInfoRight[
+        Block.blockRight[
             "Los Angeles, California"
             "United States 90009"
         ]

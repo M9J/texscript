@@ -1,6 +1,7 @@
 import Metrics from "../benchmark/metrics";
 
 const allowedProperties = [
+  "align-items",
   "color",
   "display",
   "flex-direction",
