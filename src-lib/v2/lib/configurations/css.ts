@@ -9,8 +9,8 @@ export async function loadCSSConfigurations(configurations: Record<string, any>)
     await setupPageSize(configurations.pageSize);
     await setupPagePadding(configurations.pagePadding);
     await setupLineHeight(configurations.lineHeight);
-    const finalConfigCSS = cssBuilder.buildCSS();
-    injectCSS(finalConfigCSS);
+    const configCSS = cssBuilder.buildCSS();
+    injectCSS(configCSS);
   }
 }
 
@@ -19,7 +19,8 @@ async function setupLineHeight(lineHeight: string = DEFAULT_CONFIG_PAGE.lineHeig
 }
 
 async function setupPagePadding(pagePadding: string = DEFAULT_CONFIG_PAGE.pagePadding) {
-  if (pagePadding) if (pagePadding) cssBuilder.addStyle(".texscript-PageWrapper", "padding", pagePadding);
+  if (pagePadding)
+    if (pagePadding) cssBuilder.addStyle(".texscript-PageWrapper", "padding", pagePadding);
 }
 
 async function setupPageSize(pageSize: string = DEFAULT_CONFIG_PAGE.pageSize) {

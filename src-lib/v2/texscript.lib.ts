@@ -76,31 +76,32 @@ progress.texscript-splash-progress-bar::-webkit-progress-value {
 export async function load() {
   // Locate the host element where the progress bar will be mounted
   const hostElement = findHostElementFromDOM();
-
+  
   // Inject progress bar styles into the document head
   const styleTag = document.createElement("style");
   styleTag.innerHTML = PROGRESS_CSS;
   document.head.appendChild(styleTag);
 
+  
   // Create and configure the progress bar element
   const pg = document.createElement("progress");
   pg.setAttribute("class", "texscript-splash-progress-bar");
   pg.setAttribute("id", "texscript-splash-progress");
   pg.setAttribute("value", "0");
   pg.setAttribute("max", "100");
-
+  
   // Mount the progress bar to the host element
   hostElement.appendChild(pg);
-
+  
   // Initial progress update (2%)
   pg.setAttribute("value", "2");
-
+  
   // Dynamically import the splash module
   const splash = await import("./lib/splash.js");
-
+  
   // Update progress after module import (5%)
   pg.setAttribute("value", "5");
-
+  
   // Initialize and display the splash screen
   await splash.loadSplash();
 }

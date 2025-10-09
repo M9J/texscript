@@ -1,0 +1,9 @@
+reference css 'styles.css'
+configure Page.size A4
+configure Page.padding '1in'
+
+Page has 'white' background
+Section has 2 columns, space-between
+  "John Doe" has class '.name'
+  "johndoe.com"
+
