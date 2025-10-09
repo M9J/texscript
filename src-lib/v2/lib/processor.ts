@@ -23,6 +23,7 @@ import { injectPreconnectLinks } from "./configurations/preconnect";
 import Compiler from "./core/compiler";
 import { loadCSSFiles } from "./css/file-loader";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
+import { loadTexscriptStyles } from "./utils/styles";
 
 /**
  * Processes Texscript source code through the complete compilation and rendering pipeline.
@@ -54,6 +55,9 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     // Compile the source code into an Abstract Syntax Tree
     updateSplashStatus("Compiling...");
     compiler.compile(rawCode);
+    
+    // Load Texscript-specific styles
+    await loadTexscriptStyles();
 
     // Load any configurations or references declared in the AST
     if (compiler.ast) {
@@ -71,7 +75,7 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
         updateSplashProgress("98");
       }
     }
-
+    
     // Generate HTML code from the compiled AST
     const htmlCode = compiler.generateCodeFor("HTML");
     updateSplashStatus("Compilation done.");
@@ -85,29 +89,23 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     // Create container for the generated Texscript pages
     const texscriptPages = document.createElement("div");
     texscriptPages.className = "texscript-pages";
-
-    // Mark loading as complete
-
-    // Get the host element where content will be injected
-    const hostElement = findHostElementFromDOM();
-
     // Inject the generated HTML into the pages container
     texscriptPages.innerHTML = htmlCode;
-    // hostElement.appendChild(texscriptPages);
-
     // Wrap pages in an outer container for styling/layout purposes
     const texscriptPagesContainer = document.createElement("div");
     texscriptPagesContainer.className = "texscript-pages-container";
     texscriptPagesContainer.classList.add("display-none");
     texscriptPagesContainer.appendChild(texscriptPages);
 
-    // Replace host element content with the complete structure
+    // Get the host element where content will be injected
+    const hostElement = findHostElementFromDOM();
     hostElement.innerHTML = texscriptPagesContainer.outerHTML;
 
     await document.fonts.ready;
     texscriptPagesContainer.classList.remove("display-none");
-    updateSplashProgress("100");
 
+    // Mark loading as complete
+    updateSplashProgress("100");
     metricsProcess.end();
 
     // Expose compiler API to window for debugging and developer tools

@@ -56,17 +56,12 @@ export async function load(): Promise<void> {
     updateSplashStatus("Getting handy tools...");
     updateSplashProgress("20");
     const dom_js = await import("./utils/dom");
-    const styles_js = await import("./utils/styles");
+    // const styles_js = await import("./utils/styles");
 
     // Load error message catalog
     updateSplashStatus("Opening curse words...");
     updateSplashProgress("30");
     const errors_js = await import("./constants/errors");
-
-    // Initialize and inject Texscript styling into the document
-    updateSplashStatus("Applying beauty makeup...");
-    updateSplashProgress("40");
-    await styles_js.loadTexscriptStyles();
 
     // Load the core compiler and processor modules
     updateSplashStatus("Loading brain power...");
