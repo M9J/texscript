@@ -7,7 +7,7 @@ async function main() {
     console.log("Running TypeScript type-check (tsc --noEmit)...");
     await runTscNoEmit();
     console.log("Type-check passed. Preparing for ESBuild pipeline...");
-    console.log("Cleaning up existing dev build articats...");
+    console.log("Cleaning up existing dev build artifacts...");
     await runRimraf();
     console.log("Running ESBuild pipeline...");
     await runDevBundle();
