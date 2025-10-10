@@ -1,4 +1,4 @@
-import Metrics from "../benchmark/metrics";
+import Metrics from "../tools/benchmark/metrics";
 
 const allowedProperties = [
   "align-items",

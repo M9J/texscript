@@ -17,11 +17,11 @@
  * @class Compiler
  */
 
-import Metrics from "../benchmark/metrics";
+import Metrics from "../tools/benchmark/metrics";
 import ERRORS from "../constants/errors";
-import { ASTLiteralNode, ASTRootNode, ASTSpecialTagNode, ASTTagNode } from "./ast";
-import GRAMMAR from "./grammar";
-import Stack from "./stack";
+import { ASTLiteralNode, ASTRootNode, ASTSpecialTagNode, ASTTagNode } from "../compiler/core/ast";
+import GRAMMAR from "./core/grammar";
+import Stack from "./core/stack";
 
 /**
  * Represents a token produced by lexical analysis.

@@ -1,4 +1,5 @@
 import esbuild from "esbuild";
+import { cleanCssPlugin } from "./plugins/clean-css.plugin.js";
 
 const common = {
   platform: "browser",
@@ -14,67 +15,15 @@ const build1 = esbuild.build({
   ...common,
   entryPoints: ["src-lib/v3/texscript.ts"],
   outfile: "build/v3/texscript.js",
-  bundle: false,
-});
-
-const build2 = esbuild.build({
-  ...common,
-  entryPoints: ["src-lib/v3/texscript.lib.ts"],
-  outfile: "build/v3/texscript.lib.js",
-  bundle: false,
-});
-
-const buildLib = esbuild.build({
-  ...common,
-  entryPoints: ["src-lib/v3/lib/splash.ts"],
-  outdir: "build/v3/lib/",
   bundle: true,
-  splitting: true,
-  preserveSymlinks: true,
+  loader: {
+    ".css": "text",
+  },
+  plugins: [cleanCssPlugin],
 });
 
-const buildCss = esbuild.build({
-  entryPoints: ["src-lib/v3/css/texscript.css"],
-  outfile: "build/v3/texscript.css",
-  bundle: true,
-  minify: true,
-  loader: { ".css": "css" },
-  sourcemap: false,
-  legalComments: "none",
-});
-
-Promise.all([build1, build2, buildLib, buildCss])
+await Promise.all([build1])
   .then(() => {
     console.log("Production build complete");
-  })
-  .catch(() => process.exit(1));
-
-const buildMin = esbuild.build({
-  platform: "browser",
-  target: ["es2018"],
-  format: "iife",
-  tsconfig: "tsconfig.json",
-  external: [],
-  legalComments: "none",
-  minify: true,
-  entryPoints: ["src-lib/v3/texscript.ts"],
-  outfile: "build/min/v3/texscript.js",
-  bundle: true,
-});
-
-
-const buildMinCss = esbuild.build({
-  entryPoints: ["src-lib/v3/css/texscript.css"],
-  outfile: "build/min/v3/texscript.css",
-  bundle: true,
-  minify: true,
-  loader: { ".css": "css" },
-  sourcemap: false,
-  legalComments: "none",
-});
-
-Promise.all([buildMin, buildMinCss])
-  .then(() => {
-    console.log("Production min build complete");
   })
   .catch(() => process.exit(1));
