@@ -1,0 +1,124 @@
+/**
+ * Texscript General Print Styles
+ * 
+ * Global print media styles that apply to the entire document when printing
+ * or generating PDFs. These styles ensure clean, edge-to-edge output by
+ * removing browser default spacing and container margins.
+ * 
+ * This stylesheet works in conjunction with component-specific print styles
+ * (like texscript-Page.print.css) to provide comprehensive print optimization.
+ * 
+ * Key objectives:
+ * - Eliminate browser default print margins
+ * - Remove container spacing for precise layout control
+ * - Ensure content fills the entire printable area
+ * 
+ * @file Global print media styles for Texscript documents
+ */
+
+/**
+ * Print media query - applies only during print operations.
+ * 
+ * These styles override screen styles when the user prints the page
+ * or saves it as a PDF, ensuring optimal output formatting.
+ */
+@media print {
+  /**
+   * Remove default body margins and padding for print.
+   * 
+   * Browsers typically add default margins when printing to create
+   * a "safe area" away from page edges. By removing these, we gain
+   * full control over page layout and can implement our own margin
+   * strategy through Texscript components.
+   * 
+   * Uses !important to override any screen styles that might interfere.
+   * 
+   * @selector body
+   */
+  body {
+    background: #fff !important;
+    margin: 0 !important; /* Remove default print margins */
+    padding: 0 !important; /* Remove default padding */
+  }
+
+  /**
+   * Remove spacing from the main Texscript pages container.
+   * 
+   * The pages container is injected by the processor and wraps all
+   * Texscript-generated content. By removing its spacing, we ensure
+   * that page-level components have full control over their own margins
+   * and positioning during print.
+   * 
+   * This prevents double-margin issues and ensures pixel-perfect
+   * alignment with the physical paper.
+   * 
+   * @selector .texscript-pages-container
+   * @see processor.ts - Container creation and injection
+   */
+  .texscript-pages-container {
+    margin: 0 !important; /* Remove container margins */
+    padding: 0 !important; /* Remove container padding */
+  }
+
+  /**
+    *  Container for .texscript-PageWrapper
+    *  To arrange into pages
+    */
+  .texscript-pages {
+    gap: 0px !important;
+  }
+
+  /** 
+    *  Wrapper for .texscript-Page
+    *  Helps with providing equal margins across all borders
+    *  Overflowing content inside .texscript-Page is cut off within the margins
+    */
+  .texscript-PageWrapper {
+    box-shadow: none !important;
+    page-break-after: always !important; /* Forces a new page after this element */
+    break-after: page !important; /* Modern equivalent */
+    page-break-inside: avoid !important; /* Prevents breaking inside this element */
+    break-inside: avoid !important; /* Modern equivalent */
+  }
+
+  /**
+   * Base Page component print styles.
+   * 
+   * Removes screen-only visual effects to ensure clean printed output:
+   * - Eliminates margins that would create unwanted whitespace
+   * - Removes box shadows that don't translate well to print
+   * 
+   * Uses !important to override screen styles during print.
+   * 
+   * @selector .texscript-Page
+   */
+  .texscript-Page {
+    margin: 0 !important; /* Remove margins for edge-to-edge printing */
+    box-shadow: none !important; /* Remove decorative shadows for print */
+  }
+
+  /**
+    * 
+    * Creates page breaks between pages
+    * 
+    */
+  .texscript-PageBreak {
+    page-break-before: always !important; /* Forces a new page before this element */
+    break-before: page !important; /* Modern equivalent */
+    display: block !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .page-break-after {
+    page-break-after: always !important; /* Forces a new page after this element */
+    break-after: page !important; /* Modern equivalent */
+  }
+
+  .avoid-break {
+    page-break-inside: avoid !important; /* Prevents breaking inside this element */
+    break-inside: avoid !important; /* Modern equivalent */
+  }
+}

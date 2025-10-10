@@ -5,7 +5,7 @@ export function runTscNoEmit() {
     const tsc = spawn(
       // Use the local tsc if available, otherwise the global one on PATH
       process.platform === "win32" ? "npx.cmd" : "npx",
-      ["-y", "tsc", "-p", "tsconfig.src-lib-v2.json"],
+      ["-y", "tsc", "-p", "tsconfig.src-lib-v3.json"],
       { stdio: "inherit", shell: true }
     );
 

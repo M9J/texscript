@@ -14,7 +14,7 @@ watcher.on("all", (event, path) => {
   isBuilding = true;
 
   console.log(`[src-lib/v1] Change detected: ${event} → ${path}`);
-  const build = spawn("npm", ["run", "v1-dev:all"], {
+  const build = spawn("npm", ["run", "build-v1:dev"], {
     stdio: "inherit",
     shell: true,
   });
