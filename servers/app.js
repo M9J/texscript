@@ -2,7 +2,7 @@ import express from "express";
 import serveIndex from "serve-index";
 
 const app = express();
-const PORT = 8080;
+const PORT = 80;
 
 // Logging middleware
 app.use((req, res, next) => {
