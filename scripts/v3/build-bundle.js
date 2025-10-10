@@ -1,5 +1,7 @@
 import esbuild from "esbuild";
 import { cleanCssPlugin } from "./plugins/clean-css.plugin.js";
+import fs from "fs";
+import { minify } from "terser";
 
 const common = {
   platform: "browser",
@@ -24,6 +26,23 @@ const build1 = esbuild.build({
 
 await Promise.all([build1])
   .then(() => {
-    console.log("Production build complete");
+    console.log("Production build bundle generated");
   })
-  .catch(() => process.exit(1));
+  .catch((err) => {
+    console.error("Build failed:", err);
+    process.exit(1);
+  });
+
+const code = fs.readFileSync("build/v3/texscript.js", "utf8");
+
+const result = await minify(code, {
+  compress: true,
+  mangle: true,
+  ecma: 2018,
+  toplevel: true,
+});
+
+fs.mkdirSync("build/v3", { recursive: true });
+fs.writeFileSync("build/v3/texscript.min.js", result.code);
+
+console.log("Build and post-process complete.");
