@@ -2,12 +2,12 @@ import { spawn } from "child_process";
 import chokidar from "chokidar";
 import readline from "readline";
 
-const watcher = chokidar.watch("src-lib/v2", {
+const watcher = chokidar.watch("src-lib/v3", {
   ignoreInitial: true,
 });
 
 let isBuilding = false;
-console.log("src-lib/v2 Watcher Builder is active.");
+console.log("src-lib/v3 Watcher Builder is active.");
 console.log("Waiting for changes...");
 console.log("Ctrl + R : Rebuild");
 console.log("Ctrl + C or Z : Exit");
@@ -35,19 +35,19 @@ function triggerBuild(event, path) {
   isBuilding = true;
 
   if (event === "manual") {
-    console.log(`[src-lib/v2] Manual rebuild triggered.`);
+    console.log(`[src-lib/v3] Manual rebuild triggered.`);
   } else {
-    console.log(`[src-lib/v2] Change detected: ${event} → ${path}`);
+    console.log(`[src-lib/v3] Change detected: ${event} → ${path}`);
   }
 
-  const build = spawn("npm", ["run", "dev-v2"], {
+  const build = spawn("npm", ["run", "dev-v3"], {
     stdio: "inherit",
     shell: true,
   });
 
   build.on("close", (code) => {
     const { cyan, green } = poppins();
-    console.log(`[src-lib/v2] ${green("Rebuilt")} (exit code ${cyan(code)})`);
+    console.log(`[src-lib/v3] ${green("Rebuilt")} (exit code ${cyan(code)})`);
     isBuilding = false;
   });
 }
