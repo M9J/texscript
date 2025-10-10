@@ -4,7 +4,7 @@ import { cleanCssPlugin } from "./plugins/clean-css.plugin.js";
 const common = {
   platform: "browser",
   target: ["es2018"],
-  format: "esm",
+  format: "iife",
   tsconfig: "tsconfig.json",
   external: [],
   legalComments: "none",
