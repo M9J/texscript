@@ -82,20 +82,6 @@ export default class Stack<T> {
   }
 
   /**
-   * Returns the number of elements in the stack.
-   *
-   * @returns {number} The count of elements currently in the stack
-   *
-   * @example
-   * stack.push("a");
-   * stack.push("b");
-   * console.log(stack.size()); // 2
-   */
-  size(): number {
-    return this.items.length;
-  }
-
-  /**
    * Returns the element at the top of the stack without removing it.
    *
    * This is useful for inspecting the current context or state without
