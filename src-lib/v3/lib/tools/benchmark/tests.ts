@@ -8,7 +8,7 @@
  * @module tests
  */
 
-import Compiler from "../core/compiler";
+import Compiler from "../../compiler/compiler";
 
 /**
  * Benchmarks the average compilation and code generation times over many iterations.
@@ -29,7 +29,7 @@ import Compiler from "../core/compiler";
  *
  * @example
  * const testCode = `Page: "Hello World"`;
- * 
+ *
  * averageCompilationGenerationTime(testCode);
  * // Console output:
  * // EXP: Started

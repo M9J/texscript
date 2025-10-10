@@ -14,7 +14,8 @@
  * @module splash
  */
 
-import { findHostElementFromDOM } from "../texscript";
+import { findHostElementFromDOM } from "../../../texscript";
+import SPLASH_CSS from './splash.css';
 
 /**
  * Banner content displaying Texscript version and licensing information.
@@ -59,39 +60,7 @@ const TEXSCRIPT_SPLASH_HTML = `
  *
  * @constant {string}
  */
-const TEXSCRIPT_SPLASH_CSS = `
-.texscript-splash-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;  
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background: #252529;
-  margin: 0;
-  box-sizing: border-box;
-  display: none;
-}
-
-.texscript-splash {
-  font-family: monospace;
-  background: #fff;
-  color: #000;
-  padding: 16px;
-  box-shadow: -4px -8px 16px rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
-}
-
-.texscript-splash-status {
-  overflow: auto;
-}
-
-.texscript-splash-status-error {
-  color: #a00;
-}
-`;
+const TEXSCRIPT_SPLASH_CSS = SPLASH_CSS;
 
 /**
  * Initializes and displays the splash screen during Texscript loading.

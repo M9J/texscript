@@ -15,7 +15,7 @@
  * @module loader
  */
 
-import Metrics from "./benchmark/metrics";
+import Metrics from "../benchmark/metrics";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
 
 /**
@@ -55,18 +55,18 @@ export async function load(): Promise<void> {
     // Load utility modules for DOM manipulation and styling
     updateSplashStatus("Getting handy tools...");
     updateSplashProgress("20");
-    const dom_js = await import("./utils/dom");
+    const dom_js = await import("../utils/dom");
     // const styles_js = await import("./utils/styles");
 
     // Load error message catalog
     updateSplashStatus("Opening curse words...");
     updateSplashProgress("30");
-    const errors_js = await import("./constants/errors");
+    const errors_js = await import("../../constants/errors");
 
     // Load the core compiler and processor modules
     updateSplashStatus("Loading brain power...");
     updateSplashProgress("50");
-    const compiler_js = await import("./core/compiler");
+    const compiler_js = await import("../../compiler/compiler");
     const compiler = new compiler_js.default();
     const processor = await import("./processor");
     updateSplashProgress("60");

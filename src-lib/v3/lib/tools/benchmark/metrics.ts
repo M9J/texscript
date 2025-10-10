@@ -13,8 +13,8 @@
  * metrics.end(); // Logs: "[Texscript: Metrics] > Document Parsing finished in 145.234ms"
  */
 
-import ERRORS from "../constants/errors";
-import { updateSplashStatus } from "../splash";
+import ERRORS from "../../constants/errors";
+import { updateSplashStatus } from "../../tools/dom/splash";
 
 /**
  * A class for tracking and reporting performance metrics of named operations.

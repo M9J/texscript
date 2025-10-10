@@ -16,14 +16,14 @@
  * @module processor
  */
 
-import { findHostElementFromDOM } from "../texscript";
-import Metrics from "./benchmark/metrics";
-import { loadCSSConfigurations } from "./configurations/css";
-import { injectPreconnectLinks } from "./configurations/preconnect";
-import Compiler from "./core/compiler";
-import { loadCSSFiles } from "./css/file-loader";
+import { findHostElementFromDOM } from "../../../texscript";
+import Metrics from "../benchmark/metrics";
+import { loadCSSConfigurations } from "../../css/configure";
+import { injectPreconnectLinks } from "../configurations/preconnect";
+import Compiler from "../../compiler/compiler";
+import { loadCSSFiles } from "../../css/file-loader";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
-import { loadTexscriptStyles } from "./utils/styles";
+import { loadTexscriptStyles } from "../utils/styles";
 
 /**
  * Processes Texscript source code through the complete compilation and rendering pipeline.

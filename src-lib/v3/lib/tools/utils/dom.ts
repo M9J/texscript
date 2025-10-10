@@ -1,5 +1,7 @@
-import ERRORS from "../constants/errors";
-import { updateSplashStatus } from "../splash";
+import ERRORS from "../../constants/errors";
+import { updateSplashStatus } from "../../tools/dom/splash";
+
+const fetchedScripts: string[] = [];
 
 export async function findCodeFromDOM(): Promise<string | void> {
   try {
@@ -46,11 +48,14 @@ async function findCodeFromScriptTag(scriptTag: HTMLScriptElement): Promise<stri
   }
 
   if (scriptSrc) {
-    const sourceFile: Response = await fetch(scriptSrc);
-    if (sourceFile.status === 404) throw new Error(ERRORS.ERR0021 + ": " + scriptSrc);
-    const sourceFileAsText: string = await sourceFile.text();
-    cleanedExternalCode = sourceFileAsText.trim();
-    if (!cleanedExternalCode) throw new Error(ERRORS.ERR0014);
+    if (!fetchedScripts.includes(scriptSrc)) {
+      const sourceFile: Response = await fetch(scriptSrc);
+      if (sourceFile.status === 404) throw new Error(ERRORS.ERR0021 + ": " + scriptSrc);
+      const sourceFileAsText: string = await sourceFile.text();
+      cleanedExternalCode = sourceFileAsText.trim();
+      if (!cleanedExternalCode) throw new Error(ERRORS.ERR0014);
+      else fetchedScripts.push(scriptSrc);
+    }
   }
 
   if (cleanedInlineCode && cleanedExternalCode) {
