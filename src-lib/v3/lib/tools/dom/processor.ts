@@ -8,9 +8,10 @@ import { injectPreconnectLinks } from "../configurations/preconnect";
 import { loadTexscriptStyles } from "../utils/styles";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
 
+const metricsProcess = new Metrics("Texscript Process");
+
 export async function process(compiler: Compiler, rawCode: string): Promise<void> {
   try {
-    const metricsProcess = new Metrics("Texscript Process");
     metricsProcess.start();
 
     updateSplashStatus("Compiling...");
@@ -60,11 +61,11 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     texscriptPagesContainer.classList.remove("display-none");
 
     updateSplashProgress("100");
-    metricsProcess.end();
 
     window.TexscriptCompiler = compiler.toString();
 
     loadLighthouseBestPractices();
+    metricsProcess.end();
   } catch (e: unknown) {
     updateSplashStatus(e, "error");
   }

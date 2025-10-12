@@ -4,6 +4,7 @@ import { ASTRootNode } from "./core/ast";
 import LexicalAnalyser from "./lexicalAnalyser";
 import PreProcessor from "./preProcessor";
 import SyntaxAnalyser from "./syntaxAnalyser";
+import SyntaxChecker from "./syntaxChecker";
 
 type TokenNode = {
   type: string;
@@ -11,7 +12,7 @@ type TokenNode = {
 };
 
 export default class Compiler {
-  version: string = "v0.2";
+  version: string = "v0.3";
   repourl: string = "https://github.com/M9J/texscript.git";
   metrics: Metrics = new Metrics("Texscript Compilation");
   rawCode: string = "";
@@ -52,6 +53,9 @@ export default class Compiler {
     const { tokens, locCount } = lexicalAnalyser.lexicalAnalysis();
     this.tokens = tokens;
     this.locCount = locCount;
+    const syntaxChecker = new SyntaxChecker(tokens);
+    const isSyntaxFine = syntaxChecker.checkSyntax();
+    if (!isSyntaxFine) throw new Error(ERRORS.ERR0026);
     const syntaxAnalyser = new SyntaxAnalyser(tokens);
     const ast = syntaxAnalyser.syntaxAnalysis();
     ast.value = "Program";
