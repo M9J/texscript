@@ -15,7 +15,6 @@ export default class CodeGenerator {
     if (!this.ast) throw new Error(ERRORS.ERR0009);
     let html = ``;
     this.metrics.start();
-    // Generate HTML for each top-level node in the AST body
     for (const node of this.ast.body) {
       const type = node.getNodeType();
       if (type === "TAG" || type === "SPEC_TAG" || type === "LITERAL") {
@@ -29,7 +28,6 @@ export default class CodeGenerator {
   private generateHTMLForNode(node: ASTTagNode | ASTSpecialTagNode | ASTLiteralNode): string {
     if (!node) throw new Error(ERRORS.ERR0010);
 
-    // Extract node properties
     const type = node.getNodeType();
     const value = node.value;
     const htmlElement = (node as ASTTagNode | ASTSpecialTagNode).htmlElement;
@@ -42,12 +40,10 @@ export default class CodeGenerator {
     let parametersHTML = "";
     let htmlAttributesHTML = "";
 
-    // Build custom CSS classes string
     if (Array.isArray(customCSSClasses) && customCSSClasses.length > 0) {
       customCSSClassesHTML = ` ${customCSSClasses.join(" ")}`;
     }
 
-    // Build parameter-based CSS classes (for styling based on props)
     if (parameters) {
       for (const paramName in parameters) {
         const paramValue = parameters[paramName];
@@ -62,7 +58,6 @@ export default class CodeGenerator {
       }
     }
 
-    // Generate HTML based on node type
     if (type === "TAG") {
       return `<${htmlElement} class="texscript-${value}${customCSSClassesHTML}${parametersHTML}" ${htmlAttributesHTML}>
     ${children

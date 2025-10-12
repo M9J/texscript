@@ -45,9 +45,6 @@ export async function loadSplash(): Promise<void> {
 
 export function updateSplashStatus(line: any, type?: string): void {
   let formattedLine = "";
-  // Helper to wrap line in a styled div
-
-  // Apply error styling if type is "error"
   if (type === "error") {
     const formatLine = (t: string) =>
       `<div class="texscript-splash-status-${t}">${line

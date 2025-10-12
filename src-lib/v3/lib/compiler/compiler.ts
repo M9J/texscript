@@ -12,22 +12,11 @@ type TokenNode = {
 
 export default class Compiler {
   version: string = "v0.2";
-
   repourl: string = "https://github.com/M9J/texscript.git";
-
   metrics: Metrics = new Metrics("Texscript Compilation");
-
   rawCode: string = "";
-
-  /** Lines of code after preprocessing (trimmed, non-empty lines) */
-  loc: string[] | null = null;
-
-  /** Tokenized representation of the source code (2D array: lines × tokens) */
   tokens: TokenNode[] | null = null;
-
-  /** The compiled Abstract Syntax Tree */
   ast: ASTRootNode | null = null;
-
   locCount: number = 0;
 
   constructor() {
@@ -36,7 +25,6 @@ export default class Compiler {
 
   get lastCompilation(): Map<string, unknown> {
     return new Map<string, unknown>([
-      ["loc", this.loc],
       ["tokens", this.tokens],
       ["ast", this.ast],
     ]);
@@ -69,6 +57,7 @@ export default class Compiler {
     ast.value = "Program";
     ast.meta.languageName = "Texscript";
     ast.meta.languageCompilerVersion = this.version;
+    this.ast = ast;
     this.metrics.end();
     return ast;
   }

@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!(hostElement instanceof HTMLBodyElement)) hostElement.innerHTML = "";
 
-    // Apply dark theme background and reset spacing
     hostElement.style.background = "#252529";
     hostElement.style.margin = "0px";
     hostElement.style.padding = "0px";

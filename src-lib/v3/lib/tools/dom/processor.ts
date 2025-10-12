@@ -102,7 +102,6 @@ function loadLighthouseBestPractices() {
     document.title = "Texscript | " + location.host + location.pathname;
   }
 
-  // Set default <html lang> if missing or empty
   const htmlEl = document.documentElement;
   if (!htmlEl.lang || htmlEl.lang.trim() === "") {
     htmlEl.lang = "en";
