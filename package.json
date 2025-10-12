@@ -2,6 +2,7 @@
   "name": "texscript",
   "version": "0.0.2",
   "main": "index.ts",
+  "private": "true",
   "scripts": {
     "build-v1:dev": "npx rimraf .temp/build/v1 && node scripts/v1/dev-bundle.js",
     "build-v1": "npx rimraf build/v1 && node scripts/v1/build-bundle.js",

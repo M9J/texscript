@@ -1,6 +1,7 @@
 import { spawn } from "child_process";
 import chokidar from "chokidar";
 import readline from "readline";
+import Poppins from "../../utils/poppins.js";
 
 const watcher = chokidar.watch("src-lib/v3", {
   ignoreInitial: true,
@@ -46,21 +47,9 @@ function triggerBuild(event, path) {
   });
 
   build.on("close", (code) => {
-    const { cyan, green } = poppins();
-    console.log(`[src-lib/v3] ${green("Rebuilt")} (exit code ${cyan(code)})`);
+    const { green, red } = Poppins;
+    if (code) console.log(`[src-lib/v3] ${red("Rebuild failed")} (exit code ${red(code)})`);
+    else console.log(`[src-lib/v3] ${green("Rebuilt")} (exit code ${green(code)})`);
     isBuilding = false;
   });
-}
-
-function poppins() {
-  const COLOR_BOUNDARY = "\x1b[0m";
-  const COLORS = {
-    green: "\x1b[32m",
-    cyan: "\x1b[36m",
-  };
-  const coloredText = (color) => (text) => `${COLORS[color] + text + COLOR_BOUNDARY}`;
-  return {
-    green: coloredText("green"),
-    cyan: coloredText("cyan"),
-  };
 }

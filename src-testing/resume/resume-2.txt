@@ -1,3 +1,4 @@
+@Reference css: "styles-1.css"
 @Reference css: "styles-2.css"
 
 Page.main [
@@ -17,30 +18,30 @@ Page.main [
             "United States 90009"
         ]
     ]
-    ::
+    /::/
     Section.careerTitle:"CAREER"
-    --
+    /--/
     Section.careerDetails[
         "2020 - PRESENT"
         Line.careerPosition:"Staff Engineer, Google, California" 
         "Responsible for the development, testing, deployment and debugging of Google Cloud infrastructure UI application."
-        List.responsibilities (type:bullet)[
+        List.responsibilities (type:$BULLET)[
             "Created a library for ease of utilizing RPC calls."
             "Maintained few archived repositories of Google Cloud Platform (GCP)."
             "Recognized for conducting thorough unit tests for several mission critical modules."
         ]
-        ::
+        /::/
         "2015 - 2020"
         Line.careerPosition:"Senior Engineer, Amazon, Seattle"
         "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than before."
     ]
-    ::
+    /::/
     Section.skillsTitle:"SKILLS"
-    --
+    /--/
     Section.skillsDetails:"Java, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js"
-    ::
+    /::/
     Section.educationTitle:"EDUCATION"
-    --
+    /--/
     Section.educationDetails[
         Block[
             "M.S. Computer Science"
@@ -71,9 +72,9 @@ Page.main [
             "United States 90009"
         ]
     ]
-    ::
+    /::/
     Section.careerTitle:"CAREER"
-    --
+    /--/
     Section.careerDetails[
         "2020 - PRESENT"
         Line.careerPosition:"Staff Engineer, Google, California" 
@@ -83,18 +84,18 @@ Page.main [
             "Maintained few archived repositories of Google Cloud Platform (GCP)."
             "Recognized for conducting thorough unit tests for several mission critical modules."
         ]
-        ::
+        /::/
         "2015 - 2020"
         Line.careerPosition:"Senior Engineer, Amazon, Seattle"
         "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than before."
     ]
-    ::
+    /::/
     Section.skillsTitle:"SKILLS"
-    --
+    /--/
     Section.skillsDetails:"Java, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js"
-    ::
+    /::/
     Section.educationTitle:"EDUCATION"
-    --
+    /--/
     Section.educationDetails[
         Block[
             "M.S. Computer Science"

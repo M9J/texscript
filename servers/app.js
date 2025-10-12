@@ -1,5 +1,6 @@
 import express from "express";
 import serveIndex from "serve-index";
+import { poppinsRGB } from "../utils/poppins.js";
 
 const app = express();
 const PORT = 80;
@@ -35,7 +36,8 @@ function createEndpointsAndIndexing(paths) {
 createEndpointsAndIndexing(PATHS);
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  const white = poppinsRGB(255, 255, 255);
+  console.log(`Server running at ${white("http://localhost:${PORT}")}`);
   const formatted = Object.entries(PATHS).map(([Route, Directory]) => ({ Route, Directory }));
   console.table(formatted);
 });

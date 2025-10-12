@@ -92,7 +92,8 @@ const ERRORS: Record<string, string> = {
 
   /** External Texscript source file not found */
   ERR0021: `External Texscript source code not found`,
-  ERR0022: `External CSS file not found`
+  ERR0022: `External CSS file not found`,
+  ERR0023: `'characterStream' not provided`,
 };
 
 export default ERRORS;

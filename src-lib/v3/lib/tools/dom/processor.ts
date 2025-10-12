@@ -24,6 +24,7 @@ import Compiler from "../../compiler/compiler";
 import { loadCSSFiles } from "../../css/file-loader";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
 import { loadTexscriptStyles } from "../utils/styles";
+import CodeGenerator from "../../compiler/codeGenerator";
 
 /**
  * Processes Texscript source code through the complete compilation and rendering pipeline.
@@ -54,30 +55,31 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     metricsProcess.start();
     // Compile the source code into an Abstract Syntax Tree
     updateSplashStatus("Compiling...");
-    compiler.compile(rawCode);
-    
+    const ast = compiler.compile(rawCode);
+
     // Load Texscript-specific styles
     await loadTexscriptStyles();
 
     // Load any configurations or references declared in the AST
-    if (compiler.ast) {
-      const configurations = compiler.ast.configurations;
+    if (ast) {
+      const configurations = ast.configurations;
       if (configurations) {
         updateSplashStatus("Loading configurations...");
         await loadConfigurations(configurations);
         updateSplashProgress("95");
       }
 
-      const references = compiler.ast.references;
+      const references = ast.references;
       if (references) {
         updateSplashStatus("Loading references...");
         await loadReferences(references);
         updateSplashProgress("98");
       }
     }
-    
+
     // Generate HTML code from the compiled AST
-    const htmlCode = compiler.generateCodeFor("HTML");
+    const codeGenerator = new CodeGenerator(ast);
+    const htmlCode = codeGenerator.generateCodeForHTML();
     updateSplashStatus("Compilation done.");
 
     // Hide the splash banner container (if it exists)

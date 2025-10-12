@@ -42,7 +42,6 @@ export function averageCompilationGenerationTime(rawCode: string): void {
 
   // Arrays to store individual timing measurements
   const compilationTimes = [];
-  const generationTimes = [];
 
   // Create a single compiler instance to reuse across iterations
   const compiler = new Compiler();
@@ -52,32 +51,22 @@ export function averageCompilationGenerationTime(rawCode: string): void {
     compiler.compile(rawCode);
 
     // Extract timing metrics from the compiler's internal metrics objects
-    const compilationTime = compiler.metricsCompilation.getTotalTimeMilliseconds();
-    const generationTime = compiler.metricsCodeGeneration.getTotalTimeMilliseconds();
+    const compilationTime = compiler.metrics.getTotalTimeMilliseconds();
 
     // Store measurements for later aggregation
     compilationTimes.push(compilationTime);
-    generationTimes.push(generationTime);
   }
 
   // Calculate total time across all compilation iterations
   const compilationTimeSum = compilationTimes.reduce((p, c) => (p += c));
 
-  // Calculate total time across all code generation iterations
-  const generationTimeSum = compilationTimes.reduce((p, c) => (p += c));
-
   // Compute average compilation time per iteration
   const totalCompilationTime = compilationTimeSum / compilationTimes.length;
 
-  // Compute average code generation time per iteration
-  const totalGenerationTime = generationTimeSum / generationTimes.length;
-
   // Create shorter aliases for console output
   const tct = totalCompilationTime;
-  const tgt = totalGenerationTime;
 
   // Output results in milliseconds
   console.log("tct", tct); // Average compilation time
-  console.log("tgt", tgt); // Average generation time
   console.log("EXP: Ended");
 }
