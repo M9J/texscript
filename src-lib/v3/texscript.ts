@@ -6,11 +6,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (hostElement instanceof HTMLElement) {
     hostElement.setAttribute("id", "TexscriptHostElement");
-
     hostElement.classList.add("reset");
 
     if (!(hostElement instanceof HTMLBodyElement)) hostElement.innerHTML = "";
-
+    
     hostElement.style.background = "#252529";
     hostElement.style.margin = "0px";
     hostElement.style.padding = "0px";

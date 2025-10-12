@@ -15,14 +15,10 @@ export async function load() {
   pg.setAttribute("id", "texscript-splash-progress");
   pg.setAttribute("value", "0");
   pg.setAttribute("max", "100");
-
   hostElement.appendChild(pg);
-
   pg.setAttribute("value", "2");
 
   const splash = await import("./lib/tools/dom/splash.js");
-
   pg.setAttribute("value", "5");
-
   await splash.loadSplash();
 }

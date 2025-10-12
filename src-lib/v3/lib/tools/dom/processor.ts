@@ -1,5 +1,3 @@
-
-
 import { findHostElementFromDOM } from "../../../texscript";
 import CodeGenerator from "../../compiler/codeGenerator";
 import Compiler from "../../compiler/compiler";
@@ -10,19 +8,16 @@ import { injectPreconnectLinks } from "../configurations/preconnect";
 import { loadTexscriptStyles } from "../utils/styles";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
 
-
 export async function process(compiler: Compiler, rawCode: string): Promise<void> {
   try {
     const metricsProcess = new Metrics("Texscript Process");
     metricsProcess.start();
-    
+
     updateSplashStatus("Compiling...");
     const ast = compiler.compile(rawCode);
 
-    
     await loadTexscriptStyles();
 
-    
     if (ast) {
       const configurations = ast.configurations;
       if (configurations) {
@@ -39,46 +34,38 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
       }
     }
 
-    
     const codeGenerator = new CodeGenerator(ast);
     const htmlCode = codeGenerator.generateCodeForHTML();
     updateSplashStatus("Compilation done.");
 
-    
     const texscriptBannerContainer = document.querySelector(".texscript-banner-container");
     if (texscriptBannerContainer instanceof HTMLElement) {
       texscriptBannerContainer.style.display = "none";
     }
 
-    
     const texscriptPages = document.createElement("div");
     texscriptPages.className = "texscript-pages";
-    
+
     texscriptPages.innerHTML = htmlCode;
-    
+
     const texscriptPagesContainer = document.createElement("div");
     texscriptPagesContainer.className = "texscript-pages-container";
     texscriptPagesContainer.classList.add("display-none");
     texscriptPagesContainer.appendChild(texscriptPages);
 
-    
     const hostElement = findHostElementFromDOM();
     hostElement.innerHTML = texscriptPagesContainer.outerHTML;
 
     await document.fonts.ready;
     texscriptPagesContainer.classList.remove("display-none");
 
-    
     updateSplashProgress("100");
     metricsProcess.end();
 
-    
     window.TexscriptCompiler = compiler.toString();
 
-    
     loadLighthouseBestPractices();
   } catch (e: unknown) {
-    
     updateSplashStatus(e, "error");
   }
 }
@@ -97,7 +84,6 @@ async function loadConfigurations(configurations: Record<string, any>) {
 }
 
 function loadLighthouseBestPractices() {
-  
   if (!document.title || document.title.trim() === "") {
     document.title = "Texscript | " + location.host + location.pathname;
   }
@@ -107,7 +93,6 @@ function loadLighthouseBestPractices() {
     htmlEl.lang = "en";
   }
 
-  
   let metaDescTag = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
 
   if (!metaDescTag) {
