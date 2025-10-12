@@ -18,21 +18,28 @@ export default class LexicalAnalyser {
     let state = State.Start;
     let buffer = "";
     let streamLength = this.characterStream.length;
-    for (let i = 0; i < streamLength + 1; i++) {
+    let line = 1;
+    let column = 1;
+    const getColumn = () => column - buffer.length;
+    for (let i = 0; i < streamLength + 1; i++, column++) {
       const ch: string = this.characterStream[i] || "";
       switch (state) {
         case State.Start: {
           if (isSpace(ch)) continue;
           else if (isNewLine(ch)) {
             locCount++;
+            line++;
+            column = 1;
             continue;
           } else if (isBracketRoundClose(ch)) {
             state = State.BracketRoundClose;
             i--;
+            column--;
           } else if (isBracketRoundOpen(ch)) state = State.BracketRoundOpen;
           else if (isBracketSquareClose(ch)) {
             state = State.BracketSquareClose;
             i--;
+            column--;
           } else if (isBracketSquareOpen(ch)) state = State.BracketSquareOpen;
           else if (isColon(ch)) state = State.Colon;
           else if (isComma(ch)) state = State.Comma;
@@ -44,10 +51,12 @@ export default class LexicalAnalyser {
           else if (isLowerCase(ch)) {
             state = State.Identifier;
             i--;
+            column--;
           } else if (isDigit(ch)) state = State.Integer;
           else if (isUpperCase(ch)) {
             state = State.Keyword;
             i--;
+            column--;
           } else if (isQuote(ch)) state = State.String;
           else if (isEmpty(ch)) state = State.End;
           else state = State.Error;
@@ -55,57 +64,81 @@ export default class LexicalAnalyser {
         }
 
         case State.BracketRoundClose: {
-          tokens.push({ type: TokenType.BRACKET_ROUND_CLOSE, value: ")" });
+          tokens.push({
+            type: TokenType.BRACKET_ROUND_CLOSE,
+            value: ")",
+            line,
+            column: getColumn(),
+          });
           state = State.Start;
           break;
         }
 
         case State.BracketRoundOpen: {
-          tokens.push({ type: TokenType.BRACKET_ROUND_OPEN, value: "(" });
+          tokens.push({
+            type: TokenType.BRACKET_ROUND_OPEN,
+            value: "(",
+            line,
+            column: getColumn(),
+          });
           state = State.Start;
           i--;
+          column--;
           break;
         }
 
         case State.BracketSquareClose: {
-          tokens.push({ type: TokenType.BRACKET_SQUARE_CLOSE, value: "]" });
+          tokens.push({
+            type: TokenType.BRACKET_SQUARE_CLOSE,
+            value: "]",
+            line,
+            column: getColumn(),
+          });
           state = State.Start;
           break;
         }
 
         case State.BracketSquareOpen: {
-          tokens.push({ type: TokenType.BRACKET_SQUARE_OPEN, value: "[" });
+          tokens.push({
+            type: TokenType.BRACKET_SQUARE_OPEN,
+            value: "[",
+            line,
+            column: getColumn(),
+          });
           state = State.Start;
           i--;
+          column--;
           break;
         }
 
         case State.Colon: {
-          tokens.push({ type: TokenType.COLON, value: ":" });
+          tokens.push({ type: TokenType.COLON, value: ":", line, column: getColumn() });
           state = State.Start;
           i--;
+          column--;
           break;
         }
 
         case State.Comma: {
-          tokens.push({ type: TokenType.COMMA, value: "," });
+          tokens.push({ type: TokenType.COMMA, value: ",", line, column: getColumn() });
           state = State.Start;
           break;
         }
 
         case State.Constant: {
           if (isSpace(ch) || isBracketRoundClose(ch) || isNewLine(ch) || isComma(ch)) {
-            tokens.push({ type: TokenType.CONSTANT, value: buffer });
+            tokens.push({ type: TokenType.CONSTANT, value: buffer, line, column: getColumn() });
             buffer = "";
             state = State.Start;
             i--;
+            column--;
           } else buffer += ch;
           break;
         }
 
         case State.Declaration: {
           if (isSpace(ch)) {
-            tokens.push({ type: TokenType.DECLARATION, value: buffer });
+            tokens.push({ type: TokenType.DECLARATION, value: buffer, line, column: getColumn() });
             buffer = "";
             state = State.Start;
           } else buffer += ch;
@@ -114,7 +147,7 @@ export default class LexicalAnalyser {
 
         case State.DecoratorComponent: {
           if (isForwardSlash(ch)) {
-            tokens.push({ type: TokenType.DECORATOR, value: buffer });
+            tokens.push({ type: TokenType.DECORATOR, value: buffer, line, column: getColumn() });
             buffer = "";
             state = State.Start;
           } else buffer += ch;
@@ -122,9 +155,10 @@ export default class LexicalAnalyser {
         }
 
         case State.Dot: {
-          tokens.push({ type: TokenType.DOT, value: "." });
+          tokens.push({ type: TokenType.DOT, value: ".", line, column: getColumn() });
           state = State.Start;
           i--;
+          column--;
           break;
         }
 
@@ -140,10 +174,11 @@ export default class LexicalAnalyser {
 
         case State.Identifier: {
           if (isSpace(ch) || isColon(ch) || isBracketSquareOpen(ch) || isBracketRoundClose(ch)) {
-            tokens.push({ type: TokenType.IDENTIFIER, value: buffer });
+            tokens.push({ type: TokenType.IDENTIFIER, value: buffer, line, column: getColumn() });
             buffer = "";
             state = State.Start;
             i--;
+            column--;
           } else buffer += ch;
           break;
         }
@@ -151,7 +186,7 @@ export default class LexicalAnalyser {
         case State.Integer: {
           buffer += ch;
           if (isSpace(ch)) {
-            tokens.push({ type: TokenType.INTEGER, value: buffer });
+            tokens.push({ type: TokenType.INTEGER, value: buffer, line, column: getColumn() });
             buffer = "";
             state = State.Start;
           }
@@ -160,17 +195,18 @@ export default class LexicalAnalyser {
 
         case State.Keyword: {
           if (isSpace(ch) || isColon(ch) || isDot(ch) || isNewLine(ch) || isBracketSquareOpen(ch)) {
-            tokens.push({ type: TokenType.KEYWORD, value: buffer });
+            tokens.push({ type: TokenType.KEYWORD, value: buffer, line, column: getColumn() });
             buffer = "";
             state = State.Start;
             i--;
+            column--;
           } else buffer += ch;
           break;
         }
 
         case State.String: {
           if (isQuote(ch)) {
-            tokens.push({ type: TokenType.STRING, value: buffer });
+            tokens.push({ type: TokenType.STRING, value: buffer, line, column: getColumn() });
             buffer = "";
             state = State.Start;
           } else buffer += ch;

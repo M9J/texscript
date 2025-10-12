@@ -18,4 +18,6 @@ export enum TokenType {
 export type Token = {
   type: TokenType;
   value: string;
+  line?: number;
+  column?: number;
 };
