@@ -40,8 +40,20 @@ const ERRORS: Record<string, string> = {
   ERR0020: `Texscript code should be provided inside &lt;script type="text/texscript">...&lt;/script&gt; or as URL using &lt;script src="file.txs" type="text/texscript">&lt;/script&gt;`,
 
   ERR0021: `External Texscript source code not found`,
+
   ERR0022: `External CSS file not found`,
+
   ERR0023: `'characterStream' not provided`,
+
+  ERR0024: `Missing closing round bracket`,
+  
+  ERR0025: `Missing closing square bracket`,
+
+  ERR0026: `Syntax is wrong. Kindly recheck your code`,
+
+  ERR0027: `Missing opening round bracket`,
+  
+  ERR0028: `Missing opening square bracket`,
 };
 
 export default ERRORS;

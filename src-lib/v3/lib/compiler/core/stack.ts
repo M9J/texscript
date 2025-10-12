@@ -20,4 +20,8 @@ export default class Stack<T> {
     if (!this.isEmpty()) return this.items[this.items.length - 1]!;
     else return null;
   }
+
+  get size(): number {
+    return this.items.length;
+  }
 }

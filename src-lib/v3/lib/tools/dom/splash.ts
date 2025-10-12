@@ -1,7 +1,7 @@
 import { findHostElementFromDOM } from "../../../texscript";
 import SPLASH_CSS from "./splash.css";
 
-const BANNER = `Texscript Markup Language [Version 0.2]<br/>Free and Open Source. Licensed under GPL-3.0.<br/>Hosted on GitHub: <a href="https://github.com/M9J/texscript.git">texscript.git</a>`;
+const BANNER = `Texscript Markup Language [Version 0.3]<br/>Free and Open Source. Licensed under GPL-3.0.<br/>Hosted on GitHub: <a href="https://github.com/M9J/texscript.git">texscript.git</a>`;
 
 const TEXSCRIPT_SPLASH_HTML = `
 <div class="texscript-splash-container" id="texscript-splash">
