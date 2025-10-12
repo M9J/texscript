@@ -20,7 +20,6 @@
 import ERRORS from "../constants/errors";
 import Metrics from "../tools/benchmark/metrics";
 import { ASTRootNode } from "./core/ast";
-import GRAMMAR from "./core/grammar";
 import LexicalAnalyser from "./lexicalAnalyser";
 import PreProcessor from "./preProcessor";
 import SyntaxAnalyser from "./syntaxAnalyser";
@@ -89,13 +88,11 @@ export default class Compiler {
     version: string;
     repoURL: string;
     lastCompilation: Map<string, unknown>;
-    grammar: Map<string, RegExp>;
   } {
     return {
       version: this.version,
       repoURL: this.repourl,
       lastCompilation: this.lastCompilation,
-      grammar: GRAMMAR,
     };
   }
 
