@@ -25,5 +25,7 @@ const COLORS = {
 };
 
 const coloredText = (color) => (text) => `${COLORS[color] + text + COLOR_BOUNDARY}`;
-
 export default Object.keys(COLORS).reduce((p, c) => ({ ...p, [c]: coloredText(c) }), {});
+
+const coloredTextRGB = (r, g, b) => (text) => fromRGB(r, g, b) + text + COLOR_BOUNDARY;
+export const poppinsRGB = (r, g, b) => coloredTextRGB(r, g, b);
