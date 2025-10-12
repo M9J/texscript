@@ -1,0 +1,83 @@
+<script src="/devBuild/v3/texscript.js" type="module" defer></script>
+
+@Configure pageSize: $A4 @Configure pagePadding: "1in" @Configure lineHeight: "1.5" Page.main
+(background: $WHITE, color: $BLACK) [ Section [ Block.name: "John Doe" ] Section.block [ Block [
+/::/ "+1 (234) 567-8900" ] Block.blockRight [ "Los Angeles, California" "United States 90009" ] ]
+Section.block [ Line: "hi@johndoe.com" Line.blockRight: "johndoe.com" ] /::/ Section.careerTitle:
+"CAREER" /--/ Section.careerDetails [ "2020 - PRESENT" Line.careerPosition: "Staff Engineer, Google,
+California" "Responsible for the development, testing, deployment and debugging of Google Cloud
+infrastructure UI application." List.responsibilities (type:$BULLET) [ "Created a library for ease
+of utilizing RPC calls." "Maintained few archived repositories of Google Cloud Platform (GCP)."
+"Recognized for conducting thorough unit tests for several mission critical modules." ] /::/ "2015 -
+2020" Line.careerPosition: "Senior Engineer, Amazon, Seattle" "Developed the database-application
+API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than
+before." /::/ "2010 - 2015" Line.careerPosition: "Junior Engineer, Meta, California" "Worked on
+React.js Core Team to improve their compiler efficiency." /::/ "2009 - 2010" Line.careerPosition:
+"Intern, Microsoft, Washington" "Developed a new internal micro-framework for Azure Cloud Pipelines
+which is used in-house by Azure Cloud Engineers." ] /::/ Section.skillsTitle: "SKILLS" /--/
+Section.skillsDetails: "Java, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js"
+/::/ Section.educationTitle: "EDUCATION" /--/ Section.educationDetails [ Block [ "M.S. Computer
+Science" Line.educationInstitution: "Massachusetts Institute of Technology" "Cambridge,
+Massachusetts" "United States" ] Block [ "B.S. Computer Science" Line.educationInstitution: "Harvard
+University" "Cambridge, Massachusetts" "United States" ] ] ]
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+  .main {
+    font-family: "Roboto Mono", monospace;
+    background: red;
+  }
+
+  .name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+    align-items: baseline;
+  }
+
+  .blockRight {
+    text-align: right;
+  }
+
+  .educationDetails {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .careerPosition {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .responsibilities {
+    padding-left: 24px;
+  }
+
+  .educationInstitution {
+    font-size: 14px;
+    font-weight: bold;
+  }
+</style>
+
+<style>
+  .careerTitle,
+  .skillsTitle,
+  .educationTitle {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .careerDetails,
+  .skillsDetails {
+    font-size: 12px;
+  }
+</style>

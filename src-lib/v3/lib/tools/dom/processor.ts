@@ -1,10 +1,13 @@
 import { findHostElementFromDOM } from "../../../texscript";
 import CodeGenerator from "../../compiler/codeGenerator";
 import Compiler from "../../compiler/compiler";
+import { injectCSS } from "../../css/builder";
 import { loadCSSConfigurations } from "../../css/configure";
 import { loadCSSFiles } from "../../css/file-loader";
+import CSSFilterCompiler from "../../css/filter-compiler";
 import Metrics from "../benchmark/metrics";
 import { injectPreconnectLinks } from "../configurations/preconnect";
+import { findCSSFromBody } from "../utils/dom";
 import { loadTexscriptStyles } from "../utils/styles";
 import { updateSplashProgress, updateSplashStatus } from "./splash";
 
@@ -18,6 +21,13 @@ export async function process(compiler: Compiler, rawCode: string): Promise<void
     const ast = compiler.compile(rawCode);
 
     await loadTexscriptStyles();
+    const bodyCSS = await findCSSFromBody();
+    if (bodyCSS) {
+      const cssCompiler = new CSSFilterCompiler();
+      const compiledCssAST = cssCompiler.compile(bodyCSS);
+      const compiledOutput = cssCompiler.generateFilteredCSSContent(compiledCssAST);
+      injectCSS(compiledOutput);
+    }
 
     if (ast) {
       const configurations = ast.configurations;
