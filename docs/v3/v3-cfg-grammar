@@ -1,0 +1,19 @@
+Program         → StatementList
+StatementList   → Statement StatementList | ε
+Statement       → Declaration | Component
+Declaration     → '@' Identifier
+Component       → Identifier ':' Value
+Value           → Constant | String | Integer | Component
+
+DECLARATION
+IDENTIFIER
+COLON
+CONSTANT
+STRING
+DOT
+BRACKET_ROUND_OPEN
+KEYWORD
+BRACKET_ROUND_CLOSE
+BRACKET_SQUARE_OPEN
+BRACKET_SQUARE_CLOSE
+DECORATOR_COMPONENT

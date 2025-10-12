@@ -71,9 +71,6 @@ export class ASTRootNode extends ASTNode {
   /** Top-level nodes in the document (the main content tree) */
   body: ASTNode[] = [];
 
-  /** External dependencies and imports required by the document */
-  dependencies: Record<string, any> = {};
-
   /** References required by the document */
   references: Record<string, any> = {};
 
@@ -119,7 +116,7 @@ export class ASTTagNode extends ASTNode {
   customCSSClasses: string[] = [];
 
   /** Component parameters/props as key-value pairs */
-  parameters: Record<string, any> | null = null;
+  parameters: Record<string, any> | null = {};
 
   /** Child nodes nested within this tag */
   children: ASTNode[] = [];
