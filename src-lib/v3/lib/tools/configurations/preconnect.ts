@@ -12,7 +12,6 @@ export const preconnectLinks: PreconnectConfig[] = [
     href: "https://fonts.gstatic.com",
     crossorigin: true,
   },
-  // Add more domains as needed
 ];
 
 export function injectPreconnectLinks(): void {

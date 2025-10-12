@@ -1,5 +1,5 @@
-import { updateSplashStatus } from "../../tools/dom/splash";
 import TEXSCRIPT_STYLES from "../../../css/texscript.css";
+import { updateSplashStatus } from "../../tools/dom/splash";
 
 export async function loadTexscriptStyles(): Promise<void> {
   await injectStylesToHead();
