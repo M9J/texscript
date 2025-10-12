@@ -2,7 +2,6 @@ name: Build
 on: [workflow_call]
 jobs:
   build:
-    name: Build > Upload
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
