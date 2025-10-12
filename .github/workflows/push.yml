@@ -1,7 +1,7 @@
 name: Push
 on: [workflow_call]
 jobs:
-  download:
+  Download:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
