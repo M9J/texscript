@@ -115,7 +115,4 @@ export default class Compiler {
     return ast;
   }
 
-  generateCodeFor(html: string): string {
-    return html + "";
-  }
 }
