@@ -37,7 +37,6 @@ export default class CSSFilterCompiler {
     this.metricsCSSFilterCompiler.start();
     const ast: CSSAST = { classes: [], imports: [] };
 
-    
     const importRegex = /@import\s+(?:url\()?["']?([^"')]+)["']?\)?\s*;/g;
     let importMatch: RegExpExecArray | null;
 
@@ -48,7 +47,6 @@ export default class CSSFilterCompiler {
       }
     }
 
-    
     const classRegex = /((?:\.[a-zA-Z0-9_-]+\s*,?\s*)+)\{([^}]+)\}/g;
     let match: RegExpExecArray | null;
 

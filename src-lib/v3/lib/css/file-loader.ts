@@ -1,5 +1,5 @@
-import Metrics from "../tools/benchmark/metrics";
 import ERRORS from "../constants/errors";
+import Metrics from "../tools/benchmark/metrics";
 import { injectCSS } from "./builder";
 import CSSFilterCompiler from "./filter-compiler";
 

@@ -1,14 +1,14 @@
 
 
 import { findHostElementFromDOM } from "../../../texscript";
-import Metrics from "../benchmark/metrics";
-import { loadCSSConfigurations } from "../../css/configure";
-import { injectPreconnectLinks } from "../configurations/preconnect";
-import Compiler from "../../compiler/compiler";
-import { loadCSSFiles } from "../../css/file-loader";
-import { updateSplashProgress, updateSplashStatus } from "./splash";
-import { loadTexscriptStyles } from "../utils/styles";
 import CodeGenerator from "../../compiler/codeGenerator";
+import Compiler from "../../compiler/compiler";
+import { loadCSSConfigurations } from "../../css/configure";
+import { loadCSSFiles } from "../../css/file-loader";
+import Metrics from "../benchmark/metrics";
+import { injectPreconnectLinks } from "../configurations/preconnect";
+import { loadTexscriptStyles } from "../utils/styles";
+import { updateSplashProgress, updateSplashStatus } from "./splash";
 
 
 export async function process(compiler: Compiler, rawCode: string): Promise<void> {

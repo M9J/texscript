@@ -1,46 +1,38 @@
-
-
-
 .texscript-pages-container {
-  display: inline-block; 
-  margin: 24px; 
+  display: inline-block;
+  margin: 24px;
 }
 
-
 .texscript-pages {
-  display: flex; 
-  gap: 24px; 
+  display: flex;
+  gap: 24px;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-
 .texscript-PageWrapper {
-  display: flex; 
-  flex-direction: column; 
-  background-color: #fff; 
-  box-sizing: border-box; 
-  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5); 
-  flex: 0 0 auto; 
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
+  flex: 0 0 auto;
 }
-
 
 .texscript-Page {
-  display: flex; 
-  flex-direction: column; 
-  box-sizing: border-box; 
-  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-
 
 .texscript-Line {
-  display: block; 
+  display: block;
 }
 
-
 .texscript-HR {
-  height: 1px; 
-  background: rgba(0, 0, 0, 0.1); 
-  margin: 8px 0; 
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 8px 0;
 }

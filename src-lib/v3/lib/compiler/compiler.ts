@@ -1,5 +1,3 @@
-
-
 import ERRORS from "../constants/errors";
 import Metrics from "../tools/benchmark/metrics";
 import { ASTRootNode } from "./core/ast";
@@ -7,24 +5,18 @@ import LexicalAnalyser from "./lexicalAnalyser";
 import PreProcessor from "./preProcessor";
 import SyntaxAnalyser from "./syntaxAnalyser";
 
-
 type TokenNode = {
   type: string;
   value: string;
 };
 
-
 export default class Compiler {
-  
   version: string = "v0.2";
 
-  
   repourl: string = "https://github.com/M9J/texscript.git";
 
-  
   metrics: Metrics = new Metrics("Texscript Compilation");
 
-  
   rawCode: string = "";
 
   /** Lines of code after preprocessing (trimmed, non-empty lines) */
@@ -80,5 +72,4 @@ export default class Compiler {
     this.metrics.end();
     return ast;
   }
-
 }

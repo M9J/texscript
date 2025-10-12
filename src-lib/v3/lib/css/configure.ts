@@ -1,6 +1,6 @@
-import CSSBuilder, { injectCSS } from "./builder";
 import { DEFAULT_CONFIG_PAGE } from "../tools/configurations/default";
 import { getPageSize } from "../tools/configurations/page-size";
+import CSSBuilder, { injectCSS } from "./builder";
 
 const cssBuilder = new CSSBuilder();
 

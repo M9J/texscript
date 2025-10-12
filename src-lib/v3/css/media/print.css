@@ -1,44 +1,35 @@
-
-
-
 @media print {
-  
   body {
     background: #fff !important;
-    margin: 0 !important; 
-    padding: 0 !important; 
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  
   .texscript-pages-container {
-    margin: 0 !important; 
-    padding: 0 !important; 
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  
   .texscript-pages {
     gap: 0px !important;
   }
 
-  
   .texscript-PageWrapper {
     box-shadow: none !important;
-    page-break-after: always !important; 
-    break-after: page !important; 
-    page-break-inside: avoid !important; 
-    break-inside: avoid !important; 
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
-  
   .texscript-Page {
-    margin: 0 !important; 
-    box-shadow: none !important; 
+    margin: 0 !important;
+    box-shadow: none !important;
   }
 
-  
   .texscript-PageBreak {
-    page-break-before: always !important; 
-    break-before: page !important; 
+    page-break-before: always !important;
+    break-before: page !important;
     display: block !important;
     height: 0 !important;
     margin: 0 !important;
@@ -47,12 +38,12 @@
   }
 
   .page-break-after {
-    page-break-after: always !important; 
-    break-after: page !important; 
+    page-break-after: always !important;
+    break-after: page !important;
   }
 
   .avoid-break {
-    page-break-inside: avoid !important; 
-    break-inside: avoid !important; 
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 }

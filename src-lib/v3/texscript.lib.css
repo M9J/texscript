@@ -9,11 +9,9 @@ progress.texscript-splash-progress-bar {
   vertical-align: top;
 }
 
-
 progress.texscript-splash-progress-bar::-webkit-progress-bar {
   background-color: #252529;
 }
-
 
 progress.texscript-splash-progress-bar::-moz-progress-bar {
   background-color: #252529;

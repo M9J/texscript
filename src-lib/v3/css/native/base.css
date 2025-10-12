@@ -1,19 +1,15 @@
-
-
-
 #TexscriptHostElement {
-  position: relative; 
-  width: 100%; 
-  background-color: #252529; 
-  overflow: auto; 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
+  position: relative;
+  width: 100%;
+  background-color: #252529;
+  overflow: auto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
 .reset * {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .display-none {
