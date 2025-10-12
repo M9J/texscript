@@ -250,26 +250,26 @@ export default class SyntaxAnalyser {
   }
 
   private handleStringLiteralStatement(token: Token) {
-    // String literal - wrap in appropriate container based on context
+    
     const stringNode = new ASTLiteralNode();
     stringNode.value = token.value;
 
     const node = new ASTTagNode();
 
-    // Context-aware container selection
+    
     if (!this.tagStack.isEmpty()) {
       const tag = !this.tagStack.isEmpty() ? this.tagStack.peek() : null;
       if (tag?.value === "List") {
-        // Inside List - wrap in ListItem (<li>)
+        
         node.value = "ListItem";
         node.htmlElement = "li";
       } else {
-        // Inside other container - wrap in Line (<div>)
+        
         node.value = "Line";
         node.htmlElement = "div";
       }
     } else {
-      // Top-level string - wrap in Line (<div>)
+      
       node.value = "Line";
       node.htmlElement = "div";
     }
@@ -278,7 +278,7 @@ export default class SyntaxAnalyser {
     if (!this.currentNode) throw new Error(`'currentNode' doesn't exist`);
     this.currentNode.children.push(node);
 
-    // Handle colon-assignment syntax (e.g., "Text: 'Hello'")
+    
     if (!this.colonStack.isEmpty()) {
       this.currentNode = !this.tagStack.isEmpty() ? this.tagStack.peek() : null;
       this.colonStack.pop();

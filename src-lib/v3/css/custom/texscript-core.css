@@ -1,132 +1,46 @@
-/**
- * Texscript Core Component Styles
- * 
- * Foundational styles for core Texscript components and layout primitives.
- * This stylesheet defines the visual structure and behavior of the main
- * building blocks used throughout Texscript documents.
- * 
- * Core components styled:
- * - Pages container: Top-level wrapper for all pages
- * - Pages: Multi-page document layout
- * - Page: Individual page component
- * - Line: Text line container
- * - HR: Horizontal rule separator
- * 
- * Design philosophy:
- * - Clean, document-like appearance with white pages on dark background
- * - Flexbox-based layout for modern, predictable behavior
- * - Subtle shadows for depth and visual hierarchy
- * - Minimal styling to allow customization
- * 
- * @file Core component styles for Texscript
- */
 
-/**
- * Top-level container for all Texscript pages.
- * 
- * Wraps the entire document and provides outer spacing from the viewport edges.
- * Uses inline-block to allow the container to size naturally to its content
- * width while still respecting margins.
- * 
- * This container is created programmatically in processor.ts during the
- * code injection phase.
- * 
- * @selector .texscript-pages-container
- * @see processor.ts - Container creation and DOM injection
- */
+
+
 .texscript-pages-container {
-  display: inline-block; /* Size to content while respecting margins */
-  margin: 24px; /* Comfortable spacing from viewport edges */
+  display: inline-block; 
+  margin: 24px; 
 }
 
-/**
- * Container for multiple pages in a document.
- * 
- * Arranges pages vertically with consistent spacing between them, creating
- * a scrollable multi-page document view. The flexbox column layout ensures
- * pages stack naturally and maintain proper spacing.
- * 
- * @selector .texscript-pages
- */
+
 .texscript-pages {
-  display: flex; /* Use flexbox for consistent layout */
-  gap: 24px; /* Consistent spacing between pages */
+  display: flex; 
+  gap: 24px; 
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-/**
- * Container for individual pages in a document.
- * 
- * This wrapper is used for margins of the page.
- * Having this wrapper helps to cut off overflowing content in .texscript-Page
- * equally across all marginal borders.
- * 
- * @selector .texscript-PageWrapper
- */
+
 .texscript-PageWrapper {
-  display: flex; /* Flexbox for content layout */
-  flex-direction: column; /* Vertical content flow */
-  background-color: #fff; /* Paper-white background */
-  box-sizing: border-box; /* Include padding/border in dimensions */
-  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5); /* Elevated paper effect */
-  flex: 0 0 auto; /* Prevents shrinking, fixed dimensions at all time */
+  display: flex; 
+  flex-direction: column; 
+  background-color: #fff; 
+  box-sizing: border-box; 
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5); 
+  flex: 0 0 auto; 
 }
 
-/**
- * Individual page component.
- * 
- * Represents a single page in the document with a paper-like appearance.
- * Features:
- * - White background (#fff) to simulate paper
- * - Column flex layout for vertical content flow
- * - Drop shadow for depth and visual separation from background
- * - Overflow clipping to contain content within page boundaries
- * - Border-box sizing for predictable dimensions
- * 
- * The Page component is the primary content container and can have
- * various size configurations (A4, A3, etc.) through parameter classes.
- * 
- * @selector .texscript-Page
- */
+
 .texscript-Page {
-  display: flex; /* Flexbox for content layout */
-  flex-direction: column; /* Vertical content flow */
-  box-sizing: border-box; /* Include padding/border in dimensions */
-  overflow: hidden; /* Clip content to page boundaries */
+  display: flex; 
+  flex-direction: column; 
+  box-sizing: border-box; 
+  overflow: hidden; 
 }
 
-/**
- * Line component for text content.
- * 
- * A basic block-level container for text lines. Uses block display to
- * ensure each line starts on a new line and fills available width.
- * 
- * Line components are automatically generated when text strings appear
- * in the AST without an explicit container.
- * 
- * @selector .texscript-Line
- * @see compiler.ts - syntaxAnalysis() STRING case
- */
+
 .texscript-Line {
-  display: block; /* Block-level for natural line breaking */
+  display: block; 
 }
 
-/**
- * Horizontal rule component.
- * 
- * Provides a subtle visual separator between content sections. Styled as
- * a thin, semi-transparent line rather than the default thick border to
- * maintain a clean, modern appearance.
- * 
- * Generated from the :: shorthand syntax in Texscript source code.
- * 
- * @selector .texscript-HR
- * @see grammar.ts - MetaTokensSpecial.HR
- */
+
 .texscript-HR {
-  height: 1px; /* Thin line (not thick default browser HR) */
-  background: rgba(0, 0, 0, 0.1); /* Subtle gray with 10% opacity */
-  margin: 8px 0; /* Vertical spacing above and below */
+  height: 1px; 
+  background: rgba(0, 0, 0, 0.1); 
+  margin: 8px 0; 
 }

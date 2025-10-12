@@ -1,60 +1,19 @@
-/**
- * Texscript Base Styles
- * 
- * Foundation stylesheet providing core styles for the Texscript runtime environment.
- * This file establishes the base styling for the host element and applies CSS resets
- * to ensure consistent rendering across browsers.
- * 
- * Key responsibilities:
- * - Configure the main Texscript host container
- * - Apply box-model normalization
- * - Reset default browser styles that could interfere with Texscript components
- * 
- * @file Base styles and resets for Texscript
- */
 
-/**
- * Main Texscript host element container.
- * 
- * This element serves as the root container for all Texscript-generated content.
- * It's configured to:
- * - Fill the available width while maintaining position context
- * - Provide a dark background matching the Texscript theme (#252529)
- * - Handle overflow with scrolling for long content
- * - Use border-box sizing for predictable dimensions
- * - Reset default margins and padding
- * 
- * The ID is set programmatically during initialization in texscript.ts.
- * 
- * @selector #TexscriptHostElement
- */
+
+
 #TexscriptHostElement {
-  position: relative; /* Establishes positioning context for absolute children */
-  width: 100%; /* Fill container width */
-  background-color: #252529; /* Dark theme background */
-  overflow: auto; /* Enable scrolling for overflow content */
-  box-sizing: border-box; /* Include padding/border in width calculations */
-  margin: 0; /* Remove default margins */
-  padding: 0; /* Remove default padding */
+  position: relative; 
+  width: 100%; 
+  background-color: #252529; 
+  overflow: auto; 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
 
-/**
- * Universal CSS reset for Texscript components.
- * 
- * Applies border-box sizing to all elements within containers that have
- * the "reset" class. This ensures consistent box model behavior and prevents
- * unexpected layout issues caused by default content-box sizing.
- * 
- * Border-box sizing includes padding and borders in the element's total
- * width/height, making layouts more predictable and easier to manage.
- * 
- * Applied to elements during initialization in texscript.ts when the host
- * element receives the "reset" class.
- * 
- * @selector .reset *
- */
+
 .reset * {
-  box-sizing: border-box; /* Consistent box-sizing for all descendants */
+  box-sizing: border-box; 
 }
 
 .display-none {
