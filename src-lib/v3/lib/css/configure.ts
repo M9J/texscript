@@ -9,9 +9,14 @@ export async function loadCSSConfigurations(configurations: Record<string, any>)
     await setupPageSize(configurations.pageSize);
     await setupPagePadding(configurations.pagePadding);
     await setupLineHeight(configurations.lineHeight);
+    await setupLetterSpacing(configurations.letterSpacing);
     const configCSS = cssBuilder.buildCSS();
     injectCSS(configCSS);
   }
+}
+
+async function setupLetterSpacing(letterSpacing: string = DEFAULT_CONFIG_PAGE.letterSpacing) {
+  if (letterSpacing) cssBuilder.addStyle(".texscript-Page", "letter-spacing", letterSpacing);
 }
 
 async function setupLineHeight(lineHeight: string = DEFAULT_CONFIG_PAGE.lineHeight) {
