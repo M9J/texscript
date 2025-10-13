@@ -1,7 +1,7 @@
 import { spawn } from "child_process";
 import chokidar from "chokidar";
 import readline from "readline";
-import Poppins from "../../utils/poppins.js";
+import Poppins from "../../cmd-utils/poppins.js";
 
 const watcher = chokidar.watch("src-lib/v3", {
   ignoreInitial: true,
