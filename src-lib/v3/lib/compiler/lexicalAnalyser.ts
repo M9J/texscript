@@ -25,7 +25,7 @@ export default class LexicalAnalyser {
       const ch: string = this.characterStream[i] || "";
       switch (state) {
         case State.Start: {
-          if (isSpace(ch)) continue;
+          if (isSpace(ch) || isTab(ch)) continue;
           else if (isNewLine(ch)) {
             locCount++;
             line++;
@@ -257,6 +257,10 @@ function isLowerCase(ch: string) {
 
 function isSpace(ch: string) {
   return /^ $/.test(ch);
+}
+
+function isTab(ch: string) {
+  return /^\t$/.test(ch);
 }
 
 function isBracketRoundOpen(ch: string) {

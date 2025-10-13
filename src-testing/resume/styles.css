@@ -2,19 +2,19 @@
 
 .main {
   font-family: "Roboto Mono", monospace;
+  font-size: 12px;
   background: red;
 }
 
 .name {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 32px;
 }
 
 .block {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 12px;
+
   align-items: baseline;
 }
 
@@ -23,10 +23,9 @@
 }
 
 .educationDetails {
-  font-size: 12px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 48px;
 }
 
 .careerPosition {
@@ -48,9 +47,4 @@
 .educationTitle {
   font-weight: bold;
   font-size: 16px;
-}
-
-.careerDetails,
-.skillsDetails {
-  font-size: 12px;
 }

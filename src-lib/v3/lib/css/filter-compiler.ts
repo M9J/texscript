@@ -8,7 +8,9 @@ const allowedProperties = [
   "font-family",
   "font-size",
   "font-weight",
+  "gap",
   "justify-content",
+  "letter-spacing",
   "padding-left",
   "text-align",
 ] as const;
