@@ -1,6 +1,6 @@
 import express from "express";
 import serveIndex from "serve-index";
-import { poppinsRGB } from "../utils/poppins.js";
+import { poppinsRGB } from "../cmd-utils/poppins.js";
 
 const app = express();
 const PORT = 80;

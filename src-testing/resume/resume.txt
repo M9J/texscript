@@ -1,30 +1,27 @@
 @Configure pageSize: $A4
 @Configure pagePadding: "1in"
 @Configure lineHeight: "1.5"
+@Configure letterSpacing: "0.5px"
 
 @Reference css: "styles.css"
 
 Page.main: [
-    Section: [
-        Block.name: "John Doe"
-    ]
-    Section.block: [
-        Block: [
-            /::/
-            "+1 (234) 567-8900"
-        ]
-        Block.blockRight: [
-            "Los Angeles, California"
-            "United States 90009"
+    Section.blockCenter: [
+        Block.name: "John Harperro"
+        Block.blockRight [
+            "San Francisco"
+            "California, US 90009"
         ]
     ]
+    /-/
     Section.block: [
-        Line: "hi@johndoe.com"
-        Line.blockRight: "johndoe.com"
+        Block: "john@harperro.com"
+        Block: "+1 (234) 567-8900"
+        Block.blockRight: "www.harperro.com"
     ]
     /::/
     Section.careerTitle: "CAREER"
-    /--/
+    /-/
     Section.careerDetails: [
         "2020 - PRESENT"
         Line.careerPosition: "Staff Engineer, Google, California" 
@@ -34,26 +31,26 @@ Page.main: [
             "Maintained few archived repositories of Google Cloud Platform (GCP)."
             "Recognized for conducting thorough unit tests for several mission critical modules."
         ]
-        /::/
+        /:/
         "2015 - 2020"
         Line.careerPosition: "Senior Engineer, Amazon, Seattle"
-        "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to onboard way more easier than before."
-        /::/
+        "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to get onboarded way more easier than before."
+        /:/
         "2010 - 2015"
         Line.careerPosition: "Junior Engineer, Meta, California"
-        "Worked on React.js Core Team to improve their compiler efficiency."
-        /::/
+        "Worked with React.js Core Team to improve their overall compiler efficiency and optimized bundling process."
+        /:/
         "2009 - 2010"
         Line.careerPosition: "Intern, Microsoft, Washington"
         "Developed a new internal micro-framework for Azure Cloud Pipelines which is used in-house by Azure Cloud Engineers."
     ]
     /::/
     Section.skillsTitle: "SKILLS"
-    /--/
-    Section.skillsDetails: "Java, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js"
+    /-/
+    Section.skillsDetails: "Python, C#, Kotlin, Swift, PHP, Django, Flask, Express.js, GraphQL, Redis, Docker, Kubernetes, AWS, Azure, GCP, Terraform, Ansible, Elasticsearch, RabbitMQ, Apache Kafka, Selenium, Cypress, Bash, PowerShell, Next.js, Java, Go, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js, Oracle SQL, Postgres, React.js, Vue.js, Spring, Spring Boot."
     /::/
     Section.educationTitle: "EDUCATION"
-    /--/
+    /-/
     Section.educationDetails: [
         Block: [
             "M.S. Computer Science"

@@ -164,17 +164,26 @@ export default class SyntaxAnalyser {
   }
 
   private handleDecorator(token: Token) {
-    const decoratorNode = new ASTSpecialTagNode();
     const isLineBreak = /\:+/.test(token.value);
     const isHorizontalRule = /\-+/.test(token.value);
+    let htmlElement = "";
+    let value = "";
     if (isLineBreak) {
-      decoratorNode.htmlElement = "br";
-      decoratorNode.value = "BR";
+      htmlElement = "br";
+      value = "BR";
     } else if (isHorizontalRule) {
-      decoratorNode.htmlElement = "hr";
-      decoratorNode.value = "HR";
+      htmlElement = "hr";
+      value = "HR";
     }
-    this.currentNode?.children.push(decoratorNode);
+    const decoratorNodes = [];
+    const decorarr = token.value.split("");
+    for (let _ of decorarr) {
+      const decoratorNode = new ASTSpecialTagNode();
+      decoratorNode.htmlElement = htmlElement;
+      decoratorNode.value = value;
+      decoratorNodes.push(decoratorNode);
+    }
+    this.currentNode?.children.push(...decoratorNodes);
   }
 
   private handleDeclaration(token: Token) {
