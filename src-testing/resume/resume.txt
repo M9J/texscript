@@ -10,17 +10,14 @@ Page.main: [
     ]
     Section.block: [
         Block: [
-            /::/
-            "+1 (234) 567-8900"
-        ]
-        Block.blockRight: [
             "Los Angeles, California"
             "United States 90009"
         ]
-    ]
-    Section.block: [
-        Line: "hi@johndoe.com"
-        Line.blockRight: "johndoe.com"
+        Block.blockRight: [
+            "+1 (234) 567-8900"
+            "hi@johndoe.com"
+            Line.blockRight: "johndoe.com"
+        ]
     ]
     /::/
     Section.careerTitle: "CAREER"
@@ -41,7 +38,7 @@ Page.main: [
         /::/
         "2010 - 2015"
         Line.careerPosition: "Junior Engineer, Meta, California"
-        "Worked on React.js Core Team to improve their compiler efficiency."
+        "Worked on React.js Core Team to improve their overall compiler efficiency and optimized bundling process."
         /::/
         "2009 - 2010"
         Line.careerPosition: "Intern, Microsoft, Washington"
