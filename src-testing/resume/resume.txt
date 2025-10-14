@@ -7,7 +7,7 @@
 
 Page.main: [
     Section: [
-        Blocks (space: $BETWEEN) [
+        Blocks (space: $BETWEEN, align: $CENTER) [
             Line.name: "John Harperro"
             Block [
                 Line (align: $RIGHT): "San Francisco"
