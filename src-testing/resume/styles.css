@@ -10,52 +10,16 @@
   font-size: 32px;
 }
 
-.block {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.blockCenter {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.blockRight {
-  text-align: right;
-}
-
 .educationDetails {
-  display: flex;
-  flex-direction: row;
   gap: 48px;
 }
 
-.careerPosition {
+.title {
   font-size: 14px;
   font-weight: bold;
 }
 
-.responsibilities {
-  padding-left: 24px;
-}
-
-.educationInstitution {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.careerTitle,
-.skillsTitle,
-.educationTitle {
+.header {
   font-weight: bold;
   font-size: 16px;
-}
-
-
-.alignCenter {
-  align-items: center;
 }
