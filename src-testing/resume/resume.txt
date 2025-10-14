@@ -6,61 +6,65 @@
 @Reference css: "styles.css"
 
 Page.main: [
-    Section.blockCenter: [
-        Block.name: "John Harperro"
-        Block.blockRight [
-            "San Francisco"
-            "California, US 90009"
+    Section: [
+        Blocks (space: $BETWEEN) [
+            Line.name: "John Harperro"
+            Block [
+                Line (align: $RIGHT): "San Francisco"
+                Line (align: $RIGHT): "California, US 90009"
+            ]
         ]
     ]
     /-/
-    Section.block: [
-        Block: "john@harperro.com"
-        Block: "+1 (234) 567-8900"
-        Block.blockRight: "www.harperro.com"
+    Section [
+        Blocks (space: $BETWEEN) [
+            "john@harperro.com"
+            "+1 (234) 567-8900"
+            "www.harperro.com"
+        ]
     ]
     /::/
-    Section.careerTitle: "CAREER"
+    Line.header: "CAREER"
     /-/
-    Section.careerDetails: [
+    Section [
         "2020 - PRESENT"
-        Line.careerPosition: "Staff Engineer, Google, California" 
+        Line.title: "Staff Engineer, Google, California" 
         "Responsible for the development, testing, deployment and debugging of Google Cloud infrastructure UI application."
-        List.responsibilities (type:$BULLET): [
+        List (type:$BULLET): [
             "Created a library for ease of utilizing RPC calls."
             "Maintained few archived repositories of Google Cloud Platform (GCP)."
             "Recognized for conducting thorough unit tests for several mission critical modules."
         ]
         /:/
         "2015 - 2020"
-        Line.careerPosition: "Senior Engineer, Amazon, Seattle"
+        Line.title: "Senior Engineer, Amazon, Seattle"
         "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to get onboarded way more easier than before."
         /:/
         "2010 - 2015"
-        Line.careerPosition: "Junior Engineer, Meta, California"
+        Line.title: "Junior Engineer, Meta, California"
         "Worked with React.js Core Team to improve their overall compiler efficiency and optimized bundling process."
         /:/
         "2009 - 2010"
-        Line.careerPosition: "Intern, Microsoft, Washington"
+        Line.title: "Intern, Microsoft, Washington"
         "Developed a new internal micro-framework for Azure Cloud Pipelines which is used in-house by Azure Cloud Engineers."
     ]
     /::/
-    Section.skillsTitle: "SKILLS"
+    Line.header: "SKILLS"
     /-/
-    Section.skillsDetails: "Python, C#, Kotlin, Swift, PHP, Django, Flask, Express.js, GraphQL, Redis, Docker, Kubernetes, AWS, Azure, GCP, Terraform, Ansible, Elasticsearch, RabbitMQ, Apache Kafka, Selenium, Cypress, Bash, PowerShell, Next.js, Java, Go, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js, Oracle SQL, Postgres, React.js, Vue.js, Spring, Spring Boot."
+    Section: "Python, C#, Kotlin, Swift, PHP, Django, Flask, Express.js, GraphQL, Redis, Docker, Kubernetes, AWS, Azure, GCP, Terraform, Ansible, Elasticsearch, RabbitMQ, Apache Kafka, Selenium, Cypress, Bash, PowerShell, Next.js, Java, Go, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js, Oracle SQL, Postgres, React.js, Vue.js, Spring, Spring Boot."
     /::/
-    Section.educationTitle: "EDUCATION"
+    Line.header: "EDUCATION"
     /-/
-    Section.educationDetails: [
+    Blocks.educationDetails (direction: $ROW): [
         Block: [
             "M.S. Computer Science"
-            Line.educationInstitution: "Massachusetts Institute of Technology"
+            Line.title: "Massachusetts Institute of Technology"
             "Cambridge, Massachusetts"
             "United States"
         ]
         Block: [
             "B.S. Computer Science"
-            Line.educationInstitution: "Harvard University"
+            Line.title: "Harvard University"
             "Cambridge, Massachusetts"
             "United States"
         ]

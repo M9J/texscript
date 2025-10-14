@@ -1,0 +1,11 @@
+.texscript-Blocks-DIRECTION-ROW {
+  flex-direction: row;
+}
+
+.texscript-Blocks-DIRECTION-COLUMN {
+  flex-direction: column;
+}
+
+.texscript-Blocks-SPACE-BETWEEN {
+  justify-content: space-between;
+}
