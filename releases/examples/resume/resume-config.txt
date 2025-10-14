@@ -1,3 +1,0 @@
-@Configure pageSize: $A4
-@Configure pagePadding: "1in"
-@Configure lineHeight: "1.5"

@@ -9,3 +9,7 @@
 .texscript-Blocks-SPACE-BETWEEN {
   justify-content: space-between;
 }
+
+.texscript-Blocks-ALIGN-CENTER {
+  align-items: center;
+}
