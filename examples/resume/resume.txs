@@ -6,6 +6,7 @@
 */
 
 @Configure pageSize: $A4
+@Configure pageOrientation: $PORTRAIT
 @Configure pagePadding: "1in"
 @Configure lineHeight: "1.5"
 @Configure letterSpacing: "0.5px"
