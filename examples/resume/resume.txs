@@ -15,9 +15,7 @@
 Page.main: [
     Blocks (space: $BETWEEN, align: $CENTER): [
         Line.name: "John Harperro"
-        Block: [
-            Line (align: $RIGHT): [ "San Francisco" "California, US 90009" ]
-        ]
+        Line (align: $RIGHT): [ "San Francisco" "California, US 90009" ]
     ]
     /-/
     Blocks (space: $BETWEEN): [ "john@harperro.com" "+1 (234) 567-8900" "www.harperro.com" ]
