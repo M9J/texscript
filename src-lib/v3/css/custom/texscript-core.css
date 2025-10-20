@@ -20,6 +20,10 @@
   flex: 0 0 auto;
 }
 
+.texscript-PageBreak {
+  display: none;
+}
+
 .texscript-Page {
   display: flex;
   flex-direction: column;
