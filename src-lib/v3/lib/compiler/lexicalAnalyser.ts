@@ -46,7 +46,7 @@ export default class LexicalAnalyser {
           else if (isDollar(ch)) state = State.Constant;
           else if (isAtrate(ch)) state = State.Declaration;
           else if (isForwardSlash(ch)) {
-            state = State.DecoratorComponent;
+            state = State.ForwardSlash;
           } else if (isDot(ch)) state = State.Dot;
           else if (isLowerCase(ch)) {
             state = State.Identifier;
@@ -162,6 +162,18 @@ export default class LexicalAnalyser {
           break;
         }
 
+        case State.ForwardSlash: {
+          if (isForwardSlash(ch)) {
+            state = State.InCommentLine;
+          } else if (isAsterik(ch)) {
+            state = State.InCommentBlock;
+          } else if (isHyphen(ch) || isColon(ch)) {
+            state = State.DecoratorComponent;
+            i--;
+          }
+          break;
+        }
+
         case State.End: {
           buffer = "";
           state = State.End;
@@ -190,6 +202,16 @@ export default class LexicalAnalyser {
             buffer = "";
             state = State.Start;
           }
+          break;
+        }
+
+        case State.InCommentBlock: {
+          if (isAsterik(ch)) state = State.InCommentLine;
+          break;
+        }
+
+        case State.InCommentLine: {
+          if (isNewLine(ch)) state = State.Start;
           break;
         }
 
@@ -231,13 +253,16 @@ enum State {
   BracketSquareOpen,
   Colon,
   Comma,
-  Identifier,
-  Keyword,
   Constant,
   Declaration,
   DecoratorComponent,
   Dot,
+  ForwardSlash,
+  Identifier,
   Integer,
+  InCommentLine,
+  InCommentBlock,
+  Keyword,
   String,
   End,
   Error,
@@ -283,6 +308,10 @@ function isColon(ch: string) {
   return /^\:$/.test(ch);
 }
 
+function isHyphen(ch: string) {
+  return /^\-$/.test(ch);
+}
+
 function isComma(ch: string) {
   return /^\,$/.test(ch);
 }
@@ -293,6 +322,10 @@ function isDollar(ch: string) {
 
 function isAtrate(ch: string) {
   return /^\@$/.test(ch);
+}
+
+function isAsterik(ch: string) {
+  return /^\*$/.test(ch);
 }
 
 function isForwardSlash(ch: string) {
