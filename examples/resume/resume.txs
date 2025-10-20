@@ -1,0 +1,68 @@
+// Single line comment
+
+/*
+    Multiple
+    Line comment
+*/
+
+@Configure pageSize: $A4
+@Configure pagePadding: "1in"
+@Configure lineHeight: "1.5"
+@Configure letterSpacing: "0.5px"
+
+@Reference css: "styles.css"
+
+Page.main: [
+    Blocks (space: $BETWEEN, align: $CENTER): [
+        Line.name: "John Harperro"
+        Block: [
+            Line (align: $RIGHT): [ "San Francisco" "California, US 90009" ]
+        ]
+    ]
+    /-/
+    Blocks (space: $BETWEEN): [ "john@harperro.com" "+1 (234) 567-8900" "www.harperro.com" ]
+    /::/
+    Line.header: "CAREER"
+    /-/
+    "2020 - PRESENT"
+    Line.title: "Staff Engineer, Google, California" 
+    "Responsible for the development, testing, deployment and debugging of Google Cloud infrastructure UI application."
+    List (type: $BULLET): [
+        "Created a library for ease of utilizing RPC calls."
+        "Maintained few archived repositories of Google Cloud Platform (GCP)."
+        "Recognized for conducting thorough unit tests for several mission critical modules."
+    ]
+    /:/
+    "2015 - 2020"
+    Line.title: "Senior Engineer, Amazon, Seattle"
+    "Developed the database-application API for Amazon Web Services (AWS) which helped new developers to get onboarded way more easier than before."
+    /:/
+    "2010 - 2015"
+    Line.title: "Junior Engineer, Meta, California"
+    "Worked with React.js Core Team to improve their overall compiler efficiency and optimized bundling process."
+    /:/
+    "2009 - 2010"
+    Line.title: "Intern, Microsoft, Washington"
+    "Developed a new internal micro-framework for Azure Cloud Pipelines which is used in-house by Azure Cloud Engineers."
+    /::/
+    Line.header: "SKILLS"
+    /-/
+    "Python, C#, Kotlin, Swift, PHP, Django, Flask, Express.js, GraphQL, Redis, Docker, Kubernetes, AWS, Azure, GCP, Terraform, Ansible, Elasticsearch, RabbitMQ, Apache Kafka, Selenium, Cypress, Bash, PowerShell, Next.js, Java, Go, Rust, SQL, HTML, CSS, JavaScript, TypeScript, C++, MongoDB, Node.js, Oracle SQL, Postgres, React.js, Vue.js, Spring, Spring Boot."
+    /::/
+    Line.header: "EDUCATION"
+    /-/
+    Blocks.educationDetails (direction: $ROW): [
+        Block: [
+            "M.S. Computer Science"
+            Line.title: "Massachusetts Institute of Technology"
+            "Cambridge, Massachusetts"
+            "United States"
+        ]
+        Block: [
+            "B.S. Computer Science"
+            Line.title: "Harvard University"
+            "Cambridge, Massachusetts"
+            "United States"
+        ]
+    ]
+]
