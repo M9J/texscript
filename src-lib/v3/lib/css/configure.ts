@@ -6,7 +6,7 @@ const cssBuilder = new CSSBuilder();
 
 export async function loadCSSConfigurations(configurations: Record<string, any>) {
   if (configurations) {
-    await setupPageSize(configurations.pageSize);
+    await setupPageSize(configurations.pageSize, configurations.pageOrientation);
     await setupPagePadding(configurations.pagePadding);
     await setupLineHeight(configurations.lineHeight);
     await setupLetterSpacing(configurations.letterSpacing);
@@ -28,14 +28,23 @@ async function setupPagePadding(pagePadding: string = DEFAULT_CONFIG_PAGE.pagePa
     if (pagePadding) cssBuilder.addStyle(".texscript-PageWrapper", "padding", pagePadding);
 }
 
-async function setupPageSize(pageSize: string = DEFAULT_CONFIG_PAGE.pageSize) {
+async function setupPageSize(
+  pageSize: string = DEFAULT_CONFIG_PAGE.pageSize,
+  pageOrientation: string = DEFAULT_CONFIG_PAGE.pageOrientation
+) {
   if (pageSize) {
     const unit = "in";
     const pageDimensions = getPageSize(pageSize, unit);
     if (pageDimensions && pageDimensions.width && pageDimensions.height) {
-      cssBuilder.addGlobalRule(`@media print { @page { size: ${pageSize}} }`);
-      cssBuilder.addStyle(".texscript-PageWrapper", "width", pageDimensions.width + unit);
-      cssBuilder.addStyle(".texscript-PageWrapper", "height", pageDimensions.height + unit);
+      if (pageOrientation && pageOrientation === "LANDSCAPE") {
+        cssBuilder.addGlobalRule(`@media print { @page { size: ${pageSize} landscape; } }`);
+        cssBuilder.addStyle(".texscript-PageWrapper", "width", pageDimensions.height + unit);
+        cssBuilder.addStyle(".texscript-PageWrapper", "height", pageDimensions.width + unit);
+      } else {
+        cssBuilder.addGlobalRule(`@media print { @page { size: ${pageSize}; } }`);
+        cssBuilder.addStyle(".texscript-PageWrapper", "width", pageDimensions.width + unit);
+        cssBuilder.addStyle(".texscript-PageWrapper", "height", pageDimensions.height + unit);
+      }
     }
   }
 }
