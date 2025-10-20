@@ -1,3 +1,10 @@
+// Single line comment
+
+/*
+    Block comment
+    Comments spans over multiple lines
+*/
+
 @Configure pageSize: $A4
 @Configure pagePadding: "1in"
 @Configure lineHeight: "1.5"
@@ -7,17 +14,17 @@
 
 Page.main: [
     Section: [
-        Blocks (space: $BETWEEN, align: $CENTER) [
+        Blocks (space: $BETWEEN, align: $CENTER): [
             Line.name: "John Harperro"
-            Block [
-                Line (align: $RIGHT): "San Francisco"
-                Line (align: $RIGHT): "California, US 90009"
+            Block: [
+                Line (align: $RIGHT) "San Francisco"
+                Line (align: $RIGHT) "California, US 90009"
             ]
         ]
     ]
     /-/
-    Section [
-        Blocks (space: $BETWEEN) [
+    Section: [
+        Blocks (space: $BETWEEN): [
             "john@harperro.com"
             "+1 (234) 567-8900"
             "www.harperro.com"
@@ -26,11 +33,11 @@ Page.main: [
     /::/
     Line.header: "CAREER"
     /-/
-    Section [
+    Section: [
         "2020 - PRESENT"
         Line.title: "Staff Engineer, Google, California" 
         "Responsible for the development, testing, deployment and debugging of Google Cloud infrastructure UI application."
-        List (type:$BULLET): [
+        List (type: $BULLET): [
             "Created a library for ease of utilizing RPC calls."
             "Maintained few archived repositories of Google Cloud Platform (GCP)."
             "Recognized for conducting thorough unit tests for several mission critical modules."

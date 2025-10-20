@@ -31,11 +31,13 @@
     "depcheck": "^1.4.7",
     "esbuild": "^0.25.10",
     "express": "^5.1.0",
+    "generator-code": "^1.11.13",
     "http-proxy-middleware": "^3.0.5",
     "http-server": "^14.1.1",
     "serve-index": "^1.9.1",
     "strip-comments": "^2.0.1",
     "terser": "^5.44.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "yo": "^5.1.0"
   }
 }
