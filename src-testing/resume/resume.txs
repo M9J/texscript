@@ -1,8 +1,8 @@
 // Single line comment
 
 /*
-    Block comment
-    Comments spans over multiple lines
+    Multiple
+    Line comment
 */
 
 @Configure pageSize: $A4
